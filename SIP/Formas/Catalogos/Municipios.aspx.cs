@@ -21,6 +21,7 @@ namespace SIP.Formas.Catalogos
             {
                 BindGrid();
                 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                //Manoelito BABY, quiero mis chuquiluquis
             }
 
            
