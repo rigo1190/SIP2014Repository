@@ -97,7 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Formas\POA\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
@@ -110,6 +109,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Formas\Catalogos\cat.aspx" />
     <Content Include="Formas\Catalogos\Municipios.aspx" />
+    <Content Include="Formas\POA\POA.aspx" />
     <Content Include="img\cge.jpg" />
     <Content Include="img\close.png" />
     <Content Include="img\edit1.png" />
@@ -207,6 +207,13 @@
     </Compile>
     <Compile Include="Formas\Catalogos\Municipios.aspx.designer.cs">
       <DependentUpon>Municipios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formas\POA\POA.aspx.cs">
+      <DependentUpon>POA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formas\POA\POA.aspx.designer.cs">
+      <DependentUpon>POA.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
