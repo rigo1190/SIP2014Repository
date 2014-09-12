@@ -155,6 +155,27 @@ namespace DataAccessLayer.Migrations
 
            sc_rehabilitacion_plantapotabilizadora.DetalleMetas.Add(new AperturaProgramaticaMeta { AperturaProgramaticaUnidadId = 1, AperturaProgramaticaBeneficiarioId = 1 });
 
+
+
+           var list = from año in context.Años.Local
+                      from mf in context.ModalidadesFinanciamiento.Local
+                      from f in context.Fondos.Local
+                      select new { año, mf, f };
+
+           foreach (var item in list)
+           {
+               context.Financiamientos.Add(new Financiamiento { Año = item.año, ModalidadFinanciamiento = item.mf, Fondo = item.f });
+           }
+
+           context.SaveChanges();         
+
+
+
+
+
+
+
+
            context.SaveChanges();
 
         }

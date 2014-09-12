@@ -54,6 +54,9 @@
     <Compile Include="Models\AperturaProgramaticaMeta.cs" />
     <Compile Include="Models\AperturaProgramaticaUnidad.cs" />
     <Compile Include="Models\Año.cs" />
+    <Compile Include="Models\ObraPlantilla.cs" />
+    <Compile Include="Models\ObraPlantillaDetalle.cs" />
+    <Compile Include="Models\PlantillaDetalle.cs" />
     <Compile Include="Models\Contexto.cs" />
     <Compile Include="Models\Ejercicio.cs" />
     <Compile Include="Models\Financiamiento.cs" />
@@ -65,10 +68,12 @@
     <Compile Include="Models\ObraFinanciamiento.cs" />
     <Compile Include="Models\POA.cs" />
     <Compile Include="Models\POADetalle.cs" />
+    <Compile Include="Models\RubroVerificacionObra.cs" />
     <Compile Include="Models\SituacionObra.cs" />
     <Compile Include="Models\TipoLocalidad.cs" />
     <Compile Include="Models\UnidadPresupuestal.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Plantilla.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
@@ -76,6 +81,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Models\Diagrama001.cd" />
+    <None Include="Models\Diagrama002.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
