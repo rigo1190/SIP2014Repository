@@ -19,9 +19,7 @@ namespace SIP.Formas.Catalogos
 
             if (!IsPostBack) 
             {
-                BindGrid();
-                //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                //Manoelito BABY, quiero mis chuquiluquis
+                BindGrid();                
             }
 
            
