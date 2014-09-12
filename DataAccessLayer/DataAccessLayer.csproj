@@ -68,7 +68,6 @@
     <Compile Include="Models\ObraFinanciamiento.cs" />
     <Compile Include="Models\POA.cs" />
     <Compile Include="Models\POADetalle.cs" />
-    <Compile Include="Models\RubroVerificacionObra.cs" />
     <Compile Include="Models\SituacionObra.cs" />
     <Compile Include="Models\TipoLocalidad.cs" />
     <Compile Include="Models\UnidadPresupuestal.cs" />
