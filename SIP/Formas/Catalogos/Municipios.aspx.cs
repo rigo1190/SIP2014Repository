@@ -20,7 +20,7 @@ namespace SIP.Formas.Catalogos
             if (!IsPostBack) 
             {
                 BindGrid();
-                //Hola bebe
+                //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
             }
 
            
