@@ -20,6 +20,7 @@ namespace SIP.Formas.POA
             if (!IsPostBack)
             {
                 BindGrid();
+                BindearDropDownList();
             }
             
         }
@@ -35,14 +36,23 @@ namespace SIP.Formas.POA
             GridViewRow row = (GridViewRow)((ImageButton)sender).NamingContainer;
             _ID.Text = GridViewObras.DataKeys[row.RowIndex].Values["Id"].ToString();
 
-            divEdicion.Style.Add("display", "block");
-            divBtnNuevo.Style.Add("display", "none");
-
             int id = Convert.ToInt32(GridViewObras.DataKeys[row.RowIndex].Values["Id"].ToString());
 
             POADetalle poadetalle = uow.POADetalleBusinessLogic.GetByID(id);
 
-            BinCatalogoSimple(this, poadetalle.Numero, poadetalle.Descripcion);            
+            BinCatalogoSimple(this, poadetalle.Descripcion, poadetalle.Numero);
+
+            BindControles(poadetalle);
+
+            divEdicion.Style.Add("display", "block");
+            divBtnNuevo.Style.Add("display", "none");
+        }
+
+
+        public void BindControles(POADetalle poadetalle)
+        {
+            ddlMunicipio.SelectedValue = poadetalle.MunicipioId.ToString();
+            ddlTipoLocalidad.SelectedValue = poadetalle.TipoLocalidadId.ToString();
         }
 
         protected void imgBtnEliminar_Click(object sender, ImageClickEventArgs e)
@@ -94,6 +104,27 @@ namespace SIP.Formas.POA
         protected void btnCrear_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BindearDropDownList()
+        {          
+
+            //Se carga informnacion en el drop de Municipios
+
+            ddlMunicipio.DataSource = uow.MunicipioBusinessLogic.Get().ToList();
+            ddlMunicipio.DataValueField = "Id";
+            ddlMunicipio.DataTextField = "Nombre";            
+            ddlMunicipio.DataBind();
+
+            ddlMunicipio.Items.Insert(0, new ListItem("Seleccione...", "0"));
+
+            ddlTipoLocalidad.DataSource = uow.TipoLocalidadBusinessLogic.Get().ToList();
+            ddlTipoLocalidad.DataValueField = "Id";
+            ddlTipoLocalidad.DataTextField = "Nombre";
+            ddlTipoLocalidad.DataBind();
+
+            ddlTipoLocalidad.Items.Insert(0, new ListItem("Seleccione...", "0"));
+           
         }
 
 
