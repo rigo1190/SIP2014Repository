@@ -5,8 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="<%= ResolveClientUrl("~/Content/bootstrap-theme.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveClientUrl("~/Content/bootstrap.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveClientUrl("~/Content/Site.css") %>" rel="stylesheet" />
+
+    <script src="<%= ResolveClientUrl("~/Scripts/jquery-1.10.2.js") %>"></script>
+    <script src="<%= ResolveClientUrl("~/Scripts/bootstrap.js") %>"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+     <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
     <form id="form1" runat="server">

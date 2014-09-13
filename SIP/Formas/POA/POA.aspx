@@ -1,23 +1,20 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Municipios.aspx.cs" Inherits="SIP.Formas.Catalogos.Municipios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavegadorPrincipal.Master" AutoEventWireup="true" CodeBehind="POA.aspx.cs" Inherits="SIP.Formas.POA.POA" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+     <script type="text/javascript">
 
-
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $("#<%= txtNombre.ClientID %>").attr('maxlength', '100');
+         $(document).ready(function () {
+             $("#<%=txtNumero.ClientID %>").attr('maxlength', '50');
         });
 
         function fnc_Validar() {
 
-            var desc = $("#<%=txtNombre.ClientID%>").val();
-                if (desc == null || desc.length == 0 || desc == undefined) {
-                    alert("El nombre no puede estar vacio");
-                    return false;
-                }
-                return true;
+            var desc = $("#<%=txtDescripcion.ClientID%>").val();
+            if (desc == null || desc.length == 0 || desc == undefined) {
+                alert("El campo descripción no puede estar vacio");
+                return false;
+            }
+            return true;
         }
 
         function fnc_OcultarDivs(sender) {
@@ -32,65 +29,65 @@
         }
 
     </script>
+    
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="panel-heading">
-            <h3 class="panel-title">Municipios</h3>
-    </div>
-
-
-    <asp:GridView Height="25px" ShowHeaderWhenEmpty="true" CssClass="table" ID="grid" DataKeyNames="Id" AutoGenerateColumns="False" runat="server" AllowPaging="True" >
-                <Columns>
-                        <asp:TemplateField HeaderText="Acciones">
+    <asp:GridView Height="25px" ShowHeaderWhenEmpty="true" CssClass="table" ID="GridViewObras" DataKeyNames="Id" AutoGenerateColumns="False" runat="server" AllowPaging="True">
+        <Columns>
+                   <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                                                     
-                            <asp:ImageButton ID="imgBtnEdit" ToolTip="Editar" runat="server" ImageUrl="~/img/Edit1.png" OnClick="imgBtnEdit_Click" />
+                            <asp:ImageButton ID="imgBtnEdit" ToolTip="Editar" runat="server" ImageUrl="~/img/Edit1.png" OnClientClick="return fnc_Confirmar()" OnClick="imgBtnEdit_Click" />
                             <asp:ImageButton ID="imgBtnEliminar" ToolTip="Borrar" runat="server" ImageUrl="~/img/close.png" OnClientClick="return fnc_Confirmar()" OnClick="imgBtnEliminar_Click"/>
 
                         </ItemTemplate>
                         <HeaderStyle BackColor="#EEEEEE" />
                         <ItemStyle HorizontalAlign="right" VerticalAlign="Middle" Width="50px" BackColor="#EEEEEE" />
                     </asp:TemplateField>                                  
-                    <asp:TemplateField HeaderText="Clave" SortExpression="Razón Social">
+                   <asp:TemplateField HeaderText="Numero">
                         <EditItemTemplate>
-                            <asp:TextBox CssClass="input-sm" ID="txtClave" runat="server" Text='<%# Bind("Clave") %>'></asp:TextBox>
+                            <asp:TextBox CssClass="input-sm" ID="txtNumero" runat="server" Text='<%# Bind("Numero") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Clave") %>'></asp:Label>
+                            <asp:Label ID="LabelNumero" runat="server" Text='<%# Bind("Numero") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
+                   <asp:TemplateField HeaderText="Descripcion">
                         <EditItemTemplate>
-                            <asp:TextBox CssClass="input-sm" ID="txtNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                            <asp:TextBox CssClass="input-sm" ID="txtNombre" runat="server" Text='<%# Bind("Descripcion") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="labelNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                            <asp:Label ID="labelDescripcion" runat="server" Text='<%# Bind("Descripcion") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                </Columns>
+        </Columns>
                     
-                <PagerSettings FirstPageText="Primera" LastPageText="Ultima" Mode="NextPreviousFirstLast" NextPageText="Siguiente" PreviousPageText="Anterior" />
+        <PagerSettings FirstPageText="Primera" LastPageText="Ultima" Mode="NextPreviousFirstLast" NextPageText="Siguiente" PreviousPageText="Anterior" />
                     
-        </asp:GridView>
+    </asp:GridView>
+
     <div id="divBtnNuevo" runat="server">
         <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" AutoPostBack="false" />
     </div>
+
     <div class="row"> 
-            <div id="divEdicion" runat="server" class="panel-footer">
+            <div id="divEdicion" runat="server" class="panel-footer" style="display:none">
                 <div class="row top-buffer">
                     <div class="col-md-2">
-                        <label for="Clave">Clave</label>
+                        <label for="Numero">Numero</label>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="input-sm required" id="txtClave" runat="server" style="text-align: left; width:500px; align-items:flex-start" />
+                        <input type="text" class="input-sm required" id="txtNumero" runat="server" style="text-align: left; width:500px; align-items:flex-start" />
                     </div>
                 </div>
 
                 <div class="row top-buffer">
                     <div class="col-md-2">
-                        <label for="Nombre">Nombre</label>
+                        <label for="Descripcion">Descripcion</label>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="input-sm required" id="txtNombre" runat="server" style="text-align: left; align-items:flex-start" />
+                        <input type="text" class="input-sm required" id="txtDescripcion" runat="server" style="text-align: left; align-items:flex-start" />
                     </div>
                 </div>
 
