@@ -161,6 +161,7 @@ namespace SIP.Formas.Catalogos
             divBtnNuevo.Style.Add("display", "none");
         }
 
+       
 
 
     }

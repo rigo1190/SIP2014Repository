@@ -10,7 +10,7 @@
 namespace SIP.Formas.Catalogos {
     
     
-    public partial class Municipios {
+    public partial class Ejercicios {
         
         /// <summary>
         /// grid control.
@@ -49,22 +49,22 @@ namespace SIP.Formas.Catalogos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEdicion;
         
         /// <summary>
-        /// txtClave control.
+        /// txtAnio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtClave;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtAnio;
         
         /// <summary>
-        /// txtNombre control.
+        /// chkActivo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombre;
+        protected global::System.Web.UI.WebControls.CheckBox chkActivo;
         
         /// <summary>
         /// btnCrear control.
@@ -85,13 +85,13 @@ namespace SIP.Formas.Catalogos {
         protected global::System.Web.UI.WebControls.Button btnCancelar;
         
         /// <summary>
-        /// _ID control.
+        /// _Anio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox _ID;
+        protected global::System.Web.UI.WebControls.TextBox _Anio;
         
         /// <summary>
         /// _Accion control.
@@ -103,12 +103,21 @@ namespace SIP.Formas.Catalogos {
         protected global::System.Web.UI.WebControls.TextBox _Accion;
         
         /// <summary>
-        /// ValidationSummary1 control.
+        /// divMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMsg;
+        
+        /// <summary>
+        /// lblMensajes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajes;
     }
 }
