@@ -12,7 +12,9 @@ namespace BusinessLogicLayer
     {
         internal Contexto contexto;
         private List<String> errors = new List<String>();
-        private IBusinessLogic<Municipio> municipioBusinessLogic;                             
+        private IBusinessLogic<Municipio> municipioBusinessLogic;
+        private IBusinessLogic<Ejercicio> ejercicioBusinessLogic;
+                     
 
         public UnitOfWork()
         {
@@ -29,6 +31,19 @@ namespace BusinessLogicLayer
                 }
 
                 return municipioBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Ejercicio> EjercicioBusinessLogic
+        {
+            get
+            {
+                if (this.ejercicioBusinessLogic == null)
+                {
+                    this.ejercicioBusinessLogic = new GenericBusinessLogic<Ejercicio>(contexto);
+                }
+
+                return ejercicioBusinessLogic;
             }
         }
 
