@@ -12,7 +12,9 @@ namespace BusinessLogicLayer
     {
         internal Contexto contexto;
         private List<String> errors = new List<String>();
-        private IBusinessLogic<Municipio> municipioBusinessLogic;                             
+        private IBusinessLogic<Municipio> municipioBusinessLogic;
+        private IBusinessLogic<TipoLocalidad> tipoLocalidadBusinessLogic;
+        private IBusinessLogic<POADetalle> poaDetalleBusinessLogic;                          
 
         public UnitOfWork()
         {
@@ -29,6 +31,32 @@ namespace BusinessLogicLayer
                 }
 
                 return municipioBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<TipoLocalidad> TipoLocalidadBusinessLogic
+        {
+            get
+            {
+                if (this.tipoLocalidadBusinessLogic == null)
+                {
+                    this.tipoLocalidadBusinessLogic = new GenericBusinessLogic<TipoLocalidad>(contexto);
+                }
+
+                return tipoLocalidadBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<POADetalle> POADetalleBusinessLogic
+        {
+            get
+            {
+                if (this.poaDetalleBusinessLogic == null)
+                {
+                    this.poaDetalleBusinessLogic = new GenericBusinessLogic<POADetalle>(contexto);
+                }
+
+                return poaDetalleBusinessLogic;
             }
         }
 
