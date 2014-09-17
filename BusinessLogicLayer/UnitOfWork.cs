@@ -18,6 +18,7 @@ namespace BusinessLogicLayer
         private IBusinessLogic<UnidadPresupuestal> unidadPresupuestalBusinessLogic;
         private IBusinessLogic<POA> poaBusinessLogic;
         private IBusinessLogic<POADetalle> poaDetalleBusinessLogic;
+        private IBusinessLogic<Plantilla> plantillaBusinessLogic;
         
        
         public UnitOfWork()
@@ -101,6 +102,19 @@ namespace BusinessLogicLayer
                 }
 
                 return poaDetalleBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Plantilla> PlantillaBusinessLogic
+        {
+            get
+            {
+                if (this.plantillaBusinessLogic == null)
+                {
+                    this.plantillaBusinessLogic = new GenericBusinessLogic<Plantilla>(contexto);
+                }
+
+                return plantillaBusinessLogic;
             }
         }
 
