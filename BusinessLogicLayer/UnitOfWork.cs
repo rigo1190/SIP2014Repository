@@ -15,9 +15,10 @@ namespace BusinessLogicLayer
         private IBusinessLogic<Ejercicio> ejercicioBusinessLogic;
         private IBusinessLogic<Municipio> municipioBusinessLogic;
         private IBusinessLogic<TipoLocalidad> tipoLocalidadBusinessLogic;
+        private IBusinessLogic<UnidadPresupuestal> unidadPresupuestalBusinessLogic;
+        private IBusinessLogic<POA> poaBusinessLogic;
         private IBusinessLogic<POADetalle> poaDetalleBusinessLogic;
-
-
+        
        
         public UnitOfWork()
         {
@@ -61,6 +62,32 @@ namespace BusinessLogicLayer
                 }
 
                 return tipoLocalidadBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<UnidadPresupuestal> UnidadPresupuestalBusinessLogic
+        {
+            get
+            {
+                if (this.unidadPresupuestalBusinessLogic == null)
+                {
+                    this.unidadPresupuestalBusinessLogic = new GenericBusinessLogic<UnidadPresupuestal>(contexto);
+                }
+
+                return unidadPresupuestalBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<POA> POABusinessLogic
+        {
+            get
+            {
+                if (this.poaBusinessLogic == null)
+                {
+                    this.poaBusinessLogic = new GenericBusinessLogic<POA>(contexto);
+                }
+
+                return poaBusinessLogic;
             }
         }
 
