@@ -12,9 +12,10 @@ namespace BusinessLogicLayer
     {
         internal Contexto contexto;
         private List<String> errors = new List<String>();
-        private IBusinessLogic<Municipio> municipioBusinessLogic;                             
+        private IBusinessLogic<Municipio> municipioBusinessLogic;
 
 
+        ///
         /// <summary>
         /// ////
         /// </summary>
