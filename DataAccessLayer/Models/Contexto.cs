@@ -10,6 +10,7 @@ namespace DataAccessLayer.Models
 {
     public class Contexto : DbContext
     {
+        //
         public Contexto()
             : base("SIP")
         {
