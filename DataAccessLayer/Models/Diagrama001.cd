@@ -88,6 +88,14 @@
   </Class>
   <Class Name="DataAccessLayer.Models.AperturaProgramatica">
     <Position X="0.5" Y="4" Width="3" />
+    <AssociationLine Name="Parent" Type="DataAccessLayer.Models.AperturaProgramatica" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.25" Y="4" />
+        <Point X="1.25" Y="3.583" />
+        <Point X="2.75" Y="3.583" />
+        <Point X="2.75" Y="4" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAAAQAAAAAwAAAAAAAAEAAAoAAAAAQEAA=</HashCode>
       <FileName>Models\AperturaProgramatica.cs</FileName>
@@ -170,6 +178,11 @@
   </Class>
   <Class Name="DataAccessLayer.Models.AperturaProgramaticaMeta">
     <Position X="1.5" Y="8" Width="2.75" />
+    <AssociationLine Name="AperturaProgramatica" Type="DataAccessLayer.Models.AperturaProgramatica">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.12" Y="0.133" />
+      </MemberNameLabel>
+    </AssociationLine>
     <AssociationLine Name="AperturaProgramaticaUnidad" Type="DataAccessLayer.Models.AperturaProgramaticaUnidad" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="4.25" Y="9.062" />
