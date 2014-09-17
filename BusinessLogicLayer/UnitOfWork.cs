@@ -12,17 +12,31 @@ namespace BusinessLogicLayer
     {
         internal Contexto contexto;
         private List<String> errors = new List<String>();
+        private IBusinessLogic<Ejercicio> ejercicioBusinessLogic;
         private IBusinessLogic<Municipio> municipioBusinessLogic;
+        private IBusinessLogic<TipoLocalidad> tipoLocalidadBusinessLogic;
+        private IBusinessLogic<POADetalle> poaDetalleBusinessLogic;
 
 
-        ///
-        /// <summary>
-        /// ////
-        /// </summary>
+       
         public UnitOfWork()
         {
             this.contexto = new Contexto();
         }
+
+        public IBusinessLogic<Ejercicio> EjercicioBusinessLogic
+        {
+            get
+            {
+                if (this.ejercicioBusinessLogic == null)
+                {
+                    this.ejercicioBusinessLogic = new GenericBusinessLogic<Ejercicio>(contexto);
+                }
+
+                return ejercicioBusinessLogic;
+            }
+        }
+
 
         public IBusinessLogic<Municipio> MunicipioBusinessLogic
         {
@@ -34,6 +48,32 @@ namespace BusinessLogicLayer
                 }
 
                 return municipioBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<TipoLocalidad> TipoLocalidadBusinessLogic
+        {
+            get
+            {
+                if (this.tipoLocalidadBusinessLogic == null)
+                {
+                    this.tipoLocalidadBusinessLogic = new GenericBusinessLogic<TipoLocalidad>(contexto);
+                }
+
+                return tipoLocalidadBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<POADetalle> POADetalleBusinessLogic
+        {
+            get
+            {
+                if (this.poaDetalleBusinessLogic == null)
+                {
+                    this.poaDetalleBusinessLogic = new GenericBusinessLogic<POADetalle>(contexto);
+                }
+
+                return poaDetalleBusinessLogic;
             }
         }
 
