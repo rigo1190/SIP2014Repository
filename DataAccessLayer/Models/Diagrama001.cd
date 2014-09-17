@@ -92,6 +92,9 @@
       <HashCode>AAAAIAAAAAAAAAQAAAAAwAAAAAAAAEAAAoAAAAAQEAA=</HashCode>
       <FileName>Models\AperturaProgramatica.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Parent" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="DataAccessLayer.Models.POADetalle">
     <Position X="9.5" Y="3.5" Width="2" />

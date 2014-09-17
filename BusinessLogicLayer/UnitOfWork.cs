@@ -14,11 +14,25 @@ namespace BusinessLogicLayer
         private List<String> errors = new List<String>();
         private IBusinessLogic<Ejercicio> ejercicioBusinessLogic;
         private IBusinessLogic<Municipio> municipioBusinessLogic;
+        private IBusinessLogic<Fondo> fondoBusinessLogic;
+        private IBusinessLogic<ModalidadFinanciamiento> modalidadFinanciamientoBusinessLogic;
+        private IBusinessLogic<Año> añoBusinessLogic;
+        private IBusinessLogic<Financiamiento> financiamientoBusinessLogic;
         private IBusinessLogic<TipoLocalidad> tipoLocalidadBusinessLogic;
+        private IBusinessLogic<SituacionObra> situacionObraBusinessLogic;
         private IBusinessLogic<UnidadPresupuestal> unidadPresupuestalBusinessLogic;
         private IBusinessLogic<POA> poaBusinessLogic;
         private IBusinessLogic<POADetalle> poaDetalleBusinessLogic;
         private IBusinessLogic<Plantilla> plantillaBusinessLogic;
+        private IBusinessLogic<PlantillaDetalle> plantillaDetalleBusinessLogic;
+        private IBusinessLogic<AperturaProgramatica> aperturaProgramaticaBusinessLogic;
+        private IBusinessLogic<AperturaProgramaticaMeta> aperturaProgramaticaMetaBusinessLogic;
+        private IBusinessLogic<AperturaProgramaticaBeneficiario> aperturaProgramaticaBeneficiarioBusinessLogic;
+        private IBusinessLogic<AperturaProgramaticaUnidad> aperturaProgramaticaUnidadBusinessLogic;
+        private IBusinessLogic<Obra> obraBusinessLogic;
+        private IBusinessLogic<ObraFinanciamiento> obraFinanciamientoBusinessLogic;
+        private IBusinessLogic<ObraPlantilla> obraPlantillaBusinessLogic;
+        private IBusinessLogic<ObraPlantillaDetalle> obraPlantillaDetalleBusinessLogic;
         
        
         public UnitOfWork()
@@ -53,6 +67,58 @@ namespace BusinessLogicLayer
             }
         }
 
+        public IBusinessLogic<Fondo> FondoBusinessLogic
+        {
+            get
+            {
+                if (this.fondoBusinessLogic == null)
+                {
+                    this.fondoBusinessLogic = new GenericBusinessLogic<Fondo>(contexto);
+                }
+
+                return fondoBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<ModalidadFinanciamiento> ModalidadFinanciamientoBusinessLogic
+        {
+            get
+            {
+                if (this.modalidadFinanciamientoBusinessLogic == null)
+                {
+                    this.modalidadFinanciamientoBusinessLogic = new GenericBusinessLogic<ModalidadFinanciamiento>(contexto);
+                }
+
+                return modalidadFinanciamientoBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Año> AñoBusinessLogic
+        {
+            get
+            {
+                if (this.añoBusinessLogic == null)
+                {
+                    this.añoBusinessLogic = new GenericBusinessLogic<Año>(contexto);
+                }
+
+                return añoBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Financiamiento> FinanciamientoBusinessLogic
+        {
+            get
+            {
+                if (this.financiamientoBusinessLogic == null)
+                {
+                    this.financiamientoBusinessLogic = new GenericBusinessLogic<Financiamiento>(contexto);
+                }
+
+                return financiamientoBusinessLogic;
+            }
+        }
+
         public IBusinessLogic<TipoLocalidad> TipoLocalidadBusinessLogic
         {
             get
@@ -63,6 +129,19 @@ namespace BusinessLogicLayer
                 }
 
                 return tipoLocalidadBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<SituacionObra> SituacionObraBusinessLogic
+        {
+            get
+            {
+                if (this.situacionObraBusinessLogic == null)
+                {
+                    this.situacionObraBusinessLogic = new GenericBusinessLogic<SituacionObra>(contexto);
+                }
+
+                return situacionObraBusinessLogic;
             }
         }
 
@@ -115,6 +194,123 @@ namespace BusinessLogicLayer
                 }
 
                 return plantillaBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<PlantillaDetalle> PlantillaDetalleBusinessLogic
+        {
+            get
+            {
+                if (this.plantillaDetalleBusinessLogic == null)
+                {
+                    this.plantillaDetalleBusinessLogic = new GenericBusinessLogic<PlantillaDetalle>(contexto);
+                }
+
+                return plantillaDetalleBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<AperturaProgramatica> AperturaProgramaticaBusinessLogic
+        {
+            get
+            {
+                if (this.aperturaProgramaticaBusinessLogic == null)
+                {
+                    this.aperturaProgramaticaBusinessLogic = new GenericBusinessLogic<AperturaProgramatica>(contexto);
+                }
+
+                return aperturaProgramaticaBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<AperturaProgramaticaMeta> AperturaProgramaticaMetaBusinessLogic
+        {
+            get
+            {
+                if (this.aperturaProgramaticaMetaBusinessLogic == null)
+                {
+                    this.aperturaProgramaticaMetaBusinessLogic = new GenericBusinessLogic<AperturaProgramaticaMeta>(contexto);
+                }
+
+                return aperturaProgramaticaMetaBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<AperturaProgramaticaBeneficiario> AperturaProgramaticaBeneficiarioBusinessLogic
+        {
+            get
+            {
+                if (this.aperturaProgramaticaBeneficiarioBusinessLogic == null)
+                {
+                    this.aperturaProgramaticaBeneficiarioBusinessLogic = new GenericBusinessLogic<AperturaProgramaticaBeneficiario>(contexto);
+                }
+
+                return aperturaProgramaticaBeneficiarioBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<AperturaProgramaticaUnidad> AperturaProgramaticaUnidadBusinessLogic
+        {
+            get
+            {
+                if (this.aperturaProgramaticaUnidadBusinessLogic == null)
+                {
+                    this.aperturaProgramaticaUnidadBusinessLogic = new GenericBusinessLogic<AperturaProgramaticaUnidad>(contexto);
+                }
+
+                return aperturaProgramaticaUnidadBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Obra> ObraBusinessLogic
+        {
+            get
+            {
+                if (this.obraBusinessLogic == null)
+                {
+                    this.obraBusinessLogic = new GenericBusinessLogic<Obra>(contexto);
+                }
+
+                return obraBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<ObraFinanciamiento> ObraFinanciamientoBusinessLogic
+        {
+            get
+            {
+                if (this.obraFinanciamientoBusinessLogic == null)
+                {
+                    this.obraFinanciamientoBusinessLogic = new GenericBusinessLogic<ObraFinanciamiento>(contexto);
+                }
+
+                return obraFinanciamientoBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<ObraPlantilla> ObraPlantillaBusinessLogic
+        {
+            get
+            {
+                if (this.obraPlantillaBusinessLogic == null)
+                {
+                    this.obraPlantillaBusinessLogic = new GenericBusinessLogic<ObraPlantilla>(contexto);
+                }
+
+                return obraPlantillaBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<ObraPlantillaDetalle> ObraPlantillaDetalleBusinessLogic
+        {
+            get
+            {
+                if (this.obraPlantillaDetalleBusinessLogic == null)
+                {
+                    this.obraPlantillaDetalleBusinessLogic = new GenericBusinessLogic<ObraPlantillaDetalle>(contexto);
+                }
+
+                return obraPlantillaDetalleBusinessLogic;
             }
         }
 

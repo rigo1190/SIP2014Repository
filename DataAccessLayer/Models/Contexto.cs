@@ -72,6 +72,8 @@ namespace DataAccessLayer.Models
         public virtual DbSet<POADetalle> POADetalle { get; set; }
         public virtual DbSet<Obra> Obras { get; set; }
         public virtual DbSet<ObraFinanciamiento> ObraFinanciamientos { get; set; }
+        public virtual DbSet<ObraPlantilla> ObraPlantilla { get; set; }
+        public virtual DbSet<ObraPlantillaDetalle> ObraPlantillaDetalle { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Plantilla> Plantilla { get; set; }
         public virtual DbSet<PlantillaDetalle> PlantillaDetalle { get; set; }
