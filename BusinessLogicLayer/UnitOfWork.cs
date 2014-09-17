@@ -17,7 +17,9 @@ namespace BusinessLogicLayer
         private IBusinessLogic<POADetalle> poaDetalleBusinessLogic;
         private IBusinessLogic<Ejercicio> ejercicioBusinessLogic;               
 
-        //
+        /// <summary>
+        /// ////
+        /// </summary>
         public UnitOfWork()
         {
             this.contexto = new Contexto();
