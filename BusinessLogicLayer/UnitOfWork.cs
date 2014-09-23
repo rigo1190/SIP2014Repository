@@ -12,6 +12,8 @@ namespace BusinessLogicLayer
     {
         internal Contexto contexto;
         private List<String> errors = new List<String>();
+        private IBusinessLogic<Usuario> usuarioBusinessLogic;
+        private IBusinessLogic<UsuarioUnidadPresupuestal> usuarioUnidadPresupuestalBusinessLogic;
         private IBusinessLogic<Ejercicio> ejercicioBusinessLogic;
         private IBusinessLogic<Municipio> municipioBusinessLogic;
         private IBusinessLogic<Fondo> fondoBusinessLogic;
@@ -38,6 +40,32 @@ namespace BusinessLogicLayer
         public UnitOfWork()
         {
             this.contexto = new Contexto();
+        }
+
+        public IBusinessLogic<Usuario> UsuarioBusinessLogic
+        {
+            get
+            {
+                if (this.usuarioBusinessLogic == null)
+                {
+                    this.usuarioBusinessLogic = new GenericBusinessLogic<Usuario>(contexto);
+                }
+
+                return usuarioBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<UsuarioUnidadPresupuestal> UsuarioUnidadPresupuestalBusinessLogic
+        {
+            get
+            {
+                if (this.usuarioUnidadPresupuestalBusinessLogic == null)
+                {
+                    this.usuarioUnidadPresupuestalBusinessLogic = new GenericBusinessLogic<UsuarioUnidadPresupuestal>(contexto);
+                }
+
+                return usuarioUnidadPresupuestalBusinessLogic;
+            }
         }
 
         public IBusinessLogic<Ejercicio> EjercicioBusinessLogic
