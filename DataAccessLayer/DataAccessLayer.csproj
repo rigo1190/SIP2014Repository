@@ -73,6 +73,7 @@
     <Compile Include="Models\UnidadPresupuestal.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Plantilla.cs" />
+    <Compile Include="Models\UsuarioUnidadPresupuestal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />

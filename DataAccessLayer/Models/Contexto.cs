@@ -23,7 +23,24 @@ namespace DataAccessLayer.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();             
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<UsuarioUnidadPresupuestal>()
+               .HasRequired(c => c.Usuario)
+               .WithMany(d => d.DetalleUnidadesPresupuestales)
+               .HasForeignKey(c => c.UsuarioId);
+
+            modelBuilder.Entity<PlantillaDetalle>()
+              .HasRequired(u => u.Plantilla)
+              .WithMany(u => u.DetallePreguntas)
+              .HasForeignKey(u => u.PlantillaId)
+              .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<ObraPlantillaDetalle>()
+              .HasRequired(u => u.ObraPlantilla)
+              .WithMany(u => u.Detalles)
+              .HasForeignKey(u => u.ObraPlantillaId)
+              .WillCascadeOnDelete(true);
             
         }
 
@@ -76,7 +93,8 @@ namespace DataAccessLayer.Models
         public virtual DbSet<ObraPlantillaDetalle> ObraPlantillaDetalle { get; set; }        
         public virtual DbSet<Plantilla> Plantilla { get; set; }
         public virtual DbSet<PlantillaDetalle> PlantillaDetalle { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
 
     }
+
 }

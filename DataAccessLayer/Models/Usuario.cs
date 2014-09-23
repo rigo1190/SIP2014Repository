@@ -1,10 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccessLayer.Models
 {
     public class Usuario
-    {       
+    {
+        public Usuario()
+        {
+            this.DetalleUnidadesPresupuestales = new HashSet<UsuarioUnidadPresupuestal>();
+        }
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
@@ -16,7 +21,8 @@ namespace DataAccessLayer.Models
 
         [StringLength(200, ErrorMessage = "El campo {0} debe contener un máximo de {1} caracteres")]
         public string Nombre { get; set; }
-        public bool Activo { get; set; }        
+        public bool Activo { get; set; }
+        public virtual ICollection<UsuarioUnidadPresupuestal> DetalleUnidadesPresupuestales { get; set; }
 
     }
 }

@@ -28,6 +28,15 @@ namespace DataAccessLayer.Migrations
             //    );
             //
 
+            context.Usuarios.AddOrUpdate(
+
+               new Usuario { Id = 1, Login = "sedarpa", Password = "sedarpa", Nombre = "Usuario de SEDARPA", Activo = true },
+               new Usuario { Id = 2, Login = "iiev", Password = "iiev", Nombre = "Usuario de IIEV", Activo = true },
+               new Usuario { Id = 3, Login = "inverbio", Password = "inverbio", Nombre = "Usuario de INVERBIO", Activo = true }               
+            );
+
+
+
             context.Ejercicios.AddOrUpdate(
 
                new Ejercicio { Id = 1, Año =2009 },
@@ -52,6 +61,18 @@ namespace DataAccessLayer.Migrations
 
             sedarpa.DetalleSubUnidadesPresupuestales.Add(new UnidadPresupuestal { Id = 4, Clave = "UP101", Abreviatura = "CODEPAP", Nombre = "Consejo de desarrollo del Papaloapan", Orden = 1 });
             sedarpa.DetalleSubUnidadesPresupuestales.Add(new UnidadPresupuestal { Id = 5, Clave = "UP102", Abreviatura = "INVERBIO", Nombre = "Instituto Veracruzano de Bioenergéticos", Orden = 2 });
+
+
+
+            Usuario usedarpa = context.Usuarios.Local.FirstOrDefault(u => u.Login == "sedarpa");
+            Usuario uiiev = context.Usuarios.Local.FirstOrDefault(u => u.Login == "iiev");
+            Usuario uinverbio = context.Usuarios.Local.FirstOrDefault(u => u.Login == "inverbio");
+
+            usedarpa.DetalleUnidadesPresupuestales.Add(new UsuarioUnidadPresupuestal { UnidadPresupuestalId=1});
+            uiiev.DetalleUnidadesPresupuestales.Add(new UsuarioUnidadPresupuestal { UnidadPresupuestalId = 2 });
+            uinverbio.DetalleUnidadesPresupuestales.Add(new UsuarioUnidadPresupuestal { UnidadPresupuestalId = 5 });
+
+
 
 
             context.Municipios.AddOrUpdate(              
