@@ -50,7 +50,7 @@ namespace SIP.Formas.Catalogos
             divMsg.Style.Add("display", "none");
             Utilerias.LimpiarCampos(this);
             chkActivo.Checked = false;
-            _Accion.Text = "N";
+            _Accion.Text = "N"; //Se cambia el estado de la forma a crear un NUEVo registro
         }
 
 
@@ -60,10 +60,10 @@ namespace SIP.Formas.Catalogos
 
             Ejercicio obj;
 
-           if (_Accion.Text.Equals("N"))
+            if (_Accion.Text.Equals("N")) //Si el estado de la forma es crear un NUEVo registro
                obj=new Ejercicio();
            else
-           {
+            {  //Se va a ACTUALIZAR un registro existente
                obj = uow.EjercicioBusinessLogic.GetByID(Utilerias.StrToInt(_Anio.Text));
                msg = "Se ha actualizado correctamente";
            }
@@ -72,10 +72,10 @@ namespace SIP.Formas.Catalogos
             obj.Activo = Convert.ToBoolean(chkActivo.Checked);
 
             //Se almacena el objeto
-            if (_Accion.Text.Equals("N"))
+            if (_Accion.Text.Equals("N")) //Si el estado de la forma es crear un NUEVo registro
                 uow.EjercicioBusinessLogic.Insert(obj);
             else
-                uow.EjercicioBusinessLogic.Update(obj);
+                uow.EjercicioBusinessLogic.Update(obj); //Se va a ACTUALIZAR un registro existente
 
             uow.SaveChanges();
 
@@ -86,10 +86,12 @@ namespace SIP.Formas.Catalogos
                     msg += cad;
 
                 lblMensajes.Text = msg;
+                lblMensajes.ForeColor = System.Drawing.Color.Red;
                 return;
             }
 
             lblMensajes.Text = msg;
+            lblMensajes.ForeColor = System.Drawing.Color.Black;
             //Se limpian los controles
             txtAnio.Value = string.Empty;
             chkActivo.Checked = false;
@@ -111,7 +113,7 @@ namespace SIP.Formas.Catalogos
             BindControles(ejercicio);
 
             _Anio.Text = grid.DataKeys[row.RowIndex].Values["Id"].ToString();
-            _Accion.Text = "A";
+            _Accion.Text = "A"; //Se cambia el estado de la forma a ACTUALIZAR un registro existente
 
             divEdicion.Style.Add("display", "block");
             divBtnNuevo.Style.Add("display", "none");
@@ -139,8 +141,14 @@ namespace SIP.Formas.Catalogos
                     msg += cad;
 
                 lblMensajes.Text = msg;
+                lblMensajes.ForeColor = System.Drawing.Color.Red;
+                divMsg.Style.Add("display", "block");
+
                 return;
             }
+
+            lblMensajes.Text = msg;
+            lblMensajes.ForeColor = System.Drawing.Color.Black;
 
             BindGrid();
             divEdicion.Style.Add("display", "none");

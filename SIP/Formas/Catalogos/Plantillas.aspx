@@ -1,18 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavegadorCatalogos.Master" AutoEventWireup="true" CodeBehind="Plantillas.aspx.cs" Inherits="SIP.Formas.Catalogos.Plantillas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+
+        function fnc_OcultarDivs(sender) {
+            $("#<%= divBtnNuevo.ClientID %>").css("display", "block");
+            $("#<%= divCaptura.ClientID %>").css("display", "none");
+            $("#<%= divGuardar.ClientID %>").css("display", "none");
+            return false;
+        }
+
+
+        function fnc_Confirmar() {
+            return confirm("¿Está seguro de eliminar el registro?");
+        }
+
+        function fnc_IrDesdeGrid(url) {
+            //$(location).attr('href', 'PlantillaPreguntas.aspx?2');
+            $(location).attr('href', url);
+        }
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
      <div class="container">
         <div class="row">
-            <div id="divAnexo" runat="server">
+            <div id="divPlantilla" runat="server">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                            <h3 id="titulo" runat="server" class="panel-title">Anexo Pasivos Proveedores</h3>
+                            <h3 id="titulo" runat="server" class="panel-title">Plantillas</h3>
                     </div>
                      <div class="panel-body">
                     <div class="row">
-                       <asp:GridView CssClass="table table-striped table-bordered grid sortable {disableSortCols: [0, 5, 8,9,10]}" Width="100%" OnRowDataBound="grid_RowDataBound" ShowFooter="true" AutoGenerateColumns="false" ID="grid" DataKeyNames="ID"  runat="server">
+                       <asp:GridView ShowHeaderWhenEmpty="true" CssClass="table" Width="100%" OnRowDataBound="grid_RowDataBound" ShowFooter="true" AutoGenerateColumns="false" ID="grid" DataKeyNames="Id"  runat="server">
                            <Columns>
                                <asp:TemplateField HeaderText="Acciones">
                                         <ItemTemplate> 
@@ -28,6 +48,12 @@
                                         </FooterTemplate>
                                 </asp:TemplateField>
                                
+                               <asp:TemplateField HeaderText="Ejercicio">
+                                    <ItemTemplate>
+                                        <%# DataBinder.Eval(Container.DataItem, "Ejercicio.Año") %>
+                                    </ItemTemplate>                    
+                                </asp:TemplateField>
+
                                <asp:TemplateField HeaderText="Clave">
                                     <ItemTemplate>
                                         <%# DataBinder.Eval(Container.DataItem, "Clave") %>
@@ -38,19 +64,19 @@
                                              <%# DataBinder.Eval(Container.DataItem, "Descripcion") %>
                                         </ItemTemplate>          
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Ejercicio">
+
+                                <asp:TemplateField HeaderText="Descripción">
                                         <ItemTemplate>
-                                                <asp:Label ID="lblEjercicio" Font-Bold="true" runat="server"/>
-                                        </ItemTemplate>                    
+                                             <%# DataBinder.Eval(Container.DataItem, "Orden") %>
+                                        </ItemTemplate>          
                                 </asp:TemplateField>
 
-                               <asp:TemplateField HeaderText="Detalle preguntas">
+                                <asp:TemplateField HeaderText="Preguntas Plantilla">
                                         <ItemTemplate>
-                                                <button type="button" id="btnParcial" onserverclick="btnParcial_ServerClick" runat="server" class="btn btn-default"> <span class="glyphicon glyphicon-folder-open"></span></button>
-                                                
-                                        </ItemTemplate>
-                                         <HeaderStyle HorizontalAlign="Center" BackColor="#EEEEEE" />
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="50px" BackColor="#EEEEEE" />                    
+                                            <button type="button" id="btnPP" onclick="fnc_IrDesdeGrid()" runat="server" class="btn btn-default"> <span class="glyphicon glyphicon-book"></span></button>
+                                        </ItemTemplate>   
+                                        <HeaderStyle HorizontalAlign="Center" BackColor="#EEEEEE" />
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="50px" BackColor="#EEEEEE" />                       
                                 </asp:TemplateField>
 
                            </Columns>
@@ -59,121 +85,64 @@
                     </div>
                     <div id="divBtnNuevo" runat="server">
                         <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" AutoPostBack="false" />
-                        <asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="btn btn-default" OnClick="btnRegresar_Click" />
+                        
                     </div>
-                    <div id="divCaptura" runat="server">
-                        <div class="row top-buffer" runat="server" id="divFondo">
-                            <div class="col-md-2">
-                                <p class="text-right"><strong>Nombre Proveedor</strong></p>
-                                
-                            </div>
-                            <div class="col-md-5">
-                                <%--<asp:DropDownList Width="950px" ID="ddlProveedor" CssClass="form-control" runat="server"></asp:DropDownList>--%>
-                                <input type="hidden" runat="server" id="__hIdProveedor" />
-                                <asp:TextBox ID="txtProveedor" runat="server" CssClass="form-control"></asp:TextBox>
-                                
-                                <div id="msgProv" style="display:none">
-                                    <span>&nbsp;</span>
-                                    <span class="span">Ese proveedor no está en la lista. Verifíquelo por favor o pídale al administrador de catálogos que lo agregue.</span>
-                                </div>
-
-                                
-                                
-                            </div>
-                            <div class="col-md-1">
-                                <input type="image" src="../../img/close.png" id="btnCambiarProv" onclick="return false;" />
-                                <input type="hidden" runat="server" id="__estado" />
-                            </div>
-                            
-                        </div>
+                    <div id="divCaptura" style="display:none" runat="server">
                         <div class="row top-buffer">
                             <div class="col-md-2">
-                                <p class="text-right"><strong>Monto</strong></p>
+                                <p class="text-right"><strong>Clave</strong></p>
                             </div>
                             <div class="col-md-6">
-                                <asp:TextBox Width="180px" ID="txtMonto" Text="0" CssClass="form-control numeric" runat="server"></asp:TextBox>
+                                <asp:TextBox Width="180px" ID="txtClave" Text="0" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row top-buffer">
                             <div class="col-md-2">
-                                <p class="text-right"><strong>Antiguedad</strong></p>
+                                <p class="text-right"><strong>Descripción</strong></p>
                             </div>
                             <div class="col-md-6">
-                                <asp:TextBox Width="180px" ID="txtAntiguedad" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox Width="180px" ID="txtDescripcion" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row top-buffer" runat="server" id="div1">
                             <div class="col-md-2">
-                                <p class="text-right"><strong>Documento Legal</strong></p>
+                                <p class="text-right"><strong>Ejercicio</strong></p>
                             </div>
                             <div class="col-md-6">
-                                <asp:DropDownList Width="180px" ID="ddlDocto" CssClass="form-control" runat="server"></asp:DropDownList>
+                                <asp:DropDownList Width="180px" ID="ddlEjercicio" CssClass="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
 
-                        <div class="row top-buffer" runat="server" id="div4">
+                        <div class="row top-buffer">
                             <div class="col-md-2">
-                                <p class="text-right"><strong>Num. de Docto. Legal</strong></p>
+                                <p class="text-right"><strong>Orden</strong></p>
                             </div>
                             <div class="col-md-6">
-                                <asp:TextBox Width="180px" ID="txtNumDocto" CssClass="form-control" runat="server"></asp:TextBox>
+                                <input type="text" class="input-sm digits" id="txtOrden" runat="server" />
                             </div>
                         </div>
-
-                        <div class="row top-buffer" runat="server" id="div2">
-                            <div class="col-md-2">
-                                <p class="text-right"><strong>Proceso Legal/Administrativo</strong></p>
-                            </div>
-                            <div class="col-md-6">
-                                <asp:DropDownList Width="180px" ID="ddlProceso" CssClass="form-control" runat="server"></asp:DropDownList>
-                            </div>
-                        </div>
-
-                         <div class="row top-buffer" runat="server" id="div5">
-                            <div class="col-md-2">
-                                <p class="text-right"><strong>Ejercicio deuda</strong></p>
-                            </div>
-                            <div class="col-md-6">
-                                <asp:DropDownList Width="100px" ID="ddlAniosDeuda" CssClass="form-control" runat="server">
-                                   
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-
-                        <div class="row top-buffer" runat="server" id="div6">
-                            <div class="col-md-2">
-                                <p class="text-right"><strong>Pagado parcialmente</strong></p>
-                            </div>
-                            <div class="col-md-6">
-                                <asp:CheckBox ID="chkPagadoParciamlenteC" CssClass="evento" Font-Bold="True" runat="server" />
-                            </div>
-                        </div>
-
-
-                         <div class="row top-buffer" runat="server" id="div7">
-                            <div class="col-md-2">
-                                <p class="text-right"><strong>Pagado</strong></p>
-                            </div>
-                            <div class="col-md-6">
-                                <asp:CheckBox ID="chkPagado" Font-Bold="True"  runat="server" />
-                            </div>
-                        </div>
-
 
                     </div>
                 </div>
-                    <div class="panel-footer" id="divGuardar" runat="server">
+                    <div class="panel-footer" id="divGuardar" style="display:none" runat="server">
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-default" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-default" AutoPostBack="false" OnClientClick="return fnc_OcultarDivs()" />
-                     <asp:Label ID="lblMensajes" runat="server" Text=""></asp:Label>
+                    
                 </div> 
 
-                     <div runat="server" style="display:none">
-                        <asp:TextBox ID="_Accion" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
-                         <input type="hidden" runat="server" id="_IDPasivo" />
-                         <asp:TextBox ID="_ID" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
-                         <input type="hidden" runat="server" id="_PageIndex" />
-                    </div>
+                <div class="panel-footer" id="divMsg" style="display:none" runat="server">
+                    <asp:Label  ID="lblMensajes" runat="server"></asp:Label>
+                </div>
+
+                <div runat="server" style="display:none">
+                    <input type="hidden" runat="server" id="_Accion" />
+                    <input type="hidden" runat="server" id="_IDPlantilla" />
+                    <input type="hidden" runat="server" id="_PageIndex" />
+                </div>
+
+
+
+
                 </div>
                
             </div>
