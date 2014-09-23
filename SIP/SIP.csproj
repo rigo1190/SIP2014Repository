@@ -110,7 +110,9 @@
     <Content Include="Formas\Catalogos\cat.aspx" />
     <Content Include="Formas\Catalogos\Ejercicios.aspx" />
     <Content Include="Formas\Catalogos\Municipios.aspx" />
+    <Content Include="Formas\Catalogos\PlantillaPreguntas.aspx" />
     <Content Include="Formas\Catalogos\Plantillas.aspx" />
+    <Content Include="Formas\Catalogos\PlantillasPadre.aspx" />
     <Content Include="Formas\POA\POA.aspx" />
     <Content Include="img\cge.jpg" />
     <Content Include="img\close.png" />
@@ -206,6 +208,7 @@
     </Compile>
     <Compile Include="Formas\Catalogos\Ejercicios.aspx.cs">
       <DependentUpon>Ejercicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formas\Catalogos\Ejercicios.aspx.designer.cs">
       <DependentUpon>Ejercicios.aspx</DependentUpon>
@@ -217,11 +220,26 @@
     <Compile Include="Formas\Catalogos\Municipios.aspx.designer.cs">
       <DependentUpon>Municipios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formas\Catalogos\PlantillaPreguntas.aspx.cs">
+      <DependentUpon>PlantillaPreguntas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formas\Catalogos\PlantillaPreguntas.aspx.designer.cs">
+      <DependentUpon>PlantillaPreguntas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formas\Catalogos\Plantillas.aspx.cs">
       <DependentUpon>Plantillas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formas\Catalogos\Plantillas.aspx.designer.cs">
       <DependentUpon>Plantillas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formas\Catalogos\PlantillasPadre.aspx.cs">
+      <DependentUpon>PlantillasPadre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formas\Catalogos\PlantillasPadre.aspx.designer.cs">
+      <DependentUpon>PlantillasPadre.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formas\POA\POA.aspx.cs">
       <DependentUpon>POA.aspx</DependentUpon>
@@ -235,6 +253,7 @@
     </Compile>
     <Compile Include="NavegadorCatalogos.Master.cs">
       <DependentUpon>NavegadorCatalogos.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="NavegadorCatalogos.Master.designer.cs">
       <DependentUpon>NavegadorCatalogos.Master</DependentUpon>
