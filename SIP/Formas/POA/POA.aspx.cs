@@ -17,7 +17,7 @@ namespace SIP.Formas.POA
         protected void Page_Load(object sender, EventArgs e)
         {
             uow = new UnitOfWork();
-
+               
             if (!IsPostBack)
             {
                 BindGrid();
