@@ -206,6 +206,7 @@
     </Compile>
     <Compile Include="Formas\Catalogos\Ejercicios.aspx.cs">
       <DependentUpon>Ejercicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formas\Catalogos\Ejercicios.aspx.designer.cs">
       <DependentUpon>Ejercicios.aspx</DependentUpon>
@@ -219,6 +220,7 @@
     </Compile>
     <Compile Include="Formas\Catalogos\Plantillas.aspx.cs">
       <DependentUpon>Plantillas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formas\Catalogos\Plantillas.aspx.designer.cs">
       <DependentUpon>Plantillas.aspx</DependentUpon>
@@ -235,6 +237,7 @@
     </Compile>
     <Compile Include="NavegadorCatalogos.Master.cs">
       <DependentUpon>NavegadorCatalogos.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="NavegadorCatalogos.Master.designer.cs">
       <DependentUpon>NavegadorCatalogos.Master</DependentUpon>

@@ -21,5 +21,11 @@ namespace DataAccessLayer.Models
         public virtual AperturaProgramaticaUnidad AperturaProgramaticaUnidad { get; set; }
         public virtual AperturaProgramaticaBeneficiario AperturaProgramaticaBeneficiario { get; set; }
 
+        public string Descripcion 
+        {
+            get { return String.Format("{0} / {1}",this.AperturaProgramaticaUnidad.Nombre.ToUpper(),this.AperturaProgramaticaBeneficiario.Nombre.ToUpper()) ; }
+        }
+
+
     }
 }

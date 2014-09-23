@@ -20,7 +20,9 @@ namespace DataAccessLayer.Models
         public bool EsAccion { get; set; }
         public int POAId { get; set; }
         public int AperturaProgramaticaId { get; set; }
+        public int AperturaProgramaticaMetaId { get; set; }
         public int NumeroBeneficiarios { get; set; }
+        public int CantidadUnidades { get; set; }
         public int SituacionObraId { get; set; }
         public enumModalidadObra ModalidadObra { get; set; }
         public decimal ImporteTotal { get; set; }
@@ -29,6 +31,7 @@ namespace DataAccessLayer.Models
         public virtual Municipio Municipio { get; set; }
         public virtual TipoLocalidad TipoLocalidad { get; set; }
         public virtual AperturaProgramatica AperturaProgramatica { get; set; }
+        public virtual AperturaProgramaticaMeta AperturaProgramaticaMeta { get; set; }
         public virtual SituacionObra SituacionObra { get; set; }
     }
 }

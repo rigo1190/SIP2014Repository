@@ -63,9 +63,9 @@ namespace DataAccessLayer.Migrations
 
             context.TiposLocalidad.AddOrUpdate(
              new TipoLocalidad { Id = 1,Clave="TL001",Nombre="Poblado urbano",Orden=1},
-             new TipoLocalidad { Id = 1,Clave="TL002",Nombre="Poblado rural",Orden=2},
-             new TipoLocalidad { Id = 1,Clave="TL003",Nombre="Colonia popular",Orden=3},
-             new TipoLocalidad { Id = 1,Clave="TL004",Nombre="Poblado indígena",Orden=4}
+             new TipoLocalidad { Id = 2,Clave="TL002",Nombre="Poblado rural",Orden=2},
+             new TipoLocalidad { Id = 3,Clave="TL003",Nombre="Colonia popular",Orden=3},
+             new TipoLocalidad { Id = 4,Clave="TL004",Nombre="Poblado indígena",Orden=4}
            );
 
            context.SituacionesObra.AddOrUpdate(
@@ -99,7 +99,9 @@ namespace DataAccessLayer.Migrations
                new AperturaProgramaticaUnidad { Id = 3, Clave = "APU003", Nombre = "Tanque", Orden = 3 },
                new AperturaProgramaticaUnidad { Id = 4, Clave = "APU004", Nombre = "Metro lineal", Orden = 4 },
                new AperturaProgramaticaUnidad { Id = 5, Clave = "APU005", Nombre = "Sistema", Orden = 5 },
-               new AperturaProgramaticaUnidad { Id = 6, Clave = "APU006", Nombre = "Equipo", Orden = 6 }
+               new AperturaProgramaticaUnidad { Id = 6, Clave = "APU006", Nombre = "Obra", Orden = 6 },
+               new AperturaProgramaticaUnidad { Id = 7, Clave = "APU007", Nombre = "Pozo", Orden = 7 },
+               new AperturaProgramaticaUnidad { Id = 8, Clave = "APU008", Nombre = "Olla", Orden = 8}
 
            );
 
@@ -153,7 +155,7 @@ namespace DataAccessLayer.Migrations
 
            AperturaProgramatica sc_rehabilitacion_plantapotabilizadora = context.AperturaProgramatica.Local.FirstOrDefault(ap => ap.Id == 22);
 
-           sc_rehabilitacion_plantapotabilizadora.DetalleMetas.Add(new AperturaProgramaticaMeta { AperturaProgramaticaUnidadId = 1, AperturaProgramaticaBeneficiarioId = 1 });
+           sc_rehabilitacion_plantapotabilizadora.DetalleMetas.Add(new AperturaProgramaticaMeta { AperturaProgramaticaUnidadId = 8, AperturaProgramaticaBeneficiarioId = 1 });
 
 
 
@@ -167,17 +169,53 @@ namespace DataAccessLayer.Migrations
                context.Financiamientos.Add(new Financiamiento { Año = item.año, ModalidadFinanciamiento = item.mf, Fondo = item.f });
            }
 
-           context.SaveChanges();         
+           POA poa = new POA { Id=1,UnidadPresupuestalId=1,EjercicioId=6};
+                      
+           POADetalle poadetalle = new POADetalle();          
+           poadetalle.Numero = "102C8080150001";
+           poadetalle.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
+           poadetalle.MunicipioId = 1;
+           poadetalle.Localidad = "Alguna localidad en Acajete";
+           poadetalle.TipoLocalidadId = 1;
+           poadetalle.SituacionObraId = 1;
+           poadetalle.ModalidadObra = enumModalidadObra.Contrato;
+           poadetalle.EsAccion = false;
+           poadetalle.ImporteTotal = 12348700;
+           poadetalle.AperturaProgramaticaId = 22;
+           poadetalle.AperturaProgramaticaMetaId = 1;
+           poadetalle.NumeroBeneficiarios = 25;
+           poadetalle.CantidadUnidades = 17;
+
+           poa.Detalles.Add(poadetalle);
+
+           context.POA.Add(poa);
 
 
+           Obra obra = new Obra();
+           obra.Numero = "102C8080150001";
+           obra.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
+           obra.MunicipioId = 1;
+           obra.Localidad = "Alguna localidad en Acajete";
+           obra.TipoLocalidadId = 1;
+           obra.SituacionObraId = 1;
+           obra.ModalidadObra = enumModalidadObra.Contrato;
+           obra.FechaInicio = new DateTime(2014, 01, 30);
+           obra.FechaInicio = new DateTime(2014, 09, 16);
+           obra.EsAccion = false;
+           obra.ImporteTotal = 12348700;
+           obra.AperturaProgramaticaId = 22;
+           obra.AperturaProgramaticaMetaId = 1;
+           obra.NumeroBeneficiarios = 25;
+           obra.CantidadUnidades = 18;
+          
+           obra.POADetalle = poadetalle;
+
+           context.Obras.Add(obra);
 
 
-
-
-
-
-           context.SaveChanges();
-
+           context.SaveChanges();       
+      
+           
         }
     }
 }
