@@ -222,7 +222,6 @@
     </Compile>
     <Compile Include="Formas\Catalogos\PlantillaPreguntas.aspx.cs">
       <DependentUpon>PlantillaPreguntas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formas\Catalogos\PlantillaPreguntas.aspx.designer.cs">
       <DependentUpon>PlantillaPreguntas.aspx</DependentUpon>
@@ -236,7 +235,6 @@
     </Compile>
     <Compile Include="Formas\Catalogos\PlantillasPadre.aspx.cs">
       <DependentUpon>PlantillasPadre.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formas\Catalogos\PlantillasPadre.aspx.designer.cs">
       <DependentUpon>PlantillasPadre.aspx</DependentUpon>
