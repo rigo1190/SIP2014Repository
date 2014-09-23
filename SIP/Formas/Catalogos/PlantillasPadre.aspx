@@ -5,17 +5,17 @@
          $(document).ready(function () {
              try {
                  //
-                $("#<%= divArbol.ClientID %>").bind("contextmenu", function (e) {
-                    e.preventDefault();
-                    $("#custom-menu").css({ top: e.pageY + "px", left: e.pageX + "px" }).show(100);
-                });
+                 $("#<%= contenedor.ClientID %>").bind("contextmenu", function (e) {
+                     e.preventDefault();
+                     $("#custom-menu").css({ top: e.pageY + "px", left: e.pageX + "px" }).show(100);
+                 });
 
-                $("#<%= divArbol.ClientID %>").mouseup(function (e) {
-                    var container = $("#custom-menu");
-                    if (container.has(e.target).length == 0) {
-                        container.hide();
-                    }
-                });
+                 $("#<%= contenedor.ClientID %>").mouseup(function (e) {
+                     var container = $("#custom-menu");
+                     if (container.has(e.target).length == 0) {
+                         container.hide();
+                     }
+                 });
 
                 $(document).bind(function () {
                     $(document).bind("contextmenu", function (e) {
@@ -30,6 +30,7 @@
                     }
                 });
 
+                 //Se ejecuta el evento de las opciones del menu contextual
                 $('.evento').click(function () {
                     var control = $(this).attr("id");
                     $("#<%= treePlantilla.ClientID %>").attr("disabled", true)
@@ -42,10 +43,10 @@
 
         });
 
+         //Funcion que evita que se "RESCROLEE" el arbol al seleccionar un NODO
+         function SetSelectedTreeNodeVisible(controlID,boolHayPlantillas) {
 
-         function SetSelectedTreeNodeVisible(controlID) {
-
-             var elem = document.getElementById("<%=treePlantilla.ClientID%>" + "_SelectedNode");
+            var elem = document.getElementById("<%=treePlantilla.ClientID%>" + "_SelectedNode");
             if (elem != null) {
                 var node = document.getElementById(elem.value);
                 if (node != null) {
@@ -54,38 +55,75 @@
                 }
             }
 
+             if (!boolHayPlantillas)
+                 fnc_CargaInicial();
+
         }
 
-        function fnc_ClickMenu(sender) {
+         //funcion que permite habiltar o inhabilitar las opciones del menu contextual
+         //de acuerdo al parametro recibido boolhabilitar
+         //Creado por Rigoberto TS
+         //22/09/2014
+         function fnc_HabilitarInHabilitarOpciones(boolHabilitar) {
 
-            $("#<%= divGuardar.ClientID%>").css("display", "block"); //Se muestran los botones de guardar y cancelar
-            $("#<%= btnCancelar.ClientID%>").css("display", "block"); //Se muestran los botones de guardar y cancelar
-            $("#<%= btnGuardar2.ClientID%>").css("display", "block"); //Se muestran los botones de guardar y cancelar
-            $("#<%= divMsg.ClientID%>").css("display", "none"); //Se oculta el mensaje
+             var blockNone;
+
+             if (boolHabilitar)
+                 blockNone = "block";
+             else 
+                 blockNone = "none";
+
+             $("#<%= divGuardar.ClientID%>").css("display", blockNone); 
+             $("#<%= btnCancelar.ClientID%>").css("display", blockNone); 
+             $("#<%= btnGuardar2.ClientID%>").css("display", blockNone); 
+             $("#<%= divMsg.ClientID%>").css("display", "none"); 
+
+             
+            
+             $("#<%= add.ClientID %>").attr("disabled", boolHabilitar);
+             $("#<%= adds.ClientID %>").attr("disabled", boolHabilitar);
+             $("#<%= btnDel.ClientID %>").attr("disabled", boolHabilitar);
+             $("#btnBorrar").attr("disabled", boolHabilitar);
+             $("#btnPD").attr("disabled", boolHabilitar);
+             $("#btnPD2").attr("disabled", boolHabilitar);
+             $("#<%= edit.ClientID %>").attr("disabled", boolHabilitar)
+             $("#<%= divArbol.ClientID %>").attr("disabled", boolHabilitar)
+
+             $("#custom-menu").hide();
+
+         }
+
+         //funcion que permite habiltar los controles de la edicion de una plantilla
+         //Creado por Rigoberto TS
+         //22/09/2014
+         function fnc_HabilitarControlesPlantilla() {
+             $("#<%= txtDescripcion.ClientID%>").removeAttr("disabled");
+             $("#<%= txtClave.ClientID%>").removeAttr("disabled");
+             $("#<%= ddlEjercicio.ClientID%>").removeAttr("disabled");
+             $("#<%= txtOrden.ClientID%>").removeAttr("disabled");
+         }
+
+         //funcion que permite habiltar limpiar los controles de edicion de una plantilla, si es nueva
+         //Creado por Rigoberto TS
+         //22/09/2014
+         function fnc_LimpiarControles() {
+             //Se limpian los controles
+             $("#<%= txtDescripcion.ClientID%>").val("");
+             $("#<%= txtClave.ClientID%>").val("");
+             $("#<%= ddlEjercicio.ClientID%>").selectedindex = 0;
+             $("#<%= txtOrden.ClientID%>").val("");
+         }
+
+
+        function fnc_ClickMenu(sender) {
+            var limpiar=true;
 
             switch (sender) {
 
                 case "<%= add.ClientID %>": //AGREGAR UNA PLANTILLA PADRE
 
-                    //SE HABILITAN LOS CONTROLES PARA AGREGAR UN NUEVA PLNATILLA PADRE
-                    $("#<%= txtDescripcion.ClientID%>").removeAttr("disabled");
-                    $("#<%= txtClave.ClientID%>").removeAttr("disabled");
-                    $("#<%= ddlEjercicio.ClientID%>").removeAttr("disabled");
-                    $("#<%= txtOrden.ClientID%>").removeAttr("disabled");
-
-                    //Se indica que se va a agregar un fondo padre, se coloca una  S en la caja de texto oculto _PAdre
-                    $("#<%= _Padre.ClientID%>").val("S");
-
-                    //Se indica que el estado de la forma es NUEVO, a traves del campo oculto Estado
-                    $("#<%= _Accion.ClientID%>").val("N");
-
-
-                    //Se limpian los controles
-                    $("#<%= txtDescripcion.ClientID%>").val("");
-                    $("#<%= txtClave.ClientID%>").val("");
-                    $("#<%= ddlEjercicio.ClientID%>").selectedindex = 0;
-                    $("#<%= txtOrden.ClientID%>").val("");
-
+                    $("#<%= _Padre.ClientID%>").val("S"); //Se indica que se va a agregar una plantilla padre, se coloca una  S en la caja de texto oculto _PAdre
+                    $("#<%= _Accion.ClientID%>").val("N");  //Se indica que el estado de la forma es NUEVO, a traves del campo oculto Estado
 
                     break;
 
@@ -94,74 +132,78 @@
                     var idPadre = parseInt($("#<%= _IDPlantilla.ClientID%>").val());
 
                     if (idPadre != 0) {
-                        //SE HABILITAN LOS CONTROLES PARA AGREGAR NUEVA PLNATILLA PADRE
-                        $("#<%= txtDescripcion.ClientID%>").removeAttr("disabled");
-                        $("#<%= txtClave.ClientID%>").removeAttr("disabled");
-                        $("#<%= ddlEjercicio.ClientID%>").removeAttr("disabled");
-                        $("#<%= txtOrden.ClientID%>").removeAttr("disabled");
-
-                        //Se indica que se va a agregar un subfondo, se coloca una N en la caja de texto oculto_PAdre
-                        $("#<%= _Padre.ClientID%>").val("N");
-
-                        //Se indica que el estado de la forma es NUEVO, a traves del campo oculto Estado
-                        $("#<%= _Accion.ClientID%>").val("N");
-
-                        //Se limpian los controles
-                        $("#<%= txtDescripcion.ClientID%>").val("");
-                        $("#<%= txtClave.ClientID%>").val("");
-                        $("#<%= ddlEjercicio.ClientID%>").selectedindex = 0;
-                        $("#<%= txtOrden.ClientID%>").val("");
+                        
+                        $("#<%= _Padre.ClientID%>").val("N"); //Se indica que se va a agregar una subplantilla, se coloca una N en la caja de texto oculto_PAdre
+                        $("#<%= _Accion.ClientID%>").val("N"); //Se indica que el estado de la forma es NUEVO, a traves del campo oculto Estado
                     }
                     break;
 
                 case "<%= edit.ClientID %>": //EDITAR UN REGISTRO
-                    //SE HABILITAN LOS CONTROLES PARA EDITAR EL REGISTRO
-                    $("#<%= txtDescripcion.ClientID%>").removeAttr("disabled");
-                    $("#<%= txtClave.ClientID%>").removeAttr("disabled");
-                    $("#<%= ddlEjercicio.ClientID%>").removeAttr("disabled");
-                    $("#<%= txtOrden.ClientID%>").removeAttr("disabled");
 
-                    //Se indica que el estado de la forma es EDICION, a traves del campo oculto Estado
-                    $("#<%= _Accion.ClientID%>").val("A");
+                    limpiar = false;  //Se desactiva bandera para limpiar controles
+                    $("#<%= _Accion.ClientID%>").val("A"); //Se indica que el estado de la forma es EDICION, a traves del campo oculto Estado
+
                     break;
 
             }
 
+            fnc_HabilitarControlesPlantilla();  //SE HABILITAN LOS CONTROLES PARA AGREGAR UN NUEVA PLNATILLA PADRE O UNA NUEVA SUPLANTILLA
 
-            //Se inhabilitan los botnes de agregar PLANTILLA, SUBPLANTILLA y ELIMINAR, y el propio arbol
-            $("#<%= add.ClientID %>").attr("disabled", true)
-            $("#<%= adds.ClientID %>").attr("disabled", true)
-            $("#<%= btnDel.ClientID %>").attr("disabled", true)
-            $("#btnBorrar").attr("disabled", true);
-            $("#btnPD").attr("disabled", true);
-            $("#btnPD2").attr("disabled", true);
-            $("#<%= edit.ClientID %>").attr("disabled", true)
-            $("#<%= divArbol.ClientID %>").attr("disabled", true)
+            if (limpiar) //SI SE TIENEN QUE LIMPIAR LOS CONTROLES
+                fnc_LimpiarControles();
 
-            $("#custom-menu").hide();
+            fnc_HabilitarInHabilitarOpciones(true); //Se inhabilitan los botnes de agregar PLANTILLA, SUBPLANTILLA y ELIMINAR, y el propio arbol
+
+            $("#custom-menu").hide(); //Se oculta el menu contextual
 
            
         }
 
+
+         //Funcion que permite ocultar el menu contextual cuando se da en la opcion de BORRAR
+         //Ademas, cambia el mensaje del dialogo modal de confirmacion
+         //Creada por rigoberto ts
+         //22/09/2014
          function fnc_OcultarMC() {
             var container = $("#custom-menu");
             container.hide();
 
+            $("#msgContenido").text("¿Está seguro que desea eliminar el registro?"); //Se cambia el mensaje del dialogo modal de confirmacion
          }
 
+         //Funcion que permite validar si la descripcion de la plantilla va vacia
+         //Ademas, cambia el mensaje del dialogo modal de confirmacion
+         //Creada por rigoberto ts
+         //22/09/2014
         function fnc_Validar() {
 
             var desc = $("#<%=txtDescripcion.ClientID%>").val();
             if (desc == null || desc.length == 0 || desc == undefined) {
-                fnc_EjecutarMensaje("La descripcion no puede ir vacia");
+                $("#custom-menu").hide(); //Se oculta el menu contextual 
+                $("#msgContenido").text("La descripción no puede ir vacía"); //Se cambia el mensaje del dialogo modal de confirmacion
+                $("#myModal").modal('show') //Se muestra el modal
                 return false;
             }
             return true;
         }
 
+
+         //Funcion que permite ir hacia el detalle de preguntas de cada plantilla
+         //Creada por rigoberto ts
+         //22/09/2014
          function fnc_IrPreguntasDetalle() {
+             
              var url = "PlantillaPreguntas.aspx?p=" + $("#<%=_IDPlantilla.ClientID%>").val();
              $(location).attr('href', url);
+         }
+
+
+         function fnc_CargaInicial(){
+             $("#<%= adds.ClientID %>").attr("disabled", true);
+             $("#<%= btnDel.ClientID %>").attr("disabled", true);
+             $("#btnBorrar").attr("disabled", true);
+             $("#btnPD").attr("disabled", true);
+             $("#btnPD2").attr("disabled", true);
          }
 
     </script>
@@ -232,7 +274,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
+    <div id="contenedor" runat="server" class="container">
         
         <div class="row"> 
             <div id="divPlantilla" >
@@ -247,28 +289,32 @@
                         </asp:TreeView>
                          <div id="custom-menu">
                                 <ol>
-                                <li>
-                                    <asp:Button ID="add" Width="160px" AutoPostBack="false" CssClass="btn btn-default evento" OnClientClick="return false" runat="server" Text="Agregar Plantilla" /> </li>
-                                <li>
-                                    <asp:Button ID="adds" Width="160px" AutoPostBack="false" CssClass="btn btn-default evento" OnClientClick="return false" runat="server" Text="Agregar SubPlantilla" /> 
-                                </li>
-                                <li class="list-devider">
-                                <hr />
-                                </li>
-                                <li>
-                                    <asp:Button ID="edit" Width="160px" AutoPostBack="false" OnClientClick="return false" CssClass="btn btn-default evento" runat="server" Text="Editar" /> 
-                                </li>
-                                
-                                <li><input id="btnBorrar" style="width:160px"  data-toggle="modal" data-target="#myModal" class="btn btn-default" onclick="fnc_OcultarMC()" type="button" value="Borrar" /></li>
-                                <li>
-                                    <input type="button" style="width:160px" id="btPD2" onclick="fnc_IrPreguntasDetalle()" runat="server" class="btn btn-default" value="Detalle Preguntas"/> 
-                                </li>
-                                
-                                <li><asp:Button ID="btnGuardar2"  Width="160px" runat="server" Text="Guardar" OnClick="btnGuardar_Click" OnClientClick="return fnc_Validar()" CssClass="btn btn-default" /></li>
-                                <li><asp:Button ID="btnCancelar" Width="160px" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" CssClass="btn btn-default" AutoPostBack="false" /></li>
-                                <li class="list-devider">
-                                <hr />
-                                </li>
+                                    <li>
+                                        <asp:Button ID="add" Width="160px" AutoPostBack="false" CssClass="btn btn-default evento" OnClientClick="return false" runat="server" Text="Agregar Plantilla" /> </li>
+                                    <li>
+                                        <asp:Button ID="adds" Width="160px" AutoPostBack="false" CssClass="btn btn-default evento" OnClientClick="return false" runat="server" Text="Agregar SubPlantilla" /> 
+                                    </li>
+                                    <li class="list-devider">
+                                        <hr />
+                                    </li>
+                                    <li>
+                                        <asp:Button ID="edit" Width="160px" AutoPostBack="false" OnClientClick="return false" CssClass="btn btn-default evento" runat="server" Text="Editar" /> 
+                                    </li>
+                                    <li>
+                                        <input type="button" id="btnBorrar" style="width:160px" onclick="fnc_OcultarMC()" data-toggle="modal" data-target="#myModal" class="btn btn-default" value="Borrar" />
+                                    </li>
+                                    <li>
+                                        <input type="button" id="btnPD2" style="width:160px"  onclick="fnc_IrPreguntasDetalle()" class="btn btn-default" value="Detalle Preguntas"/> 
+                                    </li>
+                                    <li>
+                                        <asp:Button ID="btnGuardar2"  Width="160px" runat="server" Text="Guardar" OnClick="btnGuardar_Click" OnClientClick="return fnc_Validar()" CssClass="btn btn-default" />
+                                    </li>
+                                    <li>
+                                        <asp:Button ID="btnCancelar" Width="160px" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" OnClientClick="fnc_HabilitarInHabilitarOpciones(false)" CssClass="btn btn-default" AutoPostBack="false" />
+                                    </li>
+                                    <li class="list-devider">
+                                    <hr />
+                                    </li>
                                 </ol>
                             </div> 
                     </div>
@@ -277,7 +323,7 @@
         </div>
         
         <div class="row">
-            <div id="divCaptura" class="panel panel-success">
+            <div id="divCaptura" runat="server" class="panel panel-success">
                     <div class="panel-heading">
                         <h3 class="panel-title">Datos de la Plantilla</h3>
                     </div>
@@ -318,7 +364,7 @@
                             <p class="text-right"><strong>Detalle de preguntas</strong></p>
                         </div>
                         <div class="col-md-6">
-                            <button type="button" style="width:160px" id="btnPD" onclick="fnc_IrPreguntasDetalle()" runat="server" class="btn btn-default"> <span class="glyphicon glyphicon-folder-open"></span></button>
+                            <button type="button" style="width:160px" id="btnPD" onclick="fnc_IrPreguntasDetalle()" class="btn btn-default"> <span class="glyphicon glyphicon-folder-open"></span></button>
                             
                         </div>
                     </div>
@@ -329,7 +375,7 @@
                 <div class="panel-footer" id="divGuardar" runat="server">
                     
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClientClick="return fnc_Validar()" OnClick="btnGuardar_Click" CssClass="btn btn-default" />
-                    <asp:Button ID="btnCancelar2" runat="server" Text="Cancelar" CssClass="btn btn-default" OnClick="btnCancelar_Click" AutoPostBack="false" OnClientClick="return fnc_OcultarDivs()" />
+                    <asp:Button ID="btnCancelar2" runat="server" Text="Cancelar" CssClass="btn btn-default" OnClick="btnCancelar_Click" AutoPostBack="false" OnClientClick="fnc_HabilitarInHabilitarOpciones(false)" />
                 </div> 
 
                  <div class="panel-footer" id="divMsg" style="display:none" runat="server">
@@ -339,8 +385,6 @@
             </div>
         </div>
 
-         
-       
         <div runat="server" style="display:none">
             <input type="hidden" runat="server" id="_Accion" />
             <input type="hidden" runat="server" id="_IDPlantilla" />
@@ -359,7 +403,7 @@
         <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
       </div>
       <div class="modal-body">
-        <h3>¿Está seguro que desea eliminar el registro?</h3>
+        <h3 id="msgContenido"></h3>
       </div>
       <div class="modal-footer">
         <asp:Button ID="btnDel" runat="server" CssClass="btn btn-default" Text="Aceptar" OnClick="btnDel_Click"  />
@@ -369,4 +413,6 @@
     </div>
   </div>
 </div>
+
+
 </asp:Content>

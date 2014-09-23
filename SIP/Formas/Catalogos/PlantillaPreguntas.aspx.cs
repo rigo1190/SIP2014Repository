@@ -93,6 +93,40 @@ namespace SIP.Formas.Catalogos
         }
 
 
+        protected void btnDel_Click(object sender, EventArgs e)
+        {
+            string msg = "Se ha eliminado correctamente";
+
+            int id = Utilerias.StrToInt(_IDPregunta.Value);
+
+            PlantillaDetalle obj = uow.PlantillaDetalleBusinessLogic.GetByID(id);
+
+            //Se elimina el objeto
+            uow.PlantillaDetalleBusinessLogic.Delete(obj);
+            uow.SaveChanges();
+
+            if (uow.Errors.Count > 0) //Si hubo errores
+            {
+                msg = string.Empty;
+                foreach (string cad in uow.Errors)
+                    msg += cad;
+
+                lblMensajes.Text = msg;
+                lblMensajes.ForeColor = System.Drawing.Color.Red;
+
+
+                return;
+            }
+
+            lblMensajes.Text = msg;
+            lblMensajes.ForeColor = System.Drawing.Color.Black;
+
+            BindGrid();
+            divCaptura.Style.Add("display", "none");
+            divBtnNuevo.Style.Add("display", "block");
+            divMsg.Style.Add("display", "block");
+        }
+
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             divCaptura.Style.Add("display", "block");
@@ -169,6 +203,22 @@ namespace SIP.Formas.Catalogos
             Response.Redirect("PlantillasPadre.aspx");
         }
 
+
+        protected void grid_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                ImageButton ctrl = (ImageButton)e.Row.FindControl("imgBtnEliminar");
+
+                if (ctrl != null)
+                {
+                    if (grid.DataKeys[e.Row.RowIndex].Values["Id"] != null)
+                    {
+                        ctrl.Attributes.Add("onclick", "fnc_ColocarIDPregunta(" + grid.DataKeys[e.Row.RowIndex].Values["Id"] + ")");
+                    }
+                }
+            }
+        }
         #endregion
 
 
@@ -196,9 +246,9 @@ namespace SIP.Formas.Catalogos
 
         
 
-       
-
         
+
+
 
     }
 }

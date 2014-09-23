@@ -13,6 +13,15 @@ namespace SIP.Formas.Catalogos {
     public partial class PlantillasPadre {
         
         /// <summary>
+        /// contenedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenedor;
+        
+        /// <summary>
         /// divArbol control.
         /// </summary>
         /// <remarks>
@@ -58,15 +67,6 @@ namespace SIP.Formas.Catalogos {
         protected global::System.Web.UI.WebControls.Button edit;
         
         /// <summary>
-        /// btPD2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btPD2;
-        
-        /// <summary>
         /// btnGuardar2 control.
         /// </summary>
         /// <remarks>
@@ -83,6 +83,15 @@ namespace SIP.Formas.Catalogos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelar;
+        
+        /// <summary>
+        /// divCaptura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCaptura;
         
         /// <summary>
         /// txtClave control.
@@ -119,15 +128,6 @@ namespace SIP.Formas.Catalogos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtOrden;
-        
-        /// <summary>
-        /// btnPD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnPD;
         
         /// <summary>
         /// divGuardar control.

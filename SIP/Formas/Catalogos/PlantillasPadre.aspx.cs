@@ -16,7 +16,7 @@ namespace SIP.Formas.Catalogos
         protected void Page_Load(object sender, EventArgs e)
         {
             uow = new UnitOfWork();
-
+            bool hayPlantillas = true;
             if (!IsPostBack)
             {
                 BindArbol();
@@ -42,29 +42,21 @@ namespace SIP.Formas.Catalogos
                     treePlantilla.Nodes[0].Select();
                     treePlantilla.ExpandAll();
                 }
+                else
+                {
+
+                    ////Se ocultan opciones del menu contextul
+                    //adds.Enabled = false;
+                    //edit.Enabled = false;
+                    hayPlantillas = false;
+                }
             }
+
+            //Evento que se ejecuta en JAVASCRIPT para evitar que se 'RESCROLLEE' el arbol al seleccionar un NODO y no se pierda el nodo seleccionado
+            ClientScript.RegisterStartupScript(this.GetType(), "script", "SetSelectedTreeNodeVisible('<%= TreeViewName.ClientID %>_SelectedNode','"+hayPlantillas+"')", true);
 
         }
 
-
-
-        //private void construirPadres()
-        //{
-        //    accordion.InnerHtml = string.Empty;
-        //    string html = string.Empty;
-        //    List<Plantilla> list = uow.PlantillaBusinessLogic.Get(e=>e.DependeDeId==null).ToList();
-
-        //    foreach (Plantilla obj in list)
-        //    {
-        //        html+="<div class=panel-heading>";
-        //        html += "<h4 class=panel-title>";
-        //        html += "<a data-toggle=collapse data-parent=#accordion href=#accordionOne>";
-        //        html += obj.Descripcion;
-        //        html += "</a> </h4> </div>";
-                    
-        //    }
-
-        //}
 
         #region EVENTOS
         protected void treePlantilla_SelectedNodeChanged(object sender, EventArgs e)
@@ -242,45 +234,20 @@ namespace SIP.Formas.Catalogos
             int idPlantillaActual = Utilerias.StrToInt(_IDPlantilla.Value);
             Plantilla obj = uow.PlantillaBusinessLogic.GetByID(idPlantillaActual);
 
-            txtDescripcion.Text = obj.Descripcion;
-            txtClave.Text = obj.Clave;
-            ddlEjercicio.SelectedValue=obj.EjercicioId.ToString();
-            txtOrden.Value = obj.Orden.ToString();
+            if (obj != null)
+            {
+                txtDescripcion.Text = obj.Descripcion;
+                txtClave.Text = obj.Clave;
+                ddlEjercicio.SelectedValue = obj.EjercicioId.ToString();
+                txtOrden.Value = obj.Orden.ToString();
 
-            //Se bloquean los controles
+                //Se busca el nodo del arbol de fondos para colocarlo como seleccionado
+                treePlantilla.FindNode(_rutaNodoSeleccionado.Value).Select();
+            }
 
-            txtDescripcion.Enabled = false;
-            txtClave.Enabled = false;
-            ddlEjercicio.Enabled = false;
-            txtOrden.Disabled = true;
-
-            //Se oculta el div de los botones de guardar y cancelar
-            divGuardar.Style.Add("display", "none");
-            btnCancelar.Style.Add("display", "none"); //Se oculta opcion del menu contextual
-            btnGuardar2.Style.Add("display", "none"); //Se oculta opcion del menu contextual
-
-
-            //Se habiltan las opciones del menu contextual
            
-            add.Enabled = true;
-            adds.Enabled = true;
-            edit.Enabled = true;
-            btPD2.Style.Add("display", "block");
-            btnPD.Disabled = false;
-
-            //Se habilita el arbol
-            treePlantilla.Enabled = true;
-
-            //Se busca el nodo del arbol de fondos para colocarlo como seleccionado
-            treePlantilla.FindNode(_rutaNodoSeleccionado.Value).Select();
         }
 
-        protected void btnPreguntas_Click(object sender, EventArgs e)
-        {
-            string url = string.Empty;
-            url = "PlantillaPreguntas.aspx?p=" + _IDPlantilla.Value;
-            Response.Redirect(url);
-        }
 
         #endregion
 
