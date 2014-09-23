@@ -6,7 +6,7 @@
             
 
          });
-
+        //
         function fnc_OcultarDivs(sender) {
             $("#<%= divBtnNuevo.ClientID %>").css("display", "block");
             $("#<%= divCaptura.ClientID %>").css("display", "none");
