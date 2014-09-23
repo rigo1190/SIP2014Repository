@@ -58,6 +58,24 @@ namespace BusinessLogicLayer
             return result;
         }
 
+        /// <summary>
+        /// Metodo encargado de cargar los combos para catalogos sencillos
+        /// Creado por Rigoberto TS
+        /// 17/09/2014
+        /// </summary>
+        /// <typeparam name="T">Clase</typeparam>
+        /// <param name="dataList">Lista de objetos</param>
+        /// <param name="d">DropDownlist</param>
+        /// <param name="id">Campo Llave del Catalogo</param>
+        /// <param name="descripcion">Campo Descripcion del catalogo que se mostrara</param>
+        public static void ConstruyeCatalogos<T>(List<T> dataList, DropDownList d, string id, string descripcion) where T : class
+        {
+            d.DataSource = dataList;
+            d.DataValueField = id;
+            d.DataTextField = descripcion;
+            d.DataBind();
+        }
+
 
     }
 }

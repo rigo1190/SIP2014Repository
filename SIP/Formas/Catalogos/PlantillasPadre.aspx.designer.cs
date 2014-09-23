@@ -10,61 +10,79 @@
 namespace SIP.Formas.Catalogos {
     
     
-    public partial class Plantillas {
+    public partial class PlantillasPadre {
         
         /// <summary>
-        /// divPlantilla control.
+        /// divArbol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPlantilla;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divArbol;
         
         /// <summary>
-        /// titulo control.
+        /// treePlantilla control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl titulo;
+        protected global::System.Web.UI.WebControls.TreeView treePlantilla;
         
         /// <summary>
-        /// grid control.
+        /// add control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grid;
+        protected global::System.Web.UI.WebControls.Button add;
         
         /// <summary>
-        /// divBtnNuevo control.
+        /// adds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBtnNuevo;
+        protected global::System.Web.UI.WebControls.Button adds;
         
         /// <summary>
-        /// btnNuevo control.
+        /// edit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevo;
+        protected global::System.Web.UI.WebControls.Button edit;
         
         /// <summary>
-        /// divCaptura control.
+        /// btPD2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCaptura;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btPD2;
+        
+        /// <summary>
+        /// btnGuardar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardar2;
+        
+        /// <summary>
+        /// btnCancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
         
         /// <summary>
         /// txtClave control.
@@ -85,15 +103,6 @@ namespace SIP.Formas.Catalogos {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
         
         /// <summary>
-        /// div1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
-        
-        /// <summary>
         /// ddlEjercicio control.
         /// </summary>
         /// <remarks>
@@ -109,7 +118,16 @@ namespace SIP.Formas.Catalogos {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtOrden;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtOrden;
+        
+        /// <summary>
+        /// btnPD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnPD;
         
         /// <summary>
         /// divGuardar control.
@@ -130,13 +148,13 @@ namespace SIP.Formas.Catalogos {
         protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
-        /// btnCancelar control.
+        /// btnCancelar2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.Button btnCancelar2;
         
         /// <summary>
         /// divMsg control.
@@ -175,6 +193,24 @@ namespace SIP.Formas.Catalogos {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden _IDPlantilla;
         
         /// <summary>
+        /// _Padre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden _Padre;
+        
+        /// <summary>
+        /// _rutaNodoSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden _rutaNodoSeleccionado;
+        
+        /// <summary>
         /// _PageIndex control.
         /// </summary>
         /// <remarks>
@@ -182,5 +218,14 @@ namespace SIP.Formas.Catalogos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden _PageIndex;
+        
+        /// <summary>
+        /// btnDel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDel;
     }
 }
