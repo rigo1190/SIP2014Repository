@@ -53,7 +53,7 @@ namespace SIP.Formas.Catalogos
             }
 
             //Evento que se ejecuta en JAVASCRIPT para evitar que se 'RESCROLLEE' el arbol al seleccionar un NODO y no se pierda el nodo seleccionado
-            ClientScript.RegisterStartupScript(this.GetType(), "script", "SetSelectedTreeNodeVisible('<%= TreeViewName.ClientID %>_SelectedNode','"+hayPlantillas+"')", true);
+            ClientScript.RegisterStartupScript(this.GetType(), "script", "SetSelectedTreeNodeVisible('<%= TreeViewName.ClientID %>_SelectedNode')", true);
 
         }
 
@@ -134,7 +134,7 @@ namespace SIP.Formas.Catalogos
             //Se agrega el NODO, ya sea direcatamente al ARBOL o a un NODO PADRE, si se agrego uno nuevo
             switch (estado)
             {
-                case "N":  //SE ESTA AGREGANDO UN NUEVO FONDO
+                case "N":  //SE ESTA AGREGANDO UN NUEVA PLANTILLA
 
                     if (agregarPadre.Equals("S")) //SE ESTA AGREGANDO UNA PLANTILLA PADRE
                     {
@@ -147,7 +147,7 @@ namespace SIP.Formas.Catalogos
 
                         BindControles(node);
                     }
-                    else  //SE ESTA AGREGANDO UN FONDO HIJO
+                    else  //SE ESTA AGREGANDO UNA PLANTILLA HIJO
                     {
                         //Se crea un nodo hijo y se agrega al NODO PADRE
                         TreeNode nodeChild = new TreeNode();
@@ -223,7 +223,13 @@ namespace SIP.Formas.Catalogos
             //Se bindea el primer fondo, si existe
             if (treePlantilla.Nodes.Count > 0)
                 BindControles(treePlantilla.Nodes[0]);
-            
+            else
+            {
+                BindControles(null);
+                ClientScript.RegisterStartupScript(this.GetType(), "script", "fnc_CargaInicial()", true);
+            }
+                
+
             divMsg.Style.Add("display", "block");
         }
 
@@ -301,15 +307,34 @@ namespace SIP.Formas.Catalogos
 
         private void BindControles(TreeNode node)
         {
-            Plantilla obj = uow.PlantillaBusinessLogic.GetByID(Utilerias.StrToInt(node.Value));
+            Plantilla obj = null;
 
-            txtClave.Text = obj.Clave;
-            txtDescripcion.Text = obj.Descripcion;
-            ddlEjercicio.SelectedValue = obj.EjercicioId.ToString();
-            txtOrden.Value = obj.Orden.ToString();
-            _IDPlantilla.Value = obj.Id.ToString();
-            _rutaNodoSeleccionado.Value = node.ValuePath;
-            treePlantilla.FindNode(node.ValuePath).Select();
+            if (node != null) 
+            {
+                obj = uow.PlantillaBusinessLogic.GetByID(Utilerias.StrToInt(node.Value));
+                
+                txtClave.Text = obj.Clave;
+                txtDescripcion.Text = obj.Descripcion;
+                ddlEjercicio.SelectedValue = obj.EjercicioId.ToString();
+                txtOrden.Value = obj.Orden.ToString();
+                _IDPlantilla.Value = obj.Id.ToString();
+                _rutaNodoSeleccionado.Value = node.ValuePath;
+                treePlantilla.FindNode(node.ValuePath).Select();
+            }
+            else
+            {
+                txtClave.Text = string.Empty;
+                txtDescripcion.Text = string.Empty;
+                
+                if (ddlEjercicio.Items.Count > 0)
+                    ddlEjercicio.SelectedIndex = 0;
+                
+                txtOrden.Value = string.Empty;
+                _IDPlantilla.Value = string.Empty;
+                _rutaNodoSeleccionado.Value = string.Empty;
+                
+            }
+            
 
 
         }

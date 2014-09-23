@@ -55,8 +55,8 @@
                 }
             }
 
-             if (!boolHayPlantillas)
-                 fnc_CargaInicial();
+             
+            fnc_CargaInicial();
 
         }
 
@@ -197,13 +197,23 @@
              $(location).attr('href', url);
          }
 
-
+         //Funcion que se ejecuta al cargar la pagina, verifica si existen plantillas en el arbol, sino hay niguna
+         //se ocultan todas las opciones del menu contextual, excepto la de AGREGAR PLANTILLA
+         //Creado por Rigoberto TS
+         //23/09/2014
          function fnc_CargaInicial(){
-             $("#<%= adds.ClientID %>").attr("disabled", true);
-             $("#<%= btnDel.ClientID %>").attr("disabled", true);
-             $("#btnBorrar").attr("disabled", true);
-             $("#btnPD").attr("disabled", true);
-             $("#btnPD2").attr("disabled", true);
+
+             nodes = document.getElementById("<%=txtDescripcion.ClientID%>").childNodes;
+
+             if (nodes.length == 0) {
+                 $("#<%= adds.ClientID %>").attr("disabled", true);
+                 $("#<%= edit.ClientID %>").attr("disabled", true);
+                 $("#<%= btnDel.ClientID %>").attr("disabled", true);
+                 $("#btnBorrar").attr("disabled", true);
+                 $("#btnPD").attr("disabled", true);
+                 $("#btnPD2").attr("disabled", true);
+             }
+
          }
 
     </script>
