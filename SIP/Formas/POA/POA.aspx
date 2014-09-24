@@ -109,30 +109,22 @@
         <asp:GridView Height="25px" ShowHeaderWhenEmpty="true" CssClass="table" ID="GridViewObras" DataKeyNames="Id" AutoGenerateColumns="False" runat="server" AllowPaging="True">
             <Columns>
 
-                       <asp:TemplateField HeaderText="Acciones" HeaderStyle-CssClass="col-md-1">
+                       <asp:TemplateField HeaderText="Acciones" ItemStyle-CssClass="col-md-1" HeaderStyle-CssClass="panel-footer">
                             <ItemTemplate>
                                                     
                                 <asp:ImageButton ID="imgBtnEdit" ToolTip="Editar" runat="server" ImageUrl="~/img/Edit1.png" OnClick="imgBtnEdit_Click" />
                                 <asp:ImageButton ID="imgBtnEliminar" ToolTip="Borrar" runat="server" ImageUrl="~/img/close.png" OnClientClick="return confirm('¿Está seguro de eliminar el registro?');" OnClick="imgBtnEliminar_Click"/>
 
-                            </ItemTemplate>
-                            <HeaderStyle BackColor="#EEEEEE" />
-                            <ItemStyle HorizontalAlign="right" VerticalAlign="Middle" Width="50px" BackColor="#EEEEEE" />
+                            </ItemTemplate>                         
                         </asp:TemplateField>     
                                          
-                       <asp:TemplateField HeaderText="Numero" HeaderStyle-CssClass="col-md-2">
-                            <EditItemTemplate>
-                                <asp:TextBox CssClass="input-sm" ID="txtNumero" runat="server" Text='<%# Bind("Numero") %>'></asp:TextBox>
-                            </EditItemTemplate>
+                       <asp:TemplateField HeaderText="Numero" ItemStyle-CssClass="col-md-1" HeaderStyle-CssClass="panel-footer">                          
                             <ItemTemplate>
                                 <asp:Label ID="LabelNumero" runat="server" Text='<%# Bind("Numero") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                       <asp:TemplateField HeaderText="Descripcion" HeaderStyle-CssClass="col-md-2" >
-                            <EditItemTemplate>
-                                <asp:TextBox CssClass="input-sm" ID="txtNombre" runat="server" Text='<%# Bind("Descripcion") %>'></asp:TextBox>
-                            </EditItemTemplate>
+                       <asp:TemplateField HeaderText="Descripcion" ItemStyle-CssClass="col-md-3" HeaderStyle-CssClass="panel-footer">                            
                             <ItemTemplate>
                                 <asp:Label ID="labelDescripcion" runat="server" Text='<%# Bind("Descripcion") %>'></asp:Label>
                             </ItemTemplate>

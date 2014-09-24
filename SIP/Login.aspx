@@ -3,23 +3,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <%-- <div class="container">
-
-      <form class="form-signin" role="form">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <input type="text" class="form-control" id="txtLogin" placeholder="Usuario" required autofocus runat="server">
-            <input type="text" class="form-control" id="txtContrasena" placeholder="Password" required runat="server">
-            <label class="checkbox">
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-
-    </div> <!-- /container -->--%>
-
+       
          
-
         <div class="container">
 
              <div class="well text-center"><h3>Sistema de Inversión Pública</h3></div>     
@@ -44,14 +29,14 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" id="txtLogin" placeholder="Usuario" runat="server" focused="focused"/>
+                            <input type="text" class="form-control" id="txtLogin" placeholder="Usuario" required autofocus runat="server" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-group">
                              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="password" class="form-control" id="txtContrasena" placeholder="Password" runat="server" />
+                            <input type="password" class="form-control" id="txtContrasena" placeholder="Password" required runat="server" />
                         </div>
                     </div>
 
