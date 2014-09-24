@@ -9,12 +9,7 @@ using System.Linq;
 namespace BusinessLogicLayer
 {
     public class UnitOfWork : IDisposable
-    {
-
-
-        /// <summary>
-        /// 
-        /// </summary>
+    {       
         internal Contexto contexto;
         private List<String> errors = new List<String>();
         private IBusinessLogic<Usuario> usuarioBusinessLogic;

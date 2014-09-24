@@ -14,23 +14,29 @@ namespace SIP.Formas.POA
     {
         private UnitOfWork uow;
         private int currentId;        
+        private int unidadpresupuestalId;
+        private int ejercicioId;
         protected void Page_Load(object sender, EventArgs e)
         {
             uow = new UnitOfWork();
                
             if (!IsPostBack)
             {
+                
+                unidadpresupuestalId = Utilerias.StrToInt(Session["UnidadPresupuestalId"].ToString());
+                ejercicioId = Utilerias.StrToInt(Session["EjercicioId"].ToString());
+
+                lblTituloPOA.Text = String.Format("POA proyectado ejercicio {0}", 2014);
                 BindGrid();
                 BindearDropDownList();
             }
             
         }
-        /// <summary>
-        /// 
-        /// </summary>
+       
         private void BindGrid()
         {
-            this.GridViewObras.DataSource = uow.POADetalleBusinessLogic.Get().ToList();
+
+            this.GridViewObras.DataSource = uow.POADetalleBusinessLogic.Get(o=>o.POA.UnidadPresupuestalId==unidadpresupuestalId).ToList();
             this.GridViewObras.DataBind();
         }
               
@@ -59,41 +65,7 @@ namespace SIP.Formas.POA
         }
              
 
-        public void BinCatalogoSimple(Control padre, string descripcion, string numero)
-        {
-            if (padre is HtmlInputText)
-            {
-                HtmlInputText t = (HtmlInputText)padre;
-
-                if (t.Name.Contains("Descripcion"))
-                    t.Value = descripcion;
-
-
-                if (!numero.Equals(""))
-                    if (t.Name.Contains("Numero"))
-                        t.Value = numero;
-            }
-            else if (padre is TextBox)
-            {
-                TextBox t = (TextBox)padre;
-                if (t.ID.Contains("Descripcion"))
-                    t.Text = descripcion;
-
-
-                if (!numero.Equals(""))
-                    if (t.ID.Contains("Numero"))
-                        t.Text = numero;
-
-            }
-            else if (padre.Controls.Count > 0)
-            {
-                foreach (Control c in padre.Controls)
-                {
-                    BinCatalogoSimple(c, descripcion, numero);
-                }
-            }
-
-        }
+       
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -173,7 +145,19 @@ namespace SIP.Formas.POA
             
             string msg = "Se ha guardado correctamente";
 
-            POADetalle poadetalle = null;            
+            unidadpresupuestalId = Utilerias.StrToInt(Session["UnidadPresupuestalId"].ToString());
+            ejercicioId = Utilerias.StrToInt(Session["EjercicioId"].ToString());
+
+            DataAccessLayer.Models.POA poa = uow.POABusinessLogic.Get(p => p.UnidadPresupuestalId == unidadpresupuestalId).FirstOrDefault();
+            POADetalle poadetalle = null;
+
+            if (poa == null) 
+            {
+                poa = new DataAccessLayer.Models.POA();
+                poa.UnidadPresupuestalId = unidadpresupuestalId;
+                poa.EjercicioId = ejercicioId;
+            }
+      
                        
 
             if (_Accion.Text.Equals("N"))
@@ -202,7 +186,7 @@ namespace SIP.Formas.POA
 
             if (_Accion.Text.Equals("N")) 
             {
-                poadetalle.POAId = 1;
+                poadetalle.POA = poa;
                 uow.POADetalleBusinessLogic.Insert(poadetalle);
             }               
             else

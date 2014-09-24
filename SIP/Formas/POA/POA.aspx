@@ -102,9 +102,17 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
+       
+    
     <div class="container">
+
+       <%--  <div>
+                <asp:Label ID="lblTituloPOA" class="well" runat="server" Text=""></asp:Label>
+         </div>--%>
+
+        <div class="page-header">
+  <h3><asp:Label ID="lblTituloPOA" runat="server" Text=""></asp:Label></h3>
+</div>
 
         <asp:GridView Height="25px" ShowHeaderWhenEmpty="true" CssClass="table" ID="GridViewObras" DataKeyNames="Id" AutoGenerateColumns="False" runat="server" AllowPaging="True">
             <Columns>

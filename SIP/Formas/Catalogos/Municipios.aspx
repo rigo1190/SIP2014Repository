@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Municipios.aspx.cs" Inherits="SIP.Formas.Catalogos.Municipios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavegadorCatalogos.Master" AutoEventWireup="true" CodeBehind="Municipios.aspx.cs" Inherits="SIP.Formas.Catalogos.Municipios" %>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
 
-
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <script type="text/javascript">
 

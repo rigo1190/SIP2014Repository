@@ -37,6 +37,7 @@ namespace SIP
                         Session["NombreUsuario"] = user.Nombre;
                         Session["Login"] = user.Login;
                         Session["UnidadPresupuestalId"] = user.DetalleUnidadesPresupuestales.FirstOrDefault().Id;
+                        Session["EjercicioId"] = 6;      
 
                         //switch (u.Tipo)
                         //{

@@ -13,8 +13,7 @@ namespace DataAccessLayer.Repositories
     {
 
         internal DbContext context;
-        internal DbSet<T> dbSet;
-        //COMENTARIO DE REYNALGO
+        internal DbSet<T> dbSet;        
         public GenericRepository(DbContext context)
         {
             this.context = context;
