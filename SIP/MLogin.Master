@@ -5,9 +5,9 @@
 <head id="Head1" runat="server">
 
    
-    <title>Contraloría General</title>
+    <title>Secretaría de Finanzas y Planeación</title>
     <link href="<%= ResolveClientUrl("~/Content/Site.css") %>" rel="stylesheet" />
-    <link href="<%= ResolveClientUrl("~/Content/bootstrap.css") %>" rel="stylesheet" />
+    <link href="<%= ResolveClientUrl("~/Content/bootstrap.css") %>" rel="stylesheet" />      
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
