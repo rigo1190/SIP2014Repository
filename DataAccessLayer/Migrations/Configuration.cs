@@ -39,14 +39,14 @@ namespace DataAccessLayer.Migrations
 
             context.Ejercicios.AddOrUpdate(
 
-               new Ejercicio { Id = 1, Año =2009 },
-               new Ejercicio { Id = 2, Año =2010 },
-               new Ejercicio { Id = 3, Año =2011 },
-               new Ejercicio { Id = 4, Año =2012 },
-               new Ejercicio { Id = 5, Año =2013 },
-               new Ejercicio { Id = 6, Año =2014 },
-               new Ejercicio { Id = 7, Año =2015 },
-               new Ejercicio { Id = 8, Año =2016 }
+               new Ejercicio { Id = 1, Año =2009,Activo=false },
+               new Ejercicio { Id = 2, Año =2010,Activo=false },
+               new Ejercicio { Id = 3, Año =2011,Activo=false },
+               new Ejercicio { Id = 4, Año =2012,Activo=false },
+               new Ejercicio { Id = 5, Año =2013,Activo=false },
+               new Ejercicio { Id = 6, Año =2014,Activo=true },
+               new Ejercicio { Id = 7, Año =2015,Activo=false },
+               new Ejercicio { Id = 8, Año =2016,Activo=false }
             );
 
             context.UnidadesPresupuestales.AddOrUpdate(
