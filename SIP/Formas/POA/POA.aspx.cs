@@ -196,7 +196,16 @@ namespace SIP.Formas.POA
 
             uow.SaveChanges();
 
-            if (uow.Errors.Count > 0)
+            if (uow.Errors.Count == 0)
+            {
+
+                BindGrid();  //Se bindean los datos 
+                divEdicion.Style.Add("display", "none");
+                divMsg.Style.Add("display", "block");
+                divBtnNuevo.Style.Add("display", "block");       
+                              
+            }
+            else 
             {
                 msg = string.Empty;
                 foreach (string cad in uow.Errors)
@@ -205,18 +214,7 @@ namespace SIP.Formas.POA
                 lblMensajes.Text = msg;
                 return;
             }
-
-            lblMensajes.Text = msg;
-
-           
-
-
-            BindGrid();  //Se bindean los datos 
-            divEdicion.Style.Add("display", "none");
-            divMsg.Style.Add("display", "block");
-            divBtnNuevo.Style.Add("display", "block");        
-
-
+              
         }
 
         private void BindearDropDownList()
