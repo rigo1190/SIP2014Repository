@@ -35,6 +35,8 @@ namespace BusinessLogicLayer
         private IBusinessLogic<ObraFinanciamiento> obraFinanciamientoBusinessLogic;
         private IBusinessLogic<ObraPlantilla> obraPlantillaBusinessLogic;
         private IBusinessLogic<ObraPlantillaDetalle> obraPlantillaDetalleBusinessLogic;
+        private IBusinessLogic<POAPlantilla> poaPlantillaBusinessLogic; //Agregado por Rigoberto TS 25/09/2014
+        private IBusinessLogic<POAPlantillaDetalle> poaPlantillaDetalleBusinessLogic;//Agregado por Rigoberto TS 25/09/2014
         
        
         public UnitOfWork()
@@ -339,6 +341,41 @@ namespace BusinessLogicLayer
                 }
 
                 return obraPlantillaDetalleBusinessLogic;
+            }
+        }
+
+
+        /// <summary>
+        /// Agregado por Rigoberto TS 
+        /// 25/09/2014
+        /// </summary>
+        public IBusinessLogic<POAPlantilla> POAPlantillaBusinessLogic
+        {
+            get
+            {
+                if (this.poaPlantillaBusinessLogic == null)
+                {
+                    this.poaPlantillaBusinessLogic = new GenericBusinessLogic<POAPlantilla>(contexto);
+                }
+
+                return poaPlantillaBusinessLogic;
+            }
+        }
+
+        /// <summary>
+        /// Agregado por Rigoberto TS 
+        /// 25/09/2014
+        /// </summary>
+        public IBusinessLogic<POAPlantillaDetalle> POAPlantillaDetalleBusinessLogic
+        {
+            get
+            {
+                if (this.poaPlantillaDetalleBusinessLogic == null)
+                {
+                    this.poaPlantillaDetalleBusinessLogic = new GenericBusinessLogic<POAPlantillaDetalle>(contexto);
+                }
+
+                return poaPlantillaDetalleBusinessLogic;
             }
         }
 

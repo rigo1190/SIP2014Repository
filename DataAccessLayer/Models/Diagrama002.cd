@@ -30,7 +30,7 @@
   <Class Name="DataAccessLayer.Models.Obra">
     <Position X="1" Y="1.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>ACAQAAAAABCAAAEAECIAABABAiAAgAwAAAIAAAABAgA=</HashCode>
+      <HashCode>ACAQAAAAABCAAAEAECIAABABAiAAgAwAAgIAIABBAgA=</HashCode>
       <FileName>Models\Obra.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -55,6 +55,45 @@
       <Property Name="ObraPlantilla" />
       <Property Name="PlantillaDetalle" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="DataAccessLayer.Models.POADetalle">
+    <Position X="14.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACAQAAAAABCAAAFAACIAABAFACAAgAwAAgIAIABBAgA=</HashCode>
+      <FileName>Models\POADetalle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="POA" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DataAccessLayer.Models.POAPlantilla">
+    <Position X="11.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAACAAAACEAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\POAPlantilla.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Plantilla" />
+      <Property Name="POADetalle" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DataAccessLayer.Models.POAPlantillaDetalle">
+    <Position X="10.75" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAEAEAAAAAAAAEACAAAAIAAAAAAAAAAAI=</HashCode>
+      <FileName>Models\POAPlantillaDetalle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="POAPlantilla" />
+      <Property Name="PlantillaDetalle" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DataAccessLayer.Models.POA">
+    <Position X="14.25" Y="6.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAkAAAAAAEAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\POA.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
