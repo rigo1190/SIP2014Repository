@@ -18,8 +18,8 @@
                                                              
             <div class="row">
                                 
-                <div class="col-md-4"></div>
-                 <div class="col-md-4">  
+               
+                 <div class="col-md-offset-4 col-md-4">  
                                             
                    
                     <p>Por favor proporcione los datos requeridos.</p>
@@ -37,15 +37,15 @@
                             <input type="password" class="form-control" id="txtContrasena" placeholder="Password" required runat="server" />
                         </div>
                     </div>
-
-                    <div class="form-group">
+                    
+                    <div class="form-group pull-right">
                         <div class="input-group">
                             <asp:Button ID="btnEntrar" runat="server" Text="Entrar" CssClass="btn btn-default" onclick="btnEntrar_Click" />
                         </div>
                     </div>
 
                   </div>
-                <div class="col-md-4"></div>                
+                               
                 
             </div>
 
