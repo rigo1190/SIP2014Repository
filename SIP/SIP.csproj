@@ -113,6 +113,7 @@
     <Content Include="Formas\Catalogos\PlantillaPreguntas.aspx" />
     <Content Include="Formas\Catalogos\Plantillas.aspx" />
     <Content Include="Formas\Catalogos\PlantillasPadre.aspx" />
+    <Content Include="Formas\frmSelectorEjercicio.aspx" />
     <Content Include="Formas\POA\POA.aspx" />
     <Content Include="img\cge.jpg" />
     <Content Include="img\close.png" />
@@ -242,6 +243,13 @@
     </Compile>
     <Compile Include="Formas\Catalogos\PlantillasPadre.aspx.designer.cs">
       <DependentUpon>PlantillasPadre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formas\frmSelectorEjercicio.aspx.cs">
+      <DependentUpon>frmSelectorEjercicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formas\frmSelectorEjercicio.aspx.designer.cs">
+      <DependentUpon>frmSelectorEjercicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formas\POA\POA.aspx.cs">
       <DependentUpon>POA.aspx</DependentUpon>

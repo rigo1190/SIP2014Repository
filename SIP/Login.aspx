@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MLogin.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SIP.Login" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">   
 </asp:Content>
+
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
        
@@ -12,11 +13,8 @@
             <div class="form-group">
                  <img class="img-circle center-block" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                             alt="">
-            </div>
-           
+            </div>          
             
-            <%--<div class="well">Hi, am in well !!</div>      --%>                         
-
                                                              
             <div class="row">
                                 
@@ -60,6 +58,8 @@
             </div>
             
         </div>
+
+   
  
        
     

@@ -36,8 +36,8 @@ namespace SIP
                         Session.Timeout = 60;
                         Session["NombreUsuario"] = user.Nombre;
                         Session["Login"] = user.Login;
-                        Session["UnidadPresupuestalId"] = user.DetalleUnidadesPresupuestales.FirstOrDefault().Id;
-                        Session["EjercicioId"] = 6;      
+                        //Session["UnidadPresupuestalId"] = user.DetalleUnidadesPresupuestales.FirstOrDefault().Id;
+                        //Session["EjercicioId"] = 6;      
 
                         //switch (u.Tipo)
                         //{
@@ -50,7 +50,7 @@ namespace SIP
 
                         //}
 
-                        Response.Redirect("Default.aspx");
+                        Response.Redirect("~/Formas/frmSelectorEjercicio.aspx");
 
             }
 
