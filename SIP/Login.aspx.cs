@@ -17,14 +17,18 @@ namespace SIP
         public string clave = "3ncript4d4"; // Clave de cifrado.
         
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             uow = new UnitOfWork();
+            
         }
 
         protected void btnEntrar_Click(object sender, EventArgs e)
         {
+           
+            string strlogin = hiddenLogin.Value;
+            string strContrasena = hiddenContrasena.Value;
 
-            var user = uow.UsuarioBusinessLogic.Get(u => u.Login == txtLogin.Value && u.Password == txtContrasena.Value).FirstOrDefault();
+            var user = uow.UsuarioBusinessLogic.Get(u => u.Login == strlogin && u.Password == strContrasena).FirstOrDefault();
 
             if (user!=null)
             {                               
@@ -35,20 +39,8 @@ namespace SIP
                         
                         Session.Timeout = 60;
                         Session["NombreUsuario"] = user.Nombre;
-                        Session["Login"] = user.Login;
-                        //Session["UnidadPresupuestalId"] = user.DetalleUnidadesPresupuestales.FirstOrDefault().Id;
-                        //Session["EjercicioId"] = 6;      
-
-                        //switch (u.Tipo)
-                        //{
-                        //    case 1: // tipo oic
-                        //        Response.Redirect("~/Formas/Cedulas/PeriodosActivos.aspx");
-                        //        break;
-                        //    case 2: // tipo admninistrador
-                        //        Response.Redirect("Default.aspx");
-                        //        break;
-
-                        //}
+                        Session["Login"] = user.Login;                     
+                                      
 
                         Response.Redirect("~/Formas/frmSelectorEjercicio.aspx");
 
@@ -56,6 +48,7 @@ namespace SIP
 
             else
             {
+                ClientScript.RegisterStartupScript(this.GetType(), "script", "fnc_ShowMensaje()", true);
                 lblMensajes.Text = "Nombre de usuario o contraseña incorrectos";
                 lblMensajes.CssClass = "error";
             }
@@ -86,5 +79,6 @@ namespace SIP
 
             return Convert.ToBase64String(resultado, 0, resultado.Length);
         }
+              
     }
 }

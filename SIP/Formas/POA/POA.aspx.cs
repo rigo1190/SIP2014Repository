@@ -26,7 +26,7 @@ namespace SIP.Formas.POA
                 unidadpresupuestalId = Utilerias.StrToInt(Session["UnidadPresupuestalId"].ToString());
                 ejercicioId = Utilerias.StrToInt(Session["EjercicioId"].ToString());
 
-                lblTituloPOA.Text = String.Format("POA proyectado ejercicio {0}", 2014);
+                lblTituloPOA.Text = String.Format("POA proyectado ejercicio {0}", uow.EjercicioBusinessLogic.GetByID(ejercicioId).Año);
                 BindGrid();
                 BindearDropDownList();
             }
@@ -91,6 +91,7 @@ namespace SIP.Formas.POA
 
             divEdicion.Style.Add("display", "block");
             divBtnNuevo.Style.Add("display", "none");
+            divMsg.Style.Add("display", "none");
             _Accion.Text = "N";
         }
 
@@ -108,6 +109,7 @@ namespace SIP.Formas.POA
 
             divEdicion.Style.Add("display", "block");
             divBtnNuevo.Style.Add("display", "none");
+            divMsg.Style.Add("display", "none");
             _Accion.Text = "A";
         }
 
@@ -121,24 +123,32 @@ namespace SIP.Formas.POA
 
             POADetalle poadetalle = uow.POADetalleBusinessLogic.GetByID(currentId);
 
-            //Se elimina el objeto
+            
             uow.POADetalleBusinessLogic.Delete(poadetalle);
             uow.SaveChanges();
 
             if (uow.Errors.Count > 0) //Si hubo errores
             {
+
+                BindGrid();
+                divEdicion.Style.Add("display", "none");
+                divBtnNuevo.Style.Add("display", "block");                
+               
+            }
+            else 
+            {
+
+                divMsg.Style.Add("display", "block");
+
                 msg = string.Empty;
                 foreach (string cad in uow.Errors)
                     msg += cad;
 
                 lblMensajes.Text = msg;
-                return;
+                //return;
             }
 
-            BindGrid();
-            divEdicion.Style.Add("display", "none");
-            divBtnNuevo.Style.Add("display", "block");
-            divMsg.Style.Add("display", "block");
+            
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {          
@@ -200,13 +210,14 @@ namespace SIP.Formas.POA
             {
 
                 BindGrid();  //Se bindean los datos 
-                divEdicion.Style.Add("display", "none");
-                divMsg.Style.Add("display", "block");
+                divEdicion.Style.Add("display", "none");                
                 divBtnNuevo.Style.Add("display", "block");       
                               
             }
             else 
             {
+                divMsg.Style.Add("display", "block");
+
                 msg = string.Empty;
                 foreach (string cad in uow.Errors)
                     msg += cad;
@@ -258,29 +269,11 @@ namespace SIP.Formas.POA
 
             ddlSituacionObra.Items.Insert(0, new ListItem("Seleccione...", "0"));
 
-            BindDropDownToEnum(ddlModalidad, typeof(enumModalidadObra));
+            Utilerias.BindDropDownToEnum(ddlModalidad, typeof(enumModalidadObra));
 
            
         }
-
-
-        public void BindDropDownToEnum(DropDownList dropDown,Type enumType) 
-        {
-            string[] names = Enum.GetNames(enumType);
-            int[] values = (int[])Enum.GetValues(enumType);
-            for (int i = 0; i < names.Length; i++)
-            {
-                dropDown.Items.Add(
-                   new ListItem(
-                     names[i],
-                     values[i].ToString()
-                    )
-                );
-                                
-            }
-
-            dropDown.Items.Insert(0, new ListItem("Seleccione...", "0"));
-        }
+              
 
         protected void ddlPrograma_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -391,11 +384,8 @@ namespace SIP.Formas.POA
 
             ddl.SelectedValue = poadetalle.AperturaProgramaticaMetaId.ToString();
 
-        }
-
-       
-
-                
+        }       
+                        
 
     }
 }

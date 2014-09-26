@@ -150,6 +150,11 @@
 
         <div id="divEdicion" runat="server" class="panel-footer" style="display:none">
 
+             <div class="panel-footer alert alert-danger" id="divMsg" style="display:none" runat="server">
+                <asp:Label ID="lblMensajes" runat="server" Text=""></asp:Label>
+            </div>
+
+
             <div class="row">
 
 
@@ -158,7 +163,7 @@
                       <div class="form-group">
                            <label for="Numero">Numero</label>
                          <div>
-                            <input type="text" class="input-sm required form-control" id="txtNumero" runat="server" style="text-align: left; align-items:flex-start" />                           
+                            <input type="text" class="input-sm required form-control" id="txtNumero" runat="server" style="text-align: left; align-items:flex-start" autocomplete="off"/>                           
                         </div>
                       </div>
 
@@ -292,10 +297,11 @@
                 <asp:TextBox ID="_Accion" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>                                    
              </div>
                        
+            <%--  <div class="panel-footer" id="divMsg" style="display:none" runat="server">
+                <asp:Label ID="lblMensajes" runat="server" Text="XXXXX?XXXXXXXXX"></asp:Label>
+            </div>--%>
 
-            <div class="panel-footer" id="divMsg" style="display:none" runat="server">
-                <asp:Label ID="lblMensajes" runat="server" Text=""></asp:Label>
-            </div>
+           
 
        </div>
 

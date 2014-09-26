@@ -76,6 +76,24 @@ namespace BusinessLogicLayer
             d.DataBind();
         }
 
+        public static void BindDropDownToEnum(DropDownList dropDown, Type enumType)
+        {
+            string[] names = Enum.GetNames(enumType);
+            int[] values = (int[])Enum.GetValues(enumType);
+            for (int i = 0; i < names.Length; i++)
+            {
+                dropDown.Items.Add(
+                   new ListItem(
+                     names[i],
+                     values[i].ToString()
+                    )
+                );
+
+            }
+
+            dropDown.Items.Insert(0, new ListItem("Seleccione...", "0"));
+        }
+
 
     }
 }
