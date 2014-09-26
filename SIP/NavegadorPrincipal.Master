@@ -63,7 +63,8 @@
                             </ul>
                         </li>
 
-                        <li><a href="about.html"><span class="glyphicon glyphicon-info-sign"></span> Acerca de</a></li>
+                        <%--<li><a href="about.html"><span class="glyphicon glyphicon-info-sign"></span> Acerca de</a></li>--%>
+                          <li><a href="<%=ResolveClientUrl("About.aspx") %>"><span class="glyphicon glyphicon-info-sign"></span> Acerca de</a></li>
 
                     </ul>        
         
