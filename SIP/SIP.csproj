@@ -131,6 +131,7 @@
     <Content Include="NavegadorPrincipal.Master" />
     <Content Include="NavegadorCatalogos.Master" />
     <Content Include="MLogin.Master" />
+    <Content Include="MSelectorEjercicio.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -274,6 +275,13 @@
     </Compile>
     <Compile Include="MLogin.Master.designer.cs">
       <DependentUpon>MLogin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MSelectorEjercicio.Master.cs">
+      <DependentUpon>MSelectorEjercicio.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MSelectorEjercicio.Master.designer.cs">
+      <DependentUpon>MSelectorEjercicio.Master</DependentUpon>
     </Compile>
     <Compile Include="NavegadorCatalogos.Master.cs">
       <DependentUpon>NavegadorCatalogos.Master</DependentUpon>

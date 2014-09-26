@@ -36,7 +36,7 @@ namespace SIP.Formas.POA
         private void BindGrid()
         {
 
-            this.GridViewObras.DataSource = uow.POADetalleBusinessLogic.Get(o=>o.POA.UnidadPresupuestalId==unidadpresupuestalId).ToList();
+            this.GridViewObras.DataSource = uow.POADetalleBusinessLogic.Get(o=>o.POA.UnidadPresupuestalId==unidadpresupuestalId & o.POA.EjercicioId==ejercicioId).ToList();
             this.GridViewObras.DataBind();
         }
               
@@ -144,8 +144,7 @@ namespace SIP.Formas.POA
                 foreach (string cad in uow.Errors)
                     msg += cad;
 
-                lblMensajes.Text = msg;
-                //return;
+                lblMensajes.Text = msg;                
             }
 
             
@@ -158,7 +157,7 @@ namespace SIP.Formas.POA
             unidadpresupuestalId = Utilerias.StrToInt(Session["UnidadPresupuestalId"].ToString());
             ejercicioId = Utilerias.StrToInt(Session["EjercicioId"].ToString());
 
-            DataAccessLayer.Models.POA poa = uow.POABusinessLogic.Get(p => p.UnidadPresupuestalId == unidadpresupuestalId).FirstOrDefault();
+            DataAccessLayer.Models.POA poa = uow.POABusinessLogic.Get(p => p.UnidadPresupuestalId == unidadpresupuestalId & p.EjercicioId == ejercicioId).FirstOrDefault();
             POADetalle poadetalle = null;
 
             if (poa == null) 

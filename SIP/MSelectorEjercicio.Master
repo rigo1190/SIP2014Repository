@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NavegadorPrincipal.master.cs" Inherits="SIP.NavegadorPrincipal" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MSelectorEjercicio.master.cs" Inherits="SIP.MSelectorEjercicio" %>
 
 <!DOCTYPE html>
 
@@ -16,7 +16,8 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
-   <form id="form1" runat="server">
+
+     <form id="form1" runat="server">
 
         <header>
             <div id="encabezado" class="header"></div>
@@ -43,7 +44,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
    
         
-                      <ul class="nav navbar-nav nav-pills">
+                     <%-- <ul class="nav navbar-nav nav-pills">
                              
                           <li><a href="<%=ResolveClientUrl("~/Formas/frmSelectorEjercicio.aspx") %>"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
     
@@ -65,7 +66,7 @@
 
                         <li><a href="about.html"><span class="glyphicon glyphicon-info-sign"></span> Acerca de</a></li>
 
-                    </ul>        
+                    </ul>        --%>
         
             
                      <ul class="nav navbar-nav navbar-right">
@@ -86,5 +87,7 @@
        
   
     </form>
+
+   
 </body>
 </html>

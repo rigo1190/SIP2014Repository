@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavegadorPrincipal.Master" AutoEventWireup="true" CodeBehind="frmSelectorEjercicio.aspx.cs" Inherits="SIP.Formas.frmSelectorEjercicio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MSelectorEjercicio.Master" AutoEventWireup="true" CodeBehind="frmSelectorEjercicio.aspx.cs" Inherits="SIP.Formas.frmSelectorEjercicio" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
      <script type="text/javascript">
