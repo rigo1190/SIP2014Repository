@@ -71,7 +71,10 @@
             
                      <ul class="nav navbar-nav navbar-right">
                            <asp:Label ID="lblUsuario" class="navbar-brand" runat="server" Text=""></asp:Label>
-                           <li><a href="<%=ResolveClientUrl("~/Formas/Salir.aspx") %>"><b class="glyphicon glyphicon-off"></b></a></li> 
+                            <li>
+                               <asp:LinkButton ID="btnLogout" runat="server" CssClass="glyphicon glyphicon-off" style="border-style: none; background-color:transparent;font-size:1em;"  OnClick="btnLogout_Click"> <i aria-hidden="true"></i>
+                               </asp:LinkButton>                          
+                           </li> 
                      </ul>
 
 

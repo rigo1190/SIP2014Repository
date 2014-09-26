@@ -38,6 +38,7 @@ namespace SIP
                         //FormsAuthentication.RedirectFromLoginPage(user.Login, false);
                         
                         Session.Timeout = 60;
+                        Session["IsAuthenticated"] = true;
                         Session["NombreUsuario"] = user.Nombre;
                         Session["Login"] = user.Login;                     
                                       

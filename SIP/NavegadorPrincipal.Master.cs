@@ -13,5 +13,11 @@ namespace SIP
         {
             lblUsuario.Text = Session["NombreUsuario"].ToString();
         }
+        
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("~/Login.aspx");
+        }
     }
 }
