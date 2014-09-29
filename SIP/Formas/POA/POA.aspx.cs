@@ -186,11 +186,11 @@ namespace SIP.Formas.POA
             poadetalle.EsAccion = txtEsAccion.Checked;
             poadetalle.AperturaProgramaticaId = Convert.ToInt32(ddlTipologia.SelectedValue);
             poadetalle.AperturaProgramaticaMetaId = Convert.ToInt32(ddlMeta.SelectedValue);
-            poadetalle.NumeroBeneficiarios = Convert.ToInt32(txtNumeroBeneficiarios.Value);
-            poadetalle.CantidadUnidades = Convert.ToInt32(txtCantidadUnidades.Value);
+            poadetalle.NumeroBeneficiarios =Utilerias.StrToInt(txtNumeroBeneficiarios.Value.ToString());
+            poadetalle.CantidadUnidades = Utilerias.StrToInt(txtCantidadUnidades.Value.ToString());
             poadetalle.SituacionObraId = Convert.ToInt32(ddlSituacionObra.SelectedValue);
             poadetalle.ModalidadObra = (enumModalidadObra)Convert.ToInt32(ddlModalidad.SelectedValue);
-            poadetalle.ImporteTotal = Convert.ToDecimal(txtImporteTotal.Value);
+            poadetalle.ImporteTotal = Convert.ToDecimal(txtImporteTotal.Value.ToString());
             poadetalle.Observaciones = txtObservaciones.InnerText;
 
             if (_Accion.Text.Equals("N")) 

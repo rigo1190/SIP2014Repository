@@ -9,6 +9,7 @@
     <link href="<%= ResolveClientUrl("~/Content/bootstrap.css") %>" rel="stylesheet" />
     <link href="<%= ResolveClientUrl("~/Content/Site.css") %>" rel="stylesheet" />
     <script src="<%= ResolveClientUrl("~/Scripts/jquery-1.10.2.js") %>"></script>
+    <script src="<%= ResolveClientUrl("~/Scripts/autoNumeric/autoNumeric-1.9.25.min.js") %>"></script>
     <script src="<%= ResolveClientUrl("~/Scripts/bootstrap.js") %>"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

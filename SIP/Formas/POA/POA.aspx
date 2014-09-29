@@ -4,7 +4,13 @@
      <script type="text/javascript">
 
          $(document).ready(function () {
+
              $("#<%=txtNumero.ClientID %>").attr('maxlength', '50');
+
+             $('.numericfield').autoNumeric('init',{Vmin:'0',mDec:null});
+
+
+
         });
 
          function fnc_Validar() {
@@ -237,14 +243,14 @@
                       <div class="form-group">
                            <label for="NumeroBeneficiarios">Número de beneficiarios</label>
                          <div>
-                            <input type="text" class="input-sm required form-control" id="txtNumeroBeneficiarios" runat="server" style="text-align: left; align-items:flex-start" />
+                            <input type="text" class="input-sm required form-control numericfield" id="txtNumeroBeneficiarios" runat="server" style="text-align: left; align-items:flex-start" />
                         </div>
                       </div>
 
                        <div class="form-group">
                            <label for="CantidadUnidades">Cantidad de unidades</label>
                          <div>
-                            <input type="text" class="input-sm required form-control" id="txtCantidadUnidades" runat="server" style="text-align: left; align-items:flex-start" />
+                            <input type="text" class="input-sm required form-control numericfield" id="txtCantidadUnidades" runat="server" style="text-align: left; align-items:flex-start" />
                         </div>
                       </div>
 
@@ -270,7 +276,7 @@
                      <div class="form-group">
                            <label for="ImporteTotal">Importe total</label>
                          <div>
-                            <input type="text" class="input-sm required form-control" id="txtImporteTotal" runat="server" style="text-align: left; align-items:flex-start" />
+                            <input type="text" class="input-sm required form-control numericfield" id="txtImporteTotal" runat="server" style="text-align: left; align-items:flex-start" />
                         </div>
                       </div>
 
