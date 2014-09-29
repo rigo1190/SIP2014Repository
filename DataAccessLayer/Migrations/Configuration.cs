@@ -244,28 +244,39 @@ namespace DataAccessLayer.Migrations
         private void CrearTriggers(Contexto contexto)
         {
 
-            string sp001 = @" CREATE TRIGGER trgAfterInsert ON [dbo].[POADetalle] 
+            string sp001 = @" CREATE TRIGGER trgAsignarNumeroObra ON [dbo].[POADetalle] 
                                 FOR INSERT
                                 AS
-	                                --declare @empid int;
-	                                --declare @empname varchar(100);
-	                                --declare @empsal decimal(10,2);
-	                                --declare @audit_action varchar(100);
+	                               
+									 declare @consecutivo int;
+						             declare @UnidadPresupuestalClave varchar(9);
+						             declare @anio int;
+						             declare @poadetalleId int;
+						             declare @poaId int;
+						             declare @numeroObra varchar(100);
 
-	                                --select @empid=i.Emp_ID from inserted i;	
-	                                --select @empname=i.Emp_Name from inserted i;	
-	                                --select @empsal=i.Emp_Sal from inserted i;	
-	                                --set @audit_action='Inserted Record -- After Insert Trigger.';
+						             select @poaId=POAId,@poadetalleId=Id from inserted; 
 
-	                                --insert into Employee_Test_Audit
-                                 --          (Emp_ID,Emp_Name,Emp_Sal,Audit_Action,Audit_Timestamp) 
-	                                --values(@empid,@empname,@empsal,@audit_action,getdate());
+                                     select
 
-	                                update POADetalle set POADetalle.Numero=POADetalle.Numero + '_XXX' where Id=(select i.Id from inserted i)
-                                
-                                    --PRINT 'AFTER INSERT trigger fired.' GO";
+                                         @consecutivo=count(POADetalle.Id),							  
+							             @UnidadPresupuestalClave=UnidadPresupuestal.Clave,
+							             @anio=Ejercicio.Año							   
 
+                                     from POADetalle 
+                                     inner join POA
+                                     on POA.Id=POADetalle.POAId
+                                     inner join UnidadPresupuestal
+                                     on UnidadPresupuestal.Id=POA.UnidadPresupuestalId
+                                     inner join Ejercicio
+                                     on Ejercicio.Id=POA.EjercicioId
+                                     where POA.Id=@poaId
+							         group by POA.Id,UnidadPresupuestal.Clave,Ejercicio.Año
+                                     
+							
+							set @numeroObra= concat(@UnidadPresupuestalClave,@anio,REPLACE(STR(@consecutivo, 3),SPACE(1),'0'));
 
+                            update POADetalle set POADetalle.Numero=@numeroObra where Id=@poadetalleId";
 
 
 

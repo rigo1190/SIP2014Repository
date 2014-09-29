@@ -7,7 +7,7 @@
 
              $("#<%=txtNumero.ClientID %>").attr('maxlength', '50');
 
-             $('.numericfield').autoNumeric('init',{Vmin:'0',mDec:null});
+             $('.numericfield').autoNumeric('init',{Vmin:'0',vMax: '999999999'});
 
 
 
@@ -243,14 +243,14 @@
                       <div class="form-group">
                            <label for="NumeroBeneficiarios">Número de beneficiarios</label>
                          <div>
-                            <input type="text" class="input-sm required form-control numericfield" id="txtNumeroBeneficiarios" runat="server" style="text-align: left; align-items:flex-start" />
+                            <input type="text" class="input-sm required form-control numericfield" id="txtNumeroBeneficiarios" runat="server" style="text-align: left; align-items:flex-start" data-v-min="0" data-v-max="9999999999"/>
                         </div>
                       </div>
 
                        <div class="form-group">
                            <label for="CantidadUnidades">Cantidad de unidades</label>
                          <div>
-                            <input type="text" class="input-sm required form-control numericfield" id="txtCantidadUnidades" runat="server" style="text-align: left; align-items:flex-start" />
+                            <input type="text" class="input-sm required form-control numericfield" id="txtCantidadUnidades" runat="server" style="text-align: left; align-items:flex-start" data-v-min="0" data-v-max="9999999999"/>
                         </div>
                       </div>
 
@@ -275,7 +275,8 @@
 
                      <div class="form-group">
                            <label for="ImporteTotal">Importe total</label>
-                         <div>
+                         <div class="input-group">
+                            <span class="input-group-addon">$</span>
                             <input type="text" class="input-sm required form-control numericfield" id="txtImporteTotal" runat="server" style="text-align: left; align-items:flex-start" />
                         </div>
                       </div>

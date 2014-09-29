@@ -35,7 +35,8 @@ namespace SIP.Formas.POA
        
         private void BindGrid()
         {
-
+            uow = null;
+            uow = new UnitOfWork();
             this.GridViewObras.DataSource = uow.POADetalleBusinessLogic.Get(o=>o.POA.UnidadPresupuestalId==unidadpresupuestalId & o.POA.EjercicioId==ejercicioId).ToList();
             this.GridViewObras.DataBind();
         }
