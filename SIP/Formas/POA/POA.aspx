@@ -4,12 +4,8 @@
      <script type="text/javascript">
 
          $(document).ready(function () {
-
-             $("#<%=txtNumero.ClientID %>").attr('maxlength', '50');
-
-             $('.numericfield').autoNumeric('init',{Vmin:'0',vMax: '999999999'});
-
-
+                                     
+             $('.numericfield').autoNumeric('init');
 
         });
 
@@ -112,10 +108,7 @@
     
     <div class="container">
 
-       <%--  <div>
-                <asp:Label ID="lblTituloPOA" class="well" runat="server" Text=""></asp:Label>
-         </div>--%>
-
+       
         <div class="page-header">
   <h3><asp:Label ID="lblTituloPOA" runat="server" Text=""></asp:Label></h3>
 </div>

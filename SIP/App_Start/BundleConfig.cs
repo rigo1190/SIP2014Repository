@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 using System.Web.UI;
 
 namespace SIP
@@ -12,6 +8,24 @@ namespace SIP
         // Para obtener más información sobre la unión, visite http://go.microsoft.com/fwlink/?LinkID=303951
         public static void RegisterBundles(BundleCollection bundles)
         {
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                            "~/Scripts/jquery-1.10.2.min.js",
+                            "~/Scripts/bootstrap.min.js",
+                            "~/Scripts/autoNumeric/autoNumeric-1.9.25.min.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
+                            "~/Content/bootstrap.min.css",
+                            "~/Content/bootstrap-theme.min.css",
+                            "~/Content/Site.css"));
+
+            //bundles.Add(new StyleBundle("~/Content/css").Include(
+            //          "~/Content/bootstrap.css",
+            //          "~/Content/site.css",
+            //          "~/Content/datepicker.css"));
+
+
+
             bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
                             "~/Scripts/WebForms/WebForms.js",
                             "~/Scripts/WebForms/WebUIValidation.js",
