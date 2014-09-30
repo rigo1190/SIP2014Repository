@@ -28,6 +28,8 @@ namespace DataAccessLayer.Models
         public int AperturaProgramaticaMetaId { get; set; }
         public int NumeroBeneficiarios { get; set; }
         public int CantidadUnidades { get; set; }
+        public int Empleos { get; set; }
+        public int Jornales { get; set; }
         public int SituacionObraId { get; set; }
         public enumModalidadObra ModalidadObra { get; set; }
         public decimal ImporteTotal { get; set; }
