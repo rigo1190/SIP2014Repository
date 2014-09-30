@@ -10,6 +10,9 @@ namespace DataAccessLayer.Models
 {
     public class POADetalle:Generica
     {
+        [Index("IX_Consecutivo_POAId", 1, IsUnique = true)]
+        public int Consecutivo { get; set; }
+
         [Index(IsUnique = true)]
         [StringLength(50, ErrorMessage = "El campo {0} debe contener un máximo de {1} caracteres")]
         public string Numero { get; set; }
@@ -18,6 +21,8 @@ namespace DataAccessLayer.Models
         public string Localidad { get; set; }
         public int TipoLocalidadId { get; set; }        
         public bool EsAccion { get; set; }
+
+        [Index("IX_Consecutivo_POAId", 2)]
         public int POAId { get; set; }
         public int AperturaProgramaticaId { get; set; }
         public int AperturaProgramaticaMetaId { get; set; }

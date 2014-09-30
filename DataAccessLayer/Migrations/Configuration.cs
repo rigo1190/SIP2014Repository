@@ -193,6 +193,7 @@ namespace DataAccessLayer.Migrations
            POA poa = new POA { Id=1,UnidadPresupuestalId=1,EjercicioId=6};
                       
            POADetalle poadetalle = new POADetalle();
+           poadetalle.Consecutivo = 1;
            poadetalle.Numero = "102S110012014001";
            poadetalle.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
            poadetalle.MunicipioId = 1;
@@ -259,7 +260,7 @@ namespace DataAccessLayer.Migrations
 
                                      select
 
-                                         @consecutivo=count(POADetalle.Id),							  
+                                         @consecutivo=MAX(POADetalle.Consecutivo),							  
 							             @UnidadPresupuestalClave=UnidadPresupuestal.Clave,
 							             @anio=Ejercicio.Año							   
 
@@ -272,11 +273,12 @@ namespace DataAccessLayer.Migrations
                                      on Ejercicio.Id=POA.EjercicioId
                                      where POA.Id=@poaId
 							         group by POA.Id,UnidadPresupuestal.Clave,Ejercicio.Año
-                                     
+                            
+                            set @consecutivo=@consecutivo+1;                                     
 							
 							set @numeroObra= concat(@UnidadPresupuestalClave,@anio,REPLACE(STR(@consecutivo, 3),SPACE(1),'0'));
 
-                            update POADetalle set POADetalle.Numero=@numeroObra where Id=@poadetalleId";
+                            update POADetalle set Consecutivo=@consecutivo,Numero=@numeroObra where Id=@poadetalleId";
 
 
 
