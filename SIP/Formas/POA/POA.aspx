@@ -12,11 +12,11 @@
          function fnc_Validar() {
 
 
-             var numero = $("#<%=txtNumero.ClientID%>").val();
+             <%--var numero = $("#<%=txtNumero.ClientID%>").val();
              if (numero == null || numero.length == 0 || numero == undefined) {
                  alert("El campo Número no puede estar vacio");
                  return false;
-             }
+             }--%>
 
             var desc = $("#<%=txtDescripcion.ClientID%>").val();
             if (desc == null || desc.length == 0 || desc == undefined) {
@@ -162,14 +162,14 @@
                       <div class="form-group">
                            <label for="Numero">Numero</label>
                          <div>
-                            <input type="text" class="input-sm required form-control" id="txtNumero" runat="server" style="text-align: left; align-items:flex-start" autocomplete="off"/>                           
+                            <input type="text" class="input-sm required form-control" id="txtNumero" runat="server" style="text-align: left; align-items:flex-start" autocomplete="off" disabled="disabled"/>                           
                         </div>
                       </div>
 
                      <div class="form-group">
                            <label for="Descripcion">Descripcion</label>
                          <div>
-                            <textarea id="txtDescripcion" class="input-sm required form-control" runat="server" style="text-align: left; align-items:flex-start" rows="3"></textarea>
+                            <textarea id="txtDescripcion" class="input-sm required form-control" runat="server" style="text-align: left; align-items:flex-start" rows="3" autofocus></textarea>
                         </div>
                       </div>
 
@@ -183,7 +183,7 @@
                       <div class="form-group">
                            <label for="Localidad">Localidad</label>
                          <div>
-                            <input type="text" class="input-sm required form-control" id="txtLocalidad" runat="server" style="text-align: left; align-items:flex-start" />
+                            <input type="text" class="input-sm required form-control" id="txtLocalidad" runat="server" style="text-align: left; align-items:flex-start" autocomplete="off" />
                         </div>
                       </div>
 

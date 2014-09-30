@@ -192,8 +192,8 @@ namespace DataAccessLayer.Migrations
 
            POA poa = new POA { Id=1,UnidadPresupuestalId=1,EjercicioId=6};
                       
-           POADetalle poadetalle = new POADetalle();          
-           poadetalle.Numero = "102C8080150001";
+           POADetalle poadetalle = new POADetalle();
+           poadetalle.Numero = "102S110012014001";
            poadetalle.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
            poadetalle.MunicipioId = 1;
            poadetalle.Localidad = "Alguna localidad en Acajete";
@@ -213,7 +213,7 @@ namespace DataAccessLayer.Migrations
 
 
            Obra obra = new Obra();
-           obra.Numero = "102C8080150001";
+           obra.Numero = "102S110012014001";
            obra.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
            obra.MunicipioId = 1;
            obra.Localidad = "Alguna localidad en Acajete";
@@ -221,7 +221,7 @@ namespace DataAccessLayer.Migrations
            obra.SituacionObraId = 1;
            obra.ModalidadObra = enumModalidadObra.Contrato;
            obra.FechaInicio = new DateTime(2014, 01, 30);
-           obra.FechaInicio = new DateTime(2014, 09, 16);
+           obra.FechaTermino = new DateTime(2014, 09, 16);
            obra.EsAccion = false;
            obra.ImporteTotal = 12348700;
            obra.AperturaProgramaticaId = 22;
