@@ -18,14 +18,15 @@ namespace SIP.Formas.POA
         private int ejercicioId;
         protected void Page_Load(object sender, EventArgs e)
         {
+
             uow = new UnitOfWork();
                
             if (!IsPostBack)
             {
-                
+
                 unidadpresupuestalId = Utilerias.StrToInt(Session["UnidadPresupuestalId"].ToString());
                 ejercicioId = Utilerias.StrToInt(Session["EjercicioId"].ToString());
-
+                
                 lblTituloPOA.Text = String.Format("POA proyectado ejercicio {0}", uow.EjercicioBusinessLogic.GetByID(ejercicioId).Año);
                 BindGrid();
                 BindearDropDownList();
@@ -35,8 +36,10 @@ namespace SIP.Formas.POA
        
         private void BindGrid()
         {
-            uow = null;
-            uow = new UnitOfWork();
+
+            unidadpresupuestalId = Utilerias.StrToInt(Session["UnidadPresupuestalId"].ToString());
+            ejercicioId = Utilerias.StrToInt(Session["EjercicioId"].ToString());
+
             this.GridViewObras.DataSource = uow.POADetalleBusinessLogic.Get(o=>o.POA.UnidadPresupuestalId==unidadpresupuestalId & o.POA.EjercicioId==ejercicioId).ToList();
             this.GridViewObras.DataBind();
         }
@@ -64,9 +67,7 @@ namespace SIP.Formas.POA
             txtObservaciones.Value = poadetalle.Observaciones;
             
         }
-             
-
-       
+                    
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -128,12 +129,12 @@ namespace SIP.Formas.POA
             uow.POADetalleBusinessLogic.Delete(poadetalle);
             uow.SaveChanges();
 
-            if (uow.Errors.Count > 0) //Si hubo errores
-            {
+            if (uow.Errors.Count==0) 
+            {                
 
-                BindGrid();
                 divEdicion.Style.Add("display", "none");
-                divBtnNuevo.Style.Add("display", "block");                
+                divBtnNuevo.Style.Add("display", "block");
+                BindGrid();
                
             }
             else 
@@ -150,6 +151,7 @@ namespace SIP.Formas.POA
 
             
         }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {          
             
@@ -209,7 +211,12 @@ namespace SIP.Formas.POA
             if (uow.Errors.Count == 0)
             {
 
-                BindGrid();  //Se bindean los datos 
+                // Esto solo es necesario para recargar en memoria
+                // los cambios que se realizan mediante un trigger
+                uow = null;
+                uow = new UnitOfWork();
+
+                BindGrid();  
                 divEdicion.Style.Add("display", "none");                
                 divBtnNuevo.Style.Add("display", "block");       
                               
@@ -274,7 +281,6 @@ namespace SIP.Formas.POA
            
         }
               
-
         protected void ddlPrograma_SelectedIndexChanged(object sender, EventArgs e)
         {
              DropDownList ctrol = sender as DropDownList;

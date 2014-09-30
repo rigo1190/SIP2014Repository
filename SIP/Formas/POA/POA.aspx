@@ -5,7 +5,7 @@
 
          $(document).ready(function () {
                                      
-             $('.numericfield').autoNumeric('init');
+             $('.campoNumerico').autoNumeric('init');
 
         });
 
@@ -236,14 +236,14 @@
                       <div class="form-group">
                            <label for="NumeroBeneficiarios">Número de beneficiarios</label>
                          <div>
-                            <input type="text" class="input-sm required form-control numericfield" id="txtNumeroBeneficiarios" runat="server" style="text-align: left; align-items:flex-start" data-v-min="0" data-v-max="9999999999"/>
+                            <input type="text" class="input-sm required form-control campoNumerico" id="txtNumeroBeneficiarios" runat="server" style="text-align: left; align-items:flex-start" data-v-min="0" data-v-max="9999"/>
                         </div>
                       </div>
 
                        <div class="form-group">
                            <label for="CantidadUnidades">Cantidad de unidades</label>
                          <div>
-                            <input type="text" class="input-sm required form-control numericfield" id="txtCantidadUnidades" runat="server" style="text-align: left; align-items:flex-start" data-v-min="0" data-v-max="9999999999"/>
+                            <input type="text" class="input-sm required form-control campoNumerico" id="txtCantidadUnidades" runat="server" style="text-align: left; align-items:flex-start" data-v-min="0" data-v-max="9999"/>
                         </div>
                       </div>
 
@@ -270,7 +270,7 @@
                            <label for="ImporteTotal">Importe total</label>
                          <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="text" class="input-sm required form-control numericfield" id="txtImporteTotal" runat="server" style="text-align: left; align-items:flex-start" />
+                            <input type="text" class="input-sm required form-control campoNumerico" id="txtImporteTotal" runat="server" style="text-align: left; align-items:flex-start" />
                         </div>
                       </div>
 
@@ -295,13 +295,8 @@
              <div style="display:none" runat="server">
                 <asp:TextBox ID="_ID" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
                 <asp:TextBox ID="_Accion" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>                                    
-             </div>
-                       
-            <%--  <div class="panel-footer" id="divMsg" style="display:none" runat="server">
-                <asp:Label ID="lblMensajes" runat="server" Text="XXXXX?XXXXXXXXX"></asp:Label>
-            </div>--%>
-
-           
+             </div>                       
+                     
 
        </div>
 
