@@ -25,7 +25,8 @@ namespace DataAccessLayer.Models
 
         [Index("IX_Orden_ParentId", 2)]
         public int? ParentId { get; set; }
-        public virtual Eje Parent { get; set; }
+        public int? Nivel { get; set; }
+        public virtual PlanSectorial Parent { get; set; }
         public virtual ICollection<PlanSectorial> DetalleSubElementos { get; set; }
     }
 }

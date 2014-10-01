@@ -37,7 +37,13 @@ namespace BusinessLogicLayer
         private IBusinessLogic<ObraPlantillaDetalle> obraPlantillaDetalleBusinessLogic;
         private IBusinessLogic<POAPlantilla> poaPlantillaBusinessLogic; //Agregado por Rigoberto TS 25/09/2014
         private IBusinessLogic<POAPlantillaDetalle> poaPlantillaDetalleBusinessLogic;//Agregado por Rigoberto TS 25/09/2014
-        
+        private IBusinessLogic<Funcionalidad> funcionalidadBusinessLogic;
+        private IBusinessLogic<Eje> ejeBusinessLogic;
+        private IBusinessLogic<PlanSectorial> planSectorialBusinessLogic;
+        private IBusinessLogic<Modalidad> modalidadBusinessLogic;
+        private IBusinessLogic<Programa> programaBusinessLogic;
+        private IBusinessLogic<GrupoBeneficiario> grupoBeneficiarioBusinessLogic;
+        private IBusinessLogic<CriterioPriorizacion> criterioPriorizacionBusinessLogic;
        
         public UnitOfWork()
         {
@@ -376,6 +382,97 @@ namespace BusinessLogicLayer
                 }
 
                 return poaPlantillaDetalleBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Funcionalidad> FuncionalidadBusinessLogic
+        {
+            get
+            {
+                if (this.funcionalidadBusinessLogic == null)
+                {
+                    this.funcionalidadBusinessLogic = new GenericBusinessLogic<Funcionalidad>(contexto);
+                }
+
+                return funcionalidadBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Eje> EjeBusinessLogic
+        {
+            get
+            {
+                if (this.ejeBusinessLogic == null)
+                {
+                    this.ejeBusinessLogic = new GenericBusinessLogic<Eje>(contexto);
+                }
+
+                return ejeBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<PlanSectorial> PlanSectorialBusinessLogic
+        {
+            get
+            {
+                if (this.planSectorialBusinessLogic == null)
+                {
+                    this.planSectorialBusinessLogic = new GenericBusinessLogic<PlanSectorial>(contexto);
+                }
+
+                return planSectorialBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Modalidad> ModalidadBusinessLogic
+        {
+            get
+            {
+                if (this.modalidadBusinessLogic == null)
+                {
+                    this.modalidadBusinessLogic = new GenericBusinessLogic<Modalidad>(contexto);
+                }
+
+                return modalidadBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<Programa> ProgramaBusinessLogic
+        {
+            get
+            {
+                if (this.programaBusinessLogic == null)
+                {
+                    this.programaBusinessLogic = new GenericBusinessLogic<Programa>(contexto);
+                }
+
+                return programaBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<GrupoBeneficiario> GrupoBeneficiarioBusinessLogic
+        {
+            get
+            {
+                if (this.grupoBeneficiarioBusinessLogic == null)
+                {
+                    this.grupoBeneficiarioBusinessLogic = new GenericBusinessLogic<GrupoBeneficiario>(contexto);
+                }
+
+                return grupoBeneficiarioBusinessLogic;
+            }
+        }
+
+        public IBusinessLogic<CriterioPriorizacion> CriterioPriorizacionBusinessLogic
+        {
+            get
+            {
+                if (this.criterioPriorizacionBusinessLogic == null)
+                {
+                    this.criterioPriorizacionBusinessLogic = new GenericBusinessLogic<CriterioPriorizacion>(contexto);
+                }
+
+                return criterioPriorizacionBusinessLogic;
             }
         }
 

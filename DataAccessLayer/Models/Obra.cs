@@ -25,15 +25,33 @@ namespace DataAccessLayer.Models
         public int AperturaProgramaticaMetaId { get; set; }
         public int NumeroBeneficiarios { get; set; }
         public int CantidadUnidades { get; set; }
+        public int Empleos { get; set; }
+        public int Jornales { get; set; }
         public int SituacionObraId { get; set; }       
         public enumModalidadObra ModalidadObra { get; set; }
         public decimal ImporteTotal { get; set; }
+        public decimal ImporteLiberadoEjerciciosAnteriores { get; set; }
+        public decimal ImportePresupuesto { get; set; }
+        public int FuncionalidadId { get; set; }
+        public int EjeId { get; set; }
+        public int PlanSectorialId { get; set; }
+        public int ModalidadId { get; set; }
+        public int ProgramaId { get; set; }
+        public int GrupoBeneficiarioId { get; set; }
+        public int CriterioPriorizacionId { get; set; }
         public virtual POADetalle POADetalle { get; set; }
         public virtual Municipio Municipio { get; set; }
         public virtual TipoLocalidad TipoLocalidad { get; set; }
         public virtual AperturaProgramatica AperturaProgramatica { get; set; }
         public virtual AperturaProgramaticaMeta AperturaProgramaticaMeta { get; set; }
         public virtual SituacionObra SituacionObra { get; set; }
+        public virtual Funcionalidad Funcionalidad { get; set; }
+        public virtual Eje Eje { get; set; }
+        public virtual PlanSectorial PlanSectorial { get; set; }
+        public virtual Modalidad Modalidad { get; set; }
+        public virtual Programa Programa { get; set; }
+        public virtual GrupoBeneficiario GrupoBeneficiario { get; set; }
+        public virtual CriterioPriorizacion CriterioPriorizacion { get; set; }
 
     }
 

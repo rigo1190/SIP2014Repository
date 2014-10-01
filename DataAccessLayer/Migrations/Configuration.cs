@@ -190,49 +190,168 @@ namespace DataAccessLayer.Migrations
                context.Financiamientos.Add(new Financiamiento { Año = item.año, ModalidadFinanciamiento = item.mf, Fondo = item.f });
            }
 
-           POA poa = new POA { Id=1,UnidadPresupuestalId=1,EjercicioId=6};
-                      
-           POADetalle poadetalle = new POADetalle();
-           poadetalle.Consecutivo = 1;
-           poadetalle.Numero = "102S110012014001";
-           poadetalle.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
-           poadetalle.MunicipioId = 1;
-           poadetalle.Localidad = "Alguna localidad en Acajete";
-           poadetalle.TipoLocalidadId = 1;
-           poadetalle.SituacionObraId = 1;
-           poadetalle.ModalidadObra = enumModalidadObra.Contrato;
-           poadetalle.EsAccion = false;
-           poadetalle.ImporteTotal = 12348700;
-           poadetalle.AperturaProgramaticaId = 22;
-           poadetalle.AperturaProgramaticaMetaId = 1;
-           poadetalle.NumeroBeneficiarios = 25;
-           poadetalle.CantidadUnidades = 17;
 
-           poa.Detalles.Add(poadetalle);
+           context.Funcionalidad.AddOrUpdate(
+            new Funcionalidad { Id = 1, Clave = "F001", Descripcion = "Gobierno", Orden = 1,Nivel=1 },
+            new Funcionalidad { Id = 2, Clave = "F002", Descripcion = "Desarrollo Social", Orden = 2, Nivel = 1 },
+            new Funcionalidad { Id = 3, Clave = "F003", Descripcion = "Desarrollo Económico", Orden = 3, Nivel = 1 }           
+            );
 
-           context.POA.Add(poa);
+           Funcionalidad fgobierno = context.Funcionalidad.Local.FirstOrDefault(f => f.Clave == "F001");
+           Funcionalidad fdesarrollosocial = context.Funcionalidad.Local.FirstOrDefault(f => f.Clave == "F002");
+           Funcionalidad fdesarrolloeconomico = context.Funcionalidad.Local.FirstOrDefault(f => f.Clave == "F003");
+
+           fgobierno.DetalleSubElementos.Add(new Funcionalidad { Id = 4, Clave = "F004", Descripcion = "Legislación", Orden = 1, Nivel = 2 });
+           fgobierno.DetalleSubElementos.Add(new Funcionalidad { Id = 5, Clave = "F005", Descripcion = "Fiscalización", Orden = 2, Nivel = 2 });
+           fgobierno.DetalleSubElementos.Add(new Funcionalidad { Id = 6, Clave = "F006", Descripcion = "Justicia", Orden = 3, Nivel = 2 });
+
+           fdesarrollosocial.DetalleSubElementos.Add(new Funcionalidad { Id = 7, Clave = "F007", Descripcion = "Protección ambiental", Orden = 1, Nivel = 2 });
+           fdesarrollosocial.DetalleSubElementos.Add(new Funcionalidad { Id = 8, Clave = "F008", Descripcion = "Vivienda y servicios a la comunidad", Orden = 2, Nivel = 2 });
+           fdesarrollosocial.DetalleSubElementos.Add(new Funcionalidad { Id = 9, Clave = "F009", Descripcion = "Salud", Orden = 3, Nivel = 2 });
+
+           fdesarrolloeconomico.DetalleSubElementos.Add(new Funcionalidad { Id = 10, Clave = "F010", Descripcion = "Asuntos económicos, comerciales y laborales en general", Orden = 1, Nivel = 2 });
+           fdesarrolloeconomico.DetalleSubElementos.Add(new Funcionalidad { Id = 11, Clave = "F011", Descripcion = "Agropecuaria, silvicultura, pesca y caza", Orden = 2, Nivel = 2 });
+           fdesarrolloeconomico.DetalleSubElementos.Add(new Funcionalidad { Id = 12, Clave = "F012", Descripcion = "Combustible y energía", Orden = 3, Nivel = 2 });
+
+           Funcionalidad flegislacion = context.Funcionalidad.Local.FirstOrDefault(f => f.Clave == "F004");
+           Funcionalidad ffiscalizacion = context.Funcionalidad.Local.FirstOrDefault(f => f.Clave == "F005");
+           Funcionalidad fjusticia = context.Funcionalidad.Local.FirstOrDefault(f => f.Clave == "F006");
+
+           flegislacion.DetalleSubElementos.Add(new Funcionalidad { Id = 13, Clave = "F013", Descripcion = "Legislación", Orden = 1, Nivel = 3 });
+           ffiscalizacion.DetalleSubElementos.Add(new Funcionalidad { Id = 14, Clave = "F014", Descripcion = "Fiscalización", Orden = 1, Nivel = 3 });
+
+           fjusticia.DetalleSubElementos.Add(new Funcionalidad { Id = 15, Clave = "F015", Descripcion = "Impartición de Justicia", Orden = 1, Nivel = 3 });
+           fjusticia.DetalleSubElementos.Add(new Funcionalidad { Id = 16, Clave = "F016", Descripcion = "Procuración de Justicia", Orden = 2, Nivel = 3 });
+           fjusticia.DetalleSubElementos.Add(new Funcionalidad { Id = 17, Clave = "F017", Descripcion = "Reclusión y readaptación social", Orden = 3, Nivel = 3 });
+           fjusticia.DetalleSubElementos.Add(new Funcionalidad { Id = 18, Clave = "F018", Descripcion = "Derechos humanos", Orden = 4, Nivel = 3 });
 
 
-           Obra obra = new Obra();
-           obra.Numero = "102S110012014001";
-           obra.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
-           obra.MunicipioId = 1;
-           obra.Localidad = "Alguna localidad en Acajete";
-           obra.TipoLocalidadId = 1;
-           obra.SituacionObraId = 1;
-           obra.ModalidadObra = enumModalidadObra.Contrato;
-           obra.FechaInicio = new DateTime(2014, 01, 30);
-           obra.FechaTermino = new DateTime(2014, 09, 16);
-           obra.EsAccion = false;
-           obra.ImporteTotal = 12348700;
-           obra.AperturaProgramaticaId = 22;
-           obra.AperturaProgramaticaMetaId = 1;
-           obra.NumeroBeneficiarios = 25;
-           obra.CantidadUnidades = 18;
-          
-           obra.POADetalle = poadetalle;
+          context.Eje.AddOrUpdate(
+                new Eje { Id = 1, Clave = "A", Descripcion = "Construir el presente: Un mejor futuro para todos", Orden = 1, Nivel = 1 },
+                new Eje { Id = 2, Clave = "B", Descripcion = "Economía fuerte para el progreso de la gente", Orden = 2, Nivel = 1 },
+                new Eje { Id = 3, Clave = "C", Descripcion = "Un Veracruz sustentable", Orden = 3, Nivel = 1 },
+                new Eje { Id = 4, Clave = "D", Descripcion = "Gobierno y administración eficientes y transparentes", Orden = 4, Nivel = 1 }
+        
+          );
 
-           context.Obras.Add(obra);
+          Eje ejeA = context.Eje.Local.FirstOrDefault(e => e.Clave == "A");
+
+          ejeA.DetalleSubElementos.Add(new Eje { Id = 5, Clave = "A005", Descripcion = "Combatir rezagos para salir adelante", Orden = 1,Nivel=2 });
+          ejeA.DetalleSubElementos.Add(new Eje { Id = 6, Clave = "A006", Descripcion = "El valor de la civilización indígena", Orden = 2, Nivel = 2 });
+          ejeA.DetalleSubElementos.Add(new Eje { Id = 7, Clave = "A007", Descripcion = "La familia veracruzana", Orden = 3, Nivel = 2 });
+          ejeA.DetalleSubElementos.Add(new Eje { Id = 8, Clave = "A008", Descripcion = "Igualdad de género", Orden = 4, Nivel = 2 });
+          ejeA.DetalleSubElementos.Add(new Eje { Id = 9, Clave = "A009", Descripcion = "Juventud: oportunidad y compromiso", Orden = 5, Nivel = 2 });
+
+
+          context.PlanSectorial.AddOrUpdate(
+              new PlanSectorial { Id = 1, Clave = "A", Descripcion = "Programa Veracruzano de Desarrollo Agropecuario, Rural, Forestal y Pesca.", Orden = 1,Nivel=1 },
+              new PlanSectorial { Id = 2, Clave = "B", Descripcion = "Programa Veracruzano de Salud.", Orden = 2, Nivel = 1 },
+              new PlanSectorial { Id = 3, Clave = "C", Descripcion = "Programa Veracruzano de Asistencia Social.", Orden = 3, Nivel = 1 },
+              new PlanSectorial { Id = 4, Clave = "D", Descripcion = "Programa Veracruzano de Educación.", Orden = 4, Nivel = 1 }           
+
+          );
+
+          context.Modalidad.AddOrUpdate(
+            new Modalidad { Id = 1, Clave = "M001", Descripcion = "Subsidios: Sector Social y Privado o Entidades Federativas y Municipios", Orden = 1,Nivel=1 },
+            new Modalidad { Id = 2, Clave = "M002", Descripcion = "Desempeño de las Funciones", Orden = 2,Nivel=1 },
+            new Modalidad { Id = 3, Clave = "M003", Descripcion = "Administrativos y de Apoyo", Orden = 3,Nivel=1 },
+            new Modalidad { Id = 4, Clave = "M004", Descripcion = "Programas de Gasto Federalizado (Gobierno Federal)", Orden = 4,Nivel=1 }
+          );
+
+          Modalidad mSubsidios = context.Modalidad.Local.FirstOrDefault(m => m.Clave == "M001");
+
+          mSubsidios.DetalleSubElementos.Add(new Modalidad { Id = 5, Clave = "S", Descripcion = "Sujetos a Reglas de Operación", Orden = 1, Nivel = 2 });
+          mSubsidios.DetalleSubElementos.Add(new Modalidad { Id = 6, Clave = "U", Descripcion = "Otros Subsidios", Orden = 2, Nivel = 2 });
+
+
+          context.Programa.AddOrUpdate(
+             new Programa { Id = 1, Clave = "010", Descripcion = "Formación y Orientación Educativa", Tipo = "A.I.", Objetivo = "Contribuir al desarrollo de las tareas de los alumnos, padres y profesores dentro del ámbito específico de los centros escolares.", Orden = 1 },
+             new Programa { Id = 2, Clave = "011", Descripcion = "Centros de Desarrollo Infantil", Tipo = "A.I.", Objetivo = "Brindar servicios de cuidado, salud, alimentación y estimulación a los hijos de las trabajadoras de la Secretaría de Educación de Veracruz de edades comprendidas entre 45 días y 5 años 11 meses.", Orden = 2 },
+             new Programa { Id = 3, Clave = "012", Descripcion = "Educación Básica Nivel Preescolar", Tipo = "A.I.", Objetivo = "Atender y apoyar desde edades tempranas a los menores para favorecer el desarrollo de sus potencialidades y capacidades, lo que permitirá un mejordesarrollo personal y social.", Orden = 3 }            
+
+          );
+
+          context.GrupoBeneficiario.AddOrUpdate(
+              new GrupoBeneficiario { Id = 1, Clave = "A", Nombre = "Adulto Mayor", Orden = 1 },
+              new GrupoBeneficiario { Id = 2, Clave = "B", Nombre = "Alumno", Orden = 2 },
+              new GrupoBeneficiario { Id = 3, Clave = "C", Nombre = "Artesano", Orden = 3 },
+              new GrupoBeneficiario { Id = 4, Clave = "D", Nombre = "Artista", Orden = 4 },
+              new GrupoBeneficiario { Id = 5, Clave = "E", Nombre = "Contribuyente", Orden = 5 },
+              new GrupoBeneficiario { Id = 6, Clave = "F", Nombre = "Damnificado", Orden = 6 }
+
+          );
+
+          context.CriterioPriorizacion.AddOrUpdate(
+            new CriterioPriorizacion { Id = 1, Clave = "CP001", Nombre = "Terminación de obra", Orden = 1 } ,
+            new CriterioPriorizacion { Id = 2, Clave = "CP002", Nombre = "Obras y acciones en PARIPASSU", Orden = 2 } , 
+            new CriterioPriorizacion { Id = 3, Clave = "CP003", Nombre = "Obras y acciones nuevas", Orden = 3 } , 
+            new CriterioPriorizacion { Id = 4, Clave = "CP004", Nombre = "Estudios y proyectos", Orden = 4 } , 
+            new CriterioPriorizacion { Id = 5, Clave = "CP005", Nombre = "Obras y acciones nuevas que en el mismo ejercicio contemplen los proyectos", Orden = 5 } 
+          );
+
+          POA poa = new POA { Id = 1, UnidadPresupuestalId = 1, EjercicioId = 6 };
+
+          POADetalle poadetalle = new POADetalle();
+          poadetalle.Consecutivo = 1;
+          poadetalle.Numero = "102S110012014001";
+          poadetalle.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
+          poadetalle.MunicipioId = 1;
+          poadetalle.Localidad = "Alguna localidad en Acajete";
+          poadetalle.TipoLocalidadId = 1;
+          poadetalle.SituacionObraId = 1;
+          poadetalle.ModalidadObra = enumModalidadObra.Contrato;
+          poadetalle.EsAccion = false;
+          poadetalle.ImporteTotal = 12348700;
+          poadetalle.ImporteLiberadoEjerciciosAnteriores = 10200000;
+          poadetalle.ImportePresupuesto = 15000000;
+          poadetalle.AperturaProgramaticaId = 22;
+          poadetalle.AperturaProgramaticaMetaId = 1;
+          poadetalle.NumeroBeneficiarios = 25;
+          poadetalle.CantidadUnidades = 17;
+          poadetalle.Empleos = 10;
+          poadetalle.Jornales = 15;
+          poadetalle.FuncionalidadId = 16;
+          poadetalle.EjeId= 5;
+          poadetalle.PlanSectorialId = 1;
+          poadetalle.ModalidadId = 5;
+          poadetalle.ProgramaId = 1;
+          poadetalle.GrupoBeneficiarioId = 2;
+          poadetalle.CriterioPriorizacionId = 1;
+
+          poa.Detalles.Add(poadetalle);
+
+          context.POA.Add(poa);
+
+
+          Obra obra = new Obra();
+          obra.Numero = "102S110012014001";
+          obra.Descripcion = "Demolicion manual de cimentación de concreto armado con varilla de acero. Incluye: retiro de material a zona de acopio a 1ra estación de 20m.";
+          obra.MunicipioId = 1;
+          obra.Localidad = "Alguna localidad en Acajete";
+          obra.TipoLocalidadId = 1;
+          obra.SituacionObraId = 1;
+          obra.ModalidadObra = enumModalidadObra.Contrato;
+          obra.FechaInicio = new DateTime(2014, 01, 30);
+          obra.FechaTermino = new DateTime(2014, 09, 16);
+          obra.EsAccion = false;
+          obra.ImporteTotal = 12348700;
+          obra.AperturaProgramaticaId = 22;
+          obra.AperturaProgramaticaMetaId = 1;
+          obra.NumeroBeneficiarios = 25;
+          obra.CantidadUnidades = 18;
+          obra.Empleos = 10;
+          obra.Jornales = 15;
+          obra.FuncionalidadId = 16;
+          obra.EjeId = 5;
+          obra.PlanSectorialId = 1;
+          obra.ModalidadId = 5;
+          obra.ProgramaId = 1;
+          obra.GrupoBeneficiarioId = 2;
+          obra.CriterioPriorizacionId = 1;
+
+          obra.POADetalle = poadetalle;
+
+          context.Obras.Add(obra);
 
            context.SaveChanges();
 

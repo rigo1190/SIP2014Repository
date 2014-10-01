@@ -97,6 +97,13 @@ namespace DataAccessLayer.Models
         public virtual DbSet<UsuarioUnidadPresupuestal> UsuarioUnidadPresupuestal { get; set; }
         public virtual DbSet<POAPlantilla> POAPlantilla { get; set; } //Agregado por Rigoberto TS 25/09/2014
         public virtual DbSet<POAPlantillaDetalle> POAPlantillaDetalle { get; set; } //Agregado por Rigoberto TS 25/09/2014
+        public virtual DbSet<Funcionalidad> Funcionalidad { get; set; }
+        public virtual DbSet<Eje> Eje { get; set; }
+        public virtual DbSet<PlanSectorial> PlanSectorial { get; set; }
+        public virtual DbSet<Modalidad> Modalidad { get; set; }
+        public virtual DbSet<Programa> Programa { get; set; }
+        public virtual DbSet<GrupoBeneficiario> GrupoBeneficiario { get; set; }
+        public virtual DbSet<CriterioPriorizacion> CriterioPriorizacion { get; set; }
 
     }
 
