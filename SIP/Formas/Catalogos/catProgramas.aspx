@@ -1,51 +1,51 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavegadorCatalogos.Master" AutoEventWireup="true" CodeBehind="Municipios.aspx.cs" Inherits="SIP.Formas.Catalogos.Municipios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavegadorCatalogos.Master" AutoEventWireup="true" CodeBehind="catProgramas.aspx.cs" Inherits="SIP.Formas.Catalogos.catProgramas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
 
-    $(document).ready(function () {
-                  $("#<%= txtNombre.ClientID %>").attr('maxlength', '100');
-          });
+        $(document).ready(function () {
+            $("#<%= txtDescripcion.ClientID %>").attr('maxlength', '100');
+    });
 
-          function fnc_Validar() {
+    function fnc_Validar() {
 
-              var desc = $("#<%=txtNombre.ClientID%>").val();
-            if (desc == null || desc.length == 0 || desc == undefined) {
-                alert("El campo nombre no se puede registrar vacio");
-                return false;
-            }
-            return true;
-        }
-
-        function fnc_limpiarCampos() {
-            $("#<%=  txtClave.ClientID%>").val("");
-              $("#<%=  txtNombre.ClientID%>").val("");
-              $("#<%=  txtOrden.ClientID%>").val("");
+        var desc = $("#<%= txtDescripcion.ClientID%>").val();
+              if (desc == null || desc.length == 0 || desc == undefined) {
+                  alert("El campo nombre no se puede registrar vacio");
+                  return false;
+              }
               return true;
           }
 
-          function fnc_OcultarDivs(sender) {
-              $("#<%= divBtnNuevo.ClientID %>").css("display", "block");
-            $("#<%= divEdicion.ClientID %>").css("display", "none");
-            $("#<%= divMsg.ClientID %>").css("display", "none");
-            $("#<%= divMsgSuccess.ClientID %>").css("display", "none");
-
-            $("#<%=  txtClave.ClientID%>").val("");
-            $("#<%=  txtNombre.ClientID%>").val("");
+          function fnc_limpiarCampos() {
+              $("#<%=  txtClave.ClientID%>").val("");
+            $("#<%=  txtDescripcion.ClientID%>").val("");
             $("#<%=  txtOrden.ClientID%>").val("");
-
-            return false;
+            return true;
         }
 
-        function fnc_Confirmar() {
-            return confirm("¿Está seguro de eliminar el registro?");
-        }
+        function fnc_OcultarDivs(sender) {
+            $("#<%= divBtnNuevo.ClientID %>").css("display", "block");
+              $("#<%= divEdicion.ClientID %>").css("display", "none");
+              $("#<%= divMsg.ClientID %>").css("display", "none");
+              $("#<%= divMsgSuccess.ClientID %>").css("display", "none");
+
+              $("#<%=  txtClave.ClientID%>").val("");
+              $("#<%=  txtDescripcion.ClientID%>").val("");
+              $("#<%=  txtOrden.ClientID%>").val("");
+
+              return false;
+          }
+
+          function fnc_Confirmar() {
+              return confirm("¿Está seguro de eliminar el registro?");
+          }
 
 
-        function fnc_EjecutarMensaje(mensaje) {
-            alert(mensaje);
-        }
+          function fnc_EjecutarMensaje(mensaje) {
+              alert(mensaje);
+          }
 
     </script>
 </asp:Content>
@@ -53,7 +53,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="panel-heading">
-            <h3 class="panel-title">Municipios</h3>
+            <h3 class="panel-title">Programas</h3>
     </div>
     <div class="panel-footer alert alert-success" id="divMsgSuccess" style="display:none" runat="server">
                 <asp:Label ID="lblMensajeSuccess" runat="server" Text=""></asp:Label>
@@ -62,9 +62,7 @@
                 <asp:Label ID="lblMensajes" runat="server" Text=""></asp:Label>
     </div>
 
-
-    <asp:GridView Height="25px" ShowHeaderWhenEmpty="true" CssClass="table" ID="grid" DataKeyNames="Id" AutoGenerateColumns="False" runat="server" AllowPaging="True" OnPageIndexChanging="grid_PageIndexChanging"
-        >
+    <asp:GridView Height="25px" ShowHeaderWhenEmpty="true" CssClass="table" ID="grid" DataKeyNames="Id" AutoGenerateColumns="False" runat="server" AllowPaging="True" OnPageIndexChanging="grid_PageIndexChanging">
                 <Columns>
                         <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
@@ -87,12 +85,12 @@
 
 
 
-                    <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
+                    <asp:TemplateField HeaderText="Descripcion" SortExpression="Descripcion">
                         <EditItemTemplate>
-                            <asp:TextBox CssClass="input-sm" ID="txtNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                            <asp:TextBox CssClass="input-sm" ID="txtDescripcion" runat="server" Text='<%# Bind("Descripcion") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="labelNombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                            <asp:Label ID="labelDescripcion" runat="server" Text='<%# Bind("Descripcion") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -130,11 +128,11 @@
             
                 <div class="row top-buffer">
                     <div class="col-md-2">
-                        <label for="Nombre">Nombre</label>
+                        <label for="Descripcion">Descripcion</label>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="input-sm required" id="txtNombre" runat="server" style="text-align: left; width:800px;  align-items:flex-start" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNombre" ErrorMessage="El campo Nombre es obligatorio" ValidationGroup="validateX">*</asp:RequiredFieldValidator>
+                        <input type="text" class="input-sm required" id="txtDescripcion" runat="server" style="text-align: left; width:800px;  align-items:flex-start" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDescripcion" ErrorMessage="El campo Nombre es obligatorio" ValidationGroup="validateX">*</asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -156,7 +154,7 @@
                 </div>
 
                 <div style="display:none" runat="server">
-                    <asp:TextBox ID="_idMUN" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
+                    <asp:TextBox ID="_idPROG" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
                     <asp:TextBox ID="_Accion" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
                                     
                 </div>
@@ -165,6 +163,4 @@
 
             </div>
     </div>
-
-
 </asp:Content>

@@ -1,51 +1,54 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavegadorCatalogos.Master" AutoEventWireup="true" CodeBehind="Municipios.aspx.cs" Inherits="SIP.Formas.Catalogos.Municipios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavegadorCatalogos.Master" AutoEventWireup="true" CodeBehind="catGrupoBeneficiarios.aspx.cs" Inherits="SIP.Formas.Catalogos.catGrupoBeneficiarios" %>
+
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
 
-    $(document).ready(function () {
-                  $("#<%= txtNombre.ClientID %>").attr('maxlength', '100');
-          });
+        $(document).ready(function () {
+            $("#<%= txtNombre.ClientID %>").attr('maxlength', '100');
+    });
 
-          function fnc_Validar() {
+    function fnc_Validar() {
 
-              var desc = $("#<%=txtNombre.ClientID%>").val();
-            if (desc == null || desc.length == 0 || desc == undefined) {
-                alert("El campo nombre no se puede registrar vacio");
-                return false;
-            }
-            return true;
-        }
-
-        function fnc_limpiarCampos() {
-            $("#<%=  txtClave.ClientID%>").val("");
-              $("#<%=  txtNombre.ClientID%>").val("");
-              $("#<%=  txtOrden.ClientID%>").val("");
+        var desc = $("#<%=txtNombre.ClientID%>").val();
+              if (desc == null || desc.length == 0 || desc == undefined) {
+                  alert("El campo nombre no se puede registrar vacio");
+                  return false;
+              }
               return true;
           }
 
-          function fnc_OcultarDivs(sender) {
-              $("#<%= divBtnNuevo.ClientID %>").css("display", "block");
-            $("#<%= divEdicion.ClientID %>").css("display", "none");
-            $("#<%= divMsg.ClientID %>").css("display", "none");
-            $("#<%= divMsgSuccess.ClientID %>").css("display", "none");
-
-            $("#<%=  txtClave.ClientID%>").val("");
+          function fnc_limpiarCampos() {
+              $("#<%=  txtClave.ClientID%>").val("");
             $("#<%=  txtNombre.ClientID%>").val("");
             $("#<%=  txtOrden.ClientID%>").val("");
-
-            return false;
+            return true;
         }
 
-        function fnc_Confirmar() {
-            return confirm("¿Está seguro de eliminar el registro?");
-        }
+        function fnc_OcultarDivs(sender) {
+            $("#<%= divBtnNuevo.ClientID %>").css("display", "block");
+              $("#<%= divEdicion.ClientID %>").css("display", "none");
+              $("#<%= divMsg.ClientID %>").css("display", "none");
+              $("#<%= divMsgSuccess.ClientID %>").css("display", "none");
+
+              $("#<%=  txtClave.ClientID%>").val("");
+              $("#<%=  txtNombre.ClientID%>").val("");
+              $("#<%=  txtOrden.ClientID%>").val("");
+
+              return false;
+          }
+
+          function fnc_Confirmar() {
+              return confirm("¿Está seguro de eliminar el registro?");
+          }
 
 
-        function fnc_EjecutarMensaje(mensaje) {
-            alert(mensaje);
-        }
+          function fnc_EjecutarMensaje(mensaje) {
+              alert(mensaje);
+          }
 
     </script>
 </asp:Content>
@@ -53,7 +56,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="panel-heading">
-            <h3 class="panel-title">Municipios</h3>
+            <h3 class="panel-title">Beneficiarios</h3>
     </div>
     <div class="panel-footer alert alert-success" id="divMsgSuccess" style="display:none" runat="server">
                 <asp:Label ID="lblMensajeSuccess" runat="server" Text=""></asp:Label>
@@ -156,7 +159,7 @@
                 </div>
 
                 <div style="display:none" runat="server">
-                    <asp:TextBox ID="_idMUN" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
+                    <asp:TextBox ID="_ElId" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
                     <asp:TextBox ID="_Accion" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
                                     
                 </div>

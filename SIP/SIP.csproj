@@ -110,6 +110,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Formas\Catalogos\cat.aspx" />
     <Content Include="Formas\Catalogos\catAperturaProgramatica.aspx" />
+    <Content Include="Formas\Catalogos\catGrupoBeneficiarios.aspx" />
+    <Content Include="Formas\Catalogos\catProgramas.aspx" />
     <Content Include="Formas\Catalogos\catUnidadesPresupuestales.aspx" />
     <Content Include="Formas\Catalogos\Ejercicios.aspx" />
     <Content Include="Formas\Catalogos\Municipios.aspx" />
@@ -221,6 +223,20 @@
     </Compile>
     <Compile Include="Formas\Catalogos\catAperturaProgramatica.aspx.designer.cs">
       <DependentUpon>catAperturaProgramatica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formas\Catalogos\catGrupoBeneficiarios.aspx.cs">
+      <DependentUpon>catGrupoBeneficiarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formas\Catalogos\catGrupoBeneficiarios.aspx.designer.cs">
+      <DependentUpon>catGrupoBeneficiarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formas\Catalogos\catProgramas.aspx.cs">
+      <DependentUpon>catProgramas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formas\Catalogos\catProgramas.aspx.designer.cs">
+      <DependentUpon>catProgramas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formas\Catalogos\catUnidadesPresupuestales.aspx.cs">
       <DependentUpon>catUnidadesPresupuestales.aspx</DependentUpon>
