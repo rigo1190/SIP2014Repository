@@ -107,11 +107,8 @@
        
     
     <div class="container">
-
        
-        <div class="page-header">
-  <h3><asp:Label ID="lblTituloPOA" runat="server" Text=""></asp:Label></h3>
-</div>
+        <div class="page-header"><h3><asp:Label ID="lblTituloPOA" runat="server" Text=""></asp:Label></h3></div>
 
         <asp:GridView Height="25px" ShowHeaderWhenEmpty="true" CssClass="table" ID="GridViewObras" DataKeyNames="Id" AutoGenerateColumns="False" runat="server" AllowPaging="True">
             <Columns>
@@ -143,18 +140,28 @@
                     
         </asp:GridView>
 
-         <div id="divBtnNuevo" runat="server" style="display:block">
+        <div id="divBtnNuevo" runat="server" style="display:block">
               <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" AutoPostBack="false" />
          </div>
-
+    
         <div id="divEdicion" runat="server" class="panel-footer" style="display:none">
+            
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#datosgenerales" role="tab" data-toggle="tab">Datos generales</a></li>
+              <li><a href="#planveracruzanodesarrollo" role="tab" data-toggle="tab">Plan Veracruzano de Desarrollo</a></li>        
+            </ul>
 
-             <div class="panel-footer alert alert-danger" id="divMsg" style="display:none" runat="server">
-                <asp:Label ID="lblMensajes" runat="server" Text=""></asp:Label>
-            </div>
+            <div class="tab-content">
 
+                <div class="panel-footer alert alert-danger" id="divMsg" style="display:none" runat="server">
+                    <asp:Label ID="lblMensajes" runat="server" Text=""></asp:Label>
+                </div>
+                
+                <div class="tab-pane active" id="datosgenerales">
 
-            <div class="row">
+                     <div class="row">
+
+                     <br />   
 
 
                  <div class="col-md-4">
@@ -191,6 +198,13 @@
                            <label for="TipoLocalidad">Tipo de localidad</label>
                          <div>
                              <asp:DropDownList ID="ddlTipoLocalidad" CssClass="form-control" runat="server"></asp:DropDownList>
+                        </div>
+                      </div>
+
+                     <div class="form-group">
+                           <label for="ddlCriterioPriorizacion">Criterio de priorización</label>
+                         <div>
+                             <asp:DropDownList ID="ddlCriterioPriorizacion" CssClass="form-control" runat="server"></asp:DropDownList>
                         </div>
                       </div>
 
@@ -247,6 +261,20 @@
                         </div>
                       </div>
 
+                     <div class="form-group">
+                           <label for="Empleos">Empleos</label>
+                         <div>
+                            <input type="text" class="input-sm required form-control campoNumerico" id="txtEmpleos" runat="server" style="text-align: left; align-items:flex-start" data-v-min="0" data-v-max="9999"/>
+                        </div>
+                      </div>
+
+                     <div class="form-group">
+                           <label for="Jornales">Jornales</label>
+                         <div>
+                            <input type="text" class="input-sm required form-control campoNumerico" id="txtJornales" runat="server" style="text-align: left; align-items:flex-start" data-v-min="0" data-v-max="9999"/>
+                        </div>
+                      </div>
+
 
                   </div>
 
@@ -267,12 +295,30 @@
                       </div>
 
                      <div class="form-group">
-                           <label for="ImporteTotal">Importe total</label>
+                           <label for="ImporteTotal">Costo total</label>
                          <div class="input-group">
                             <span class="input-group-addon">$</span>
                             <input type="text" class="input-sm required form-control campoNumerico" id="txtImporteTotal" runat="server" style="text-align: left; align-items:flex-start" />
                         </div>
                       </div>
+
+                      <div class="form-group">
+                           <label for="ImporteTotal">Costo liberado en ejercicios anteriores</label>
+                         <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" class="input-sm required form-control campoNumerico" id="txtCostoLiberadoEjerciciosAnteriores" runat="server" style="text-align: left; align-items:flex-start" />
+                        </div>
+                      </div>
+
+                     <div class="form-group">
+                           <label for="ImporteTotal">Costo liberado en ejercicios anteriores</label>
+                         <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" class="input-sm required form-control campoNumerico" id="txtImporte" runat="server" style="text-align: left; align-items:flex-start" />
+                        </div>
+                      </div>
+
+
 
                      <div class="form-group">
                            <label for="Observaciones">Observaciones</label>
@@ -285,12 +331,136 @@
                 
 
             </div>
-                      
-                                            
-            <div class="form-group">
-                <asp:Button  CssClass="btn btn-default" Text="Guardar" ID="btnGuardar" runat="server" OnClientClick="return fnc_Validar()" OnClick="btnGuardar_Click" AutoPostBack="false" />
-                <asp:Button  CssClass="btn btn-default" Text="Cancelar" ID="btnCancelar" runat="server" OnClientClick="return fnc_OcultarDivs()" AutoPostBack="false" />
-            </div>                      
+
+                </div><!--datosgenerales-->
+
+                <div class="tab-pane" id="planveracruzanodesarrollo">
+                    
+                     <div class="row">
+
+                        <br />
+
+                        <div class="col-md-4">
+
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">Funcionalidad</h3>
+                              </div>
+                              <div class="panel-body">
+
+                                  <div class="form-group">
+                                       <label for="Finalidad">Finalidad</label>
+                                     <div>
+                                         <asp:DropDownList OnSelectedIndexChanged="ddlFinalidad_SelectedIndexChanged" ID="ddlFinalidad" CssClass="form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                       <label for="Funcion">Funcion</label>
+                                     <div>
+                                         <asp:DropDownList ID="ddlFuncion" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFuncion_SelectedIndexChanged"></asp:DropDownList>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                     <label for="SubFuncion">SubFuncion</label>
+                                     <div>
+                                         <asp:DropDownList ID="ddlSubFuncion" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSubFuncion_SelectedIndexChanged"></asp:DropDownList>
+                                    </div>
+                                  </div>
+                                                                  
+                              </div>
+
+                            </div><!--Funcionalidad panel panel-default-->
+
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">Eje</h3>
+                              </div>
+                              <div class="panel-body">
+
+                                  <div class="form-group">
+                                       <label for="EjeAgrupador">Agrupador</label>
+                                     <div>
+                                         <asp:DropDownList OnSelectedIndexChanged="ddlEjeAgrupador_SelectedIndexChanged" ID="ddlEjeAgrupador" CssClass="form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                       <label for="EjeElemento">Elemento</label>
+                                     <div>
+                                         <asp:DropDownList OnSelectedIndexChanged="ddlEjeElemento_SelectedIndexChanged" ID="ddlEjeElemento" CssClass="form-control" runat="server" ></asp:DropDownList>
+                                    </div>
+                                  </div>
+                                                                                                    
+                              </div>
+
+                            </div><!--Eje panel panel-default-->                                                       
+                                                        
+                                                            
+                        </div><!--col-md-4-->
+                         
+                        <div class="col-md-4">
+
+                               <div class="form-group">
+                                   <label for="PlanSectorial">Plan Sectorial</label>
+                                 <div>
+                                     <asp:DropDownList OnSelectedIndexChanged="ddlPlanSectorial_SelectedIndexChanged" ID="ddlPlanSectorial" CssClass="form-control" runat="server"></asp:DropDownList>
+                                </div>
+                              </div> 
+                            
+                              <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">Clasificación Programática CONAC</h3>
+                              </div>
+                              <div class="panel-body">
+
+                                  <div class="form-group">
+                                       <label for="ddlModalidadAgrupador">Agrupador</label>
+                                     <div>
+                                         <asp:DropDownList OnSelectedIndexChanged="ddlModalidadAgrupador_SelectedIndexChanged" ID="ddlModalidadAgrupador" CssClass="form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                       <label for="ddlModalidadElemento">Elemento</label>
+                                     <div>
+                                         <asp:DropDownList OnSelectedIndexChanged="ddlModalidadElemento_SelectedIndexChanged" ID="ddlModalidadElemento" CssClass="form-control" runat="server"></asp:DropDownList>
+                                    </div>
+                                  </div>
+                                                                                                    
+                              </div>
+
+                            </div><!--Clasificación Programática panel panel-default-->   
+                                 
+                            <div class="form-group">
+                                   <label for="Programa">Programa</label>
+                                 <div>
+                                      <asp:DropDownList ID="ddlProgramaPresupuesto" CssClass="form-control" runat="server"></asp:DropDownList>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                   <label for="GrupoBeneficiarios">Grupo de beneficiarios</label>
+                                 <div>
+                                      <asp:DropDownList ID="ddlGrupoBeneficiario" CssClass="form-control" runat="server"></asp:DropDownList>
+                                </div>
+                              </div>
+
+                        </div><!--col-md-4-->                                                
+                
+                    </div><!--row-->
+
+
+                </div><!--planveracruzanodesarrollo--> 
+                
+                 <div class="form-group header">
+                    <asp:Button  CssClass="btn btn-default" Text="Guardar" ID="btnGuardar" runat="server" OnClientClick="return fnc_Validar()" OnClick="btnGuardar_Click" AutoPostBack="false" />
+                    <asp:Button  CssClass="btn btn-default" Text="Cancelar" ID="btnCancelar" runat="server" OnClientClick="return fnc_OcultarDivs()" AutoPostBack="false" />
+                </div>        
+
+            </div>                                        
+                               
 
              <div style="display:none" runat="server">
                 <asp:TextBox ID="_ID" runat="server" Enable="false" BorderColor="White" BorderStyle="None" ForeColor="White"></asp:TextBox>
@@ -298,7 +468,7 @@
              </div>                       
                      
 
-       </div>
+       </div><!--divEdicion-->
 
     </div>
           

@@ -41,6 +41,11 @@ namespace BusinessLogicLayer
             return repository.Get(filter, orderBy, includeProperties).AsQueryable(); 
         }
 
+        public IQueryable<T> GetLocal(System.Linq.Expressions.Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
+        {
+            return repository.GetLocal(filter, orderBy, includeProperties).AsQueryable();
+        }
+
         public T GetByID(object id)
         {
             return repository.GetByID(id); 

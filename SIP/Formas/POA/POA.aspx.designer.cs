@@ -121,6 +121,15 @@ namespace SIP.Formas.POA {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoLocalidad;
         
         /// <summary>
+        /// Control ddlCriterioPriorizacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCriterioPriorizacion;
+        
+        /// <summary>
         /// Control txtEsAccion.
         /// </summary>
         /// <remarks>
@@ -184,6 +193,24 @@ namespace SIP.Formas.POA {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtCantidadUnidades;
         
         /// <summary>
+        /// Control txtEmpleos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmpleos;
+        
+        /// <summary>
+        /// Control txtJornales.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtJornales;
+        
+        /// <summary>
         /// Control ddlSituacionObra.
         /// </summary>
         /// <remarks>
@@ -211,6 +238,24 @@ namespace SIP.Formas.POA {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtImporteTotal;
         
         /// <summary>
+        /// Control txtCostoLiberadoEjerciciosAnteriores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCostoLiberadoEjerciciosAnteriores;
+        
+        /// <summary>
+        /// Control txtImporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtImporte;
+        
+        /// <summary>
         /// Control txtObservaciones.
         /// </summary>
         /// <remarks>
@@ -218,6 +263,96 @@ namespace SIP.Formas.POA {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtObservaciones;
+        
+        /// <summary>
+        /// Control ddlFinalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFinalidad;
+        
+        /// <summary>
+        /// Control ddlFuncion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFuncion;
+        
+        /// <summary>
+        /// Control ddlSubFuncion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubFuncion;
+        
+        /// <summary>
+        /// Control ddlEjeAgrupador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEjeAgrupador;
+        
+        /// <summary>
+        /// Control ddlEjeElemento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEjeElemento;
+        
+        /// <summary>
+        /// Control ddlPlanSectorial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlanSectorial;
+        
+        /// <summary>
+        /// Control ddlModalidadAgrupador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModalidadAgrupador;
+        
+        /// <summary>
+        /// Control ddlModalidadElemento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlModalidadElemento;
+        
+        /// <summary>
+        /// Control ddlProgramaPresupuesto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProgramaPresupuesto;
+        
+        /// <summary>
+        /// Control ddlGrupoBeneficiario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoBeneficiario;
         
         /// <summary>
         /// Control btnGuardar.
