@@ -55,6 +55,7 @@
                                 <li><a href="<%=ResolveClientUrl("~/Formas/Catalogos/Ejercicios.aspx") %>">Ejercicios</a></li>
                                 <li><a href="<%=ResolveClientUrl("~/Formas/Catalogos/Municipios.aspx") %>">Municipios</a></li>
                                 <li><a href="<%=ResolveClientUrl("~/Formas/Catalogos/PlantillasPadre.aspx") %>">Plantillas</a></li>
+                                <li><a href="<%=ResolveClientUrl("~/Formas/Catalogos/catUnidadesPresupuestales.aspx") %>">Unidades Presupuestales</a></li>
                             </ul>
                         </li>
                     </ul>
