@@ -10,33 +10,33 @@ using System.Web.UI.WebControls;
 
 namespace SIP.Formas.Catalogos
 {
-    public partial class Municipios : System.Web.UI.Page
+    public partial class catUnidadesPresupuestales : System.Web.UI.Page
     {
         private UnitOfWork uow;
         protected void Page_Load(object sender, EventArgs e)
         {
             uow = new UnitOfWork();
 
-            if (!IsPostBack) 
+            if (!IsPostBack)
             {
-                BindGrid();
+                BindDataGrid();
+
                 divEdicion.Style.Add("display", "none");
                 divBtnNuevo.Style.Add("display", "block");
 
                 divMsg.Style.Add("display", "none");
                 divMsgSuccess.Style.Add("display", "none");
-            }           
+            }
         }
 
 
-        private void BindGrid()
+
+        private void BindDataGrid()
         {
-            this.grid.DataSource = uow.MunicipioBusinessLogic.Get().ToList();
+            this.grid.DataSource = uow.UnidadPresupuestalBusinessLogic.Get().ToList().OrderBy(p=>p.Orden).ToList();
             this.grid.DataBind();
         }
 
-
-               
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -45,24 +45,28 @@ namespace SIP.Formas.Catalogos
 
             divEdicion.Style.Add("display", "block");
             divBtnNuevo.Style.Add("display", "none");
-            divMsg.Style.Add("display", "none");
+            divMsg.Style.Add ("display", "none");
             divMsgSuccess.Style.Add("display", "none");
 
-            List<Municipio> lista = uow.MunicipioBusinessLogic.Get().ToList();
+
+
+            List<UnidadPresupuestal> lista = uow.UnidadPresupuestalBusinessLogic.Get().ToList();
 
             orden = lista.Max(p => p.Orden);
             orden++;
             txtOrden.Value = orden.ToString();
+
         }
+
 
         protected void imgBtnEdit_Click(object sender, ImageClickEventArgs e)
         {
             GridViewRow row = (GridViewRow)((ImageButton)sender).NamingContainer;
-            _idMUN.Text= grid.DataKeys[row.RowIndex].Values["Id"].ToString();
+            _idUP.Text = grid.DataKeys[row.RowIndex].Values["Id"].ToString();
             _Accion.Text = "update";
 
-            Municipio mun = uow.MunicipioBusinessLogic.GetByID(int.Parse(_idMUN.Text));
-            BindCatalogo(mun);
+            UnidadPresupuestal up = uow.UnidadPresupuestalBusinessLogic.GetByID(int.Parse(_idUP.Text));
+            BindCatalogo(up);
 
 
             divEdicion.Style.Add("display", "block");
@@ -70,37 +74,37 @@ namespace SIP.Formas.Catalogos
 
             divMsg.Style.Add("display", "none");
             divMsgSuccess.Style.Add("display", "none");
+
+
         }
 
         protected void imgBtnEliminar_Click(object sender, ImageClickEventArgs e)
         {
             GridViewRow row = (GridViewRow)((ImageButton)sender).NamingContainer;
-            _idMUN.Text = grid.DataKeys[row.RowIndex].Values["Id"].ToString();
+            _idUP.Text = grid.DataKeys[row.RowIndex].Values["Id"].ToString();
 
-            Municipio mun = uow.MunicipioBusinessLogic.GetByID(int.Parse(_idMUN.Text));
+            UnidadPresupuestal up = uow.UnidadPresupuestalBusinessLogic.GetByID(int.Parse(_idUP.Text));
 
 
 
             uow.Errors.Clear();
-            List<POADetalle> lista;
-            lista = uow.POADetalleBusinessLogic.Get(p => p.MunicipioId == mun.Id).ToList();
-                
-
+            List<DataAccessLayer.Models.POA> lista;
+            lista = uow.POABusinessLogic.Get(p => p.UnidadPresupuestalId == up.Id).ToList();
+                        
             if (lista.Count > 0)
-                uow.Errors.Add("El registro no puede eliminarse porque ya ha sido usado en el sistema");
+                uow.Errors.Add("La unidad presupuestal no puede ser eliminada porque ya fue utilizada dentro del sistema");
+            
 
 
-
-            if (uow.Errors.Count == 0)
-            {
-                uow.MunicipioBusinessLogic.Delete(mun);
+            if (uow.Errors.Count == 0)            {
+                uow.UnidadPresupuestalBusinessLogic.Delete(up);
                 uow.SaveChanges();
             }
 
 
             if (uow.Errors.Count == 0)
             {
-                BindGrid();
+                BindDataGrid();
                 lblMensajeSuccess.Text = "El registro se ha eliminado correctamente";
 
                 divEdicion.Style.Add("display", "none");
@@ -110,7 +114,7 @@ namespace SIP.Formas.Catalogos
                 divMsgSuccess.Style.Add("display", "block");
 
             }
-
+            
             else
             {
                 string mensaje;
@@ -126,78 +130,82 @@ namespace SIP.Formas.Catalogos
             }
         }
 
-        
+       
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            
-            Municipio mun;
-            List<Municipio> lista;
-            string mensaje = "";
-
+            UnidadPresupuestal up;
+            List<UnidadPresupuestal> lista;
+            string mensaje="";
+                       
             if (_Accion.Text == "Nuevo")
-                mun = new Municipio();
+                up = new UnidadPresupuestal();
             else
-                mun = uow.MunicipioBusinessLogic.GetByID(int.Parse(_idMUN.Text));
-                
+                up = uow.UnidadPresupuestalBusinessLogic.GetByID(int.Parse(_idUP.Text));
 
-            mun.Clave = txtClave.Value;
-            mun.Nombre = txtNombre.Value;
-            mun.Orden = int.Parse(txtOrden.Value);
+            up.Clave = txtClave.Value;
+            up.Abreviatura = txtAbreviatura.Value;
+            up.Nombre = txtNombre.Value;
+            up.Orden = int.Parse(txtOrden.Value);
 
 
             //Validaciones
-            uow.Errors.Clear();
-            if (_Accion.Text == "Nuevo")
-            {
-
-                lista = uow.MunicipioBusinessLogic.Get(p => p.Clave == mun.Clave).ToList();
+            uow.Errors.Clear();            
+            if (_Accion.Text == "Nuevo"){
+            
+                lista = uow.UnidadPresupuestalBusinessLogic.Get(p => p.Clave == up.Clave).ToList(); 
                 if (lista.Count > 0)
                     uow.Errors.Add("La Clave que capturo ya ha sido registrada anteriormente, verifique su información");
 
+                lista = uow.UnidadPresupuestalBusinessLogic.Get(p => p.Abreviatura == up.Abreviatura).ToList();
+                if (lista.Count > 0)
+                    uow.Errors.Add("La Abreviatura que capturo ya ha sido registrada anteriormente, verifique su información");
 
-                lista = uow.MunicipioBusinessLogic.Get(p => p.Nombre == mun.Nombre).ToList();
+                lista = uow.UnidadPresupuestalBusinessLogic.Get(p => p.Nombre == up.Nombre).ToList();
                 if (lista.Count > 0)
                     uow.Errors.Add("El nombre que capturo ya ha sido registrada anteriormente, verifique su información");
 
 
-                lista = uow.MunicipioBusinessLogic.Get(p => p.Orden == mun.Orden).ToList();
+                lista = uow.UnidadPresupuestalBusinessLogic.Get(p => p.Orden == up.Orden).ToList();
                 if (lista.Count > 0)
                     uow.Errors.Add("El número de orden que capturo ya ha sido registrada anteriormente, verifique su información");
 
-                uow.MunicipioBusinessLogic.Insert(mun);
-                mensaje = "El nuevo municipio ha sido registrado correctamente";
+                uow.UnidadPresupuestalBusinessLogic.Insert(up);
+                mensaje = "La nueva unidad presupuestal se ha almacenado correctamente";
 
+                
 
-
-
+    
             }
             else//Update
             {
 
                 int xid;
 
-                xid = int.Parse(_idMUN.Text);
+                xid = int.Parse(_idUP.Text);
 
-                lista = uow.MunicipioBusinessLogic.Get(p => p.Id != xid && p.Clave == mun.Clave).ToList();
+                lista = uow.UnidadPresupuestalBusinessLogic.Get(p => p.Id != xid && p.Clave == up.Clave).ToList();
                 if (lista.Count > 0)
                     uow.Errors.Add("La Clave que capturo ya ha sido registrada anteriormente, verifique su información");
 
+                lista = uow.UnidadPresupuestalBusinessLogic.Get(p => p.Id != xid && p.Abreviatura == up.Abreviatura).ToList();
+                if (lista.Count > 0)
+                    uow.Errors.Add("La Abreviatura que capturo ya ha sido registrada anteriormente, verifique su información");
 
-                lista = uow.MunicipioBusinessLogic.Get(p => p.Id != xid && p.Nombre == mun.Nombre).ToList();
+                lista = uow.UnidadPresupuestalBusinessLogic.Get(p => p.Id != xid &&  p.Nombre == up.Nombre).ToList();
                 if (lista.Count > 0)
                     uow.Errors.Add("El nombre que capturo ya ha sido registrada anteriormente, verifique su información");
 
 
-                lista = uow.MunicipioBusinessLogic.Get(p => p.Id != xid && p.Orden == mun.Orden).ToList();
+                lista = uow.UnidadPresupuestalBusinessLogic.Get(p => p.Id != xid && p.Orden == up.Orden).ToList();
                 if (lista.Count > 0)
                     uow.Errors.Add("El número de orden que capturo ya ha sido registrada anteriormente, verifique su información");
+                
 
 
 
-
-                uow.MunicipioBusinessLogic.Update(mun);
-                mensaje = "Los cambios se registraron satisfactoriamente";
+                uow.UnidadPresupuestalBusinessLogic.Update(up);
+                mensaje = "La unidad presupuestal se ha actualizado correctamente";
             }
 
 
@@ -206,16 +214,17 @@ namespace SIP.Formas.Catalogos
 
             if (uow.Errors.Count == 0)
                 uow.SaveChanges();
-
+            
 
             if (uow.Errors.Count == 0)
-            {
+            {   
                 //ClientScript.RegisterStartupScript(this.GetType(), "script", "fnc_EjecutarMensaje('" + mensaje + "')", true);
                 txtClave.Value = string.Empty;
+                txtAbreviatura.Value = string.Empty;
                 txtNombre.Value = string.Empty;
                 txtOrden.Value = string.Empty;
 
-                BindGrid();
+                BindDataGrid();
 
                 lblMensajeSuccess.Text = mensaje;
 
@@ -223,7 +232,7 @@ namespace SIP.Formas.Catalogos
                 divBtnNuevo.Style.Add("display", "block");
                 divMsg.Style.Add("display", "none");
                 divMsgSuccess.Style.Add("display", "block");
-
+                
             }
             else
             {
@@ -233,42 +242,44 @@ namespace SIP.Formas.Catalogos
                 mensaje = string.Empty;
                 foreach (string cad in uow.Errors)
                     mensaje = mensaje + cad + "<br>";
+                     
 
-
-
+                 
                 lblMensajes.Text = mensaje;
 
             }
+
         }
 
 
 
+
+
+
+
+         
+        public void BindCatalogo(UnidadPresupuestal UP)
+        {
+            txtClave.Value = UP.Clave;
+            txtAbreviatura.Value = UP.Abreviatura;
+            txtNombre.Value = UP.Nombre;
+            txtOrden.Value = UP.Orden.ToString();
+            _idUP.Text = UP.Id.ToString();
+        }
 
         protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grid.PageIndex = e.NewPageIndex;
-            BindGrid();
+            BindDataGrid();
 
             divBtnNuevo.Style.Add("display", "block");
 
-            divEdicion.Style.Add("display", "none");
+            divEdicion.Style.Add("display", "none");            
             divMsg.Style.Add("display", "none");
             divMsgSuccess.Style.Add("display", "none");
+
         }
 
-
-
-
-        public void BindCatalogo(Municipio UP)
-        {
-            txtClave.Value = UP.Clave;
-            txtNombre.Value = UP.Nombre;
-            txtOrden.Value = UP.Orden.ToString();
-            _idMUN.Text = UP.Id.ToString();
-        }
-       
-
-       
 
 
     }
